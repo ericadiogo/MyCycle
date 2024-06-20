@@ -1,6 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Base.Theme.MyCycle" parent="Theme.Material3.DayNight">
+    <style name="Base.Theme.MyCycle" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
         <item name="colorPrimary">@color/icon_background</item>
     </style>
@@ -28,5 +28,5 @@
         <item name="fontFamily">@font/tenor_sans</item>
     </style>
 
-    <style name="Theme.MyCycleV1" parent="Base.Theme.MyCycleV1" />
+    <style name="Theme.MyCycle" parent="Base.Theme.MyCycle" />
 </resources>
