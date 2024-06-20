@@ -1,9 +1,32 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Base.Theme.MyCycle" parent="Theme.Material3.DayNight.NoActionBar">
+    <style name="Base.Theme.MyCycle" parent="Theme.Material3.DayNight">
         <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="colorPrimary">@color/icon_background</item>
     </style>
 
-    <style name="Theme.MyCycle" parent="Base.Theme.MyCycle" />
+    <style name="CalendarViewMyCycle" parent="Theme.AppCompat">
+        <item name="colorControlActivated">@color/activity_background</item>
+        <item name="android:textColorPrimary">@color/mycycle_text</item>
+        <item name="fontFamily">@font/tenor_sans</item>
+        <item name="android:fontFamily">@font/tenor_sans</item>
+        <item name="android:background">@color/board</item>
+        <item name="android:textStyle">bold</item>
+        <item name="cornerRadius">20dp</item>
+    </style>
+
+    <style name="CalendarWeekText" parent="android:TextAppearance.DeviceDefault.Small">
+        <item name="android:textColor">@color/weekdays</item>
+        <item name="android:fontFamily">@font/tenor_sans</item>
+        <item name="fontFamily">@font/tenor_sans</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="CalendarViewDate" parent="TextAppearance.AppCompat.Button">
+        <item name="android:textColor">@color/selectedday</item>
+        <item name="android:fontFamily">@font/tenor_sans</item>
+        <item name="fontFamily">@font/tenor_sans</item>
+    </style>
+
+    <style name="Theme.MyCycleV1" parent="Base.Theme.MyCycleV1" />
 </resources>
