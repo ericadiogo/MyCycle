@@ -45,7 +45,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="start"
             android:layout_marginLeft="40dp"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="80dp"
             android:fontFamily="@font/tenor_sans"
             android:text="Hello, !"
             android:textColor="@color/mycycle_text"
