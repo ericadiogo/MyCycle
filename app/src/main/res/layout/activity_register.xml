@@ -1,0 +1,57 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/activity_background"
+    tools:context=".RegisterActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/right"
+            android:layout_width="218dp"
+            android:layout_height="346dp"
+            android:layout_marginEnd="-25dp"
+            android:src="@drawable/right2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/left"
+            android:layout_width="404dp"
+            android:layout_height="668dp"
+            android:layout_marginStart="-139dp"
+            android:layout_marginTop="36dp"
+            android:src="@drawable/left2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/bottom"
+            android:layout_width="265dp"
+            android:layout_height="537dp"
+            android:layout_marginEnd="-1dp"
+            android:layout_marginBottom="-161dp"
+            android:src="@drawable/inferior2"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <TextView
+            android:id="@+id/myCycle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="60dp"
+            android:fontFamily="@font/tenor_sans"
+            android:textStyle="bold"
+            android:textSize="50sp"
+            android:textColor="@color/mycycle_text"
+            android:text="MyCycle"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</FrameLayout>
