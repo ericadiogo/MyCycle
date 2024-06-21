@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "347726325393",
+    "project_id": "mycycle-f063d",
+    "storage_bucket": "mycycle-f063d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:347726325393:android:ee7890e38e9e716f378130",
+        "android_client_info": {
+          "package_name": "com.ericadiogo.mycycle"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAVEj_NK6-oEuAj-CqFlHHL9vwOJ0qXLsg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
