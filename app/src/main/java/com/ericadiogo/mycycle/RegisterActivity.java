@@ -19,10 +19,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class RegisterActivity extends AppCompatActivity {
-    private EditText firstName,lastName,emailRegister,passRegister;
-
+    private EditText emailRegister,passRegister,passConfirm;
     private Button btnRegister, btnLoginRegister;
-
     private FirebaseAuth mAuth;
 
     @Override
@@ -30,10 +28,9 @@ public class RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        firstName = findViewById(R.id.firstName);
-        lastName = findViewById(R.id.lastName);
         emailRegister = findViewById(R.id.emailRegister);
         passRegister = findViewById(R.id.passRegister);
+        passConfirm = findViewById(R.id.passConfirm);
 
         btnRegister = findViewById(R.id.btnRegister);
         btnLoginRegister = findViewById(R.id.btnLoginRegister);
@@ -54,27 +51,27 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     private void validateUser(){
-        String fname = firstName.getText().toString().trim();
-        String lname = lastName.getText().toString().trim();
         String email = emailRegister.getText().toString().trim();
         String password = passRegister.getText().toString().trim();
+        String passConf = passConfirm.getText().toString().trim();
 
-        if(!fname.isEmpty()){
-            if(!lname.isEmpty()){
-                if(!email.isEmpty()){
-                    if(!password.isEmpty()){
+        if(!email.isEmpty()){
+            if(!password.isEmpty()){
+                if(!passConf.isEmpty()){
+                    if(password.equals(passConf)) {
+                        Toast.makeText(RegisterActivity.this,"Passwords match!",Toast.LENGTH_SHORT).show();
                         createUserFirebase(email, password);
                     } else {
-                        Toast.makeText(this,"Please, create a password.", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(RegisterActivity.this,"Passwords don't match.",Toast.LENGTH_SHORT).show();
                     }
                 } else {
-                    Toast.makeText(this,"Please, provide your email.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(RegisterActivity.this,"Please, retype your password.", Toast.LENGTH_SHORT).show();
                 }
             } else {
-                Toast.makeText(this,"Please, provide your last name name.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this,"Please, create a password.", Toast.LENGTH_SHORT).show();
             }
         } else {
-            Toast.makeText(this,"Please, provide your first name.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this,"Please, provide your email.", Toast.LENGTH_SHORT).show();
         }
     }
 
