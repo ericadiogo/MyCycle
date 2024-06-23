@@ -39,23 +39,388 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
 
-        <TextView
-            android:id="@+id/userGreeting"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="start"
-            android:layout_marginLeft="40dp"
-            android:layout_marginTop="80dp"
-            android:fontFamily="@font/tenor_sans"
-            android:text="Hello, !"
-            android:textColor="@color/mycycle_text"
-            android:textSize="24sp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.009"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+        <LinearLayout
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
+            <TextView
+                android:id="@+id/userGreeting"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:layout_marginLeft="40dp"
+                android:layout_marginTop="40dp"
+                android:fontFamily="@font/tenor_sans"
+                android:text=""
+                android:textColor="@color/mycycle_text"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.009"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardInfo"
+                android:layout_width="match_parent"
+                android:layout_height="160dp"
+                android:layout_margin="40dp"
+                android:backgroundTint="@color/board"
+                android:outlineAmbientShadowColor="@color/black"
+                app:cardCornerRadius="15dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.687"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/userGreeting" >
+
+                <LinearLayout
+                    android:id="@+id/layoutInfo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:gravity="fill">
+
+                    <LinearLayout
+                        android:id="@+id/layout1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="15dp"
+                            android:layout_weight="0.5"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/todayDate"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="left"
+                                android:layout_margin="15dp"
+                                android:fontFamily="@font/tenor_sans"
+                                android:text="Date"
+                                android:textColor="@color/mycycle_text"
+                                android:textSize="20sp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="15dp"
+                            android:layout_weight="0.5"
+                            android:gravity="right"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:id="@+id/infoIcon"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/baseline_info_outline_24"
+                                android:layout_margin="15dp"
+                                android:layout_gravity="right"/>
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/layout2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:layout_weight="0.5">
+
+                            <TextView
+                                android:id="@+id/fertDay"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="left"
+                                android:layout_margin="5dp"
+                                android:padding="2dp"
+                                android:fontFamily="@font/tenor_sans"
+                                android:text=" Date"
+                                android:drawableLeft="@drawable/baseline_local_florist_24"
+                                android:textColor="@color/mycycle_text"
+                                android:textSize="18sp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.5"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/periodDay"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="left"
+                                android:layout_margin="5dp"
+                                android:padding="2dp"
+                                android:fontFamily="@font/tenor_sans"
+                                android:text=" Date"
+                                android:drawableLeft="@drawable/baseline_water_drop_24"
+                                android:textColor="@color/mycycle_text"
+                                android:textSize="18sp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/layout3"
+                        android:layout_width="match_parent"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="15dp"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:id="@+id/pregChance"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="left"
+                            android:layout_marginLeft="15dp"
+                            android:padding="2dp"
+                            android:fontFamily="@font/tenor_sans"
+                            android:text="Pregnancy chance: "
+                            android:textColor="@color/mycycle_text"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <LinearLayout
+                android:id="@+id/icons1"
+                android:orientation="horizontal"
+                android:gravity="fill_horizontal"
+                android:layout_margin="40dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/cardInfo">
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:layout_gravity="center"
+                    android:layout_marginRight="20dp"
+                    android:gravity="fill_horizontal">
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/cardCalendar"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/board"
+                        android:gravity="center"
+                        android:outlineAmbientShadowColor="@color/black"
+                        app:layout_constraintDimensionRatio="1:1"
+                        app:cardCornerRadius="15dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:layout_margin="15dp"
+                            android:gravity="center">
+
+                            <ImageView
+                                android:id="@+id/calendar"
+                                android:layout_width="60dp"
+                                android:layout_height="60dp"
+                                android:layout_margin="10dp"
+                                android:src="@drawable/baseline_calendar_today_24"/>
+
+                            <TextView
+                                android:id="@+id/txtCalendar"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Calendar"
+                                android:textSize="20dp"
+                                android:textStyle="bold"
+                                android:fontFamily="@font/tenor_sans"
+                                android:textColor="@color/mycycle_text"
+                                />
+
+                        </LinearLayout>
+
+                    </androidx.cardview.widget.CardView>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="20dp"
+                    android:gravity="fill_horizontal">
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/cardReminder"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/board"
+                        android:gravity="center"
+                        android:outlineAmbientShadowColor="@color/black"
+                        app:layout_constraintDimensionRatio="1:1"
+                        app:cardCornerRadius="15dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:layout_margin="15dp"
+                            android:gravity="center">
+
+                            <ImageView
+                                android:id="@+id/reminder"
+                                android:layout_width="60dp"
+                                android:layout_height="60dp"
+                                android:layout_margin="10dp"
+                                android:src="@drawable/baseline_access_alarms_24"/>
+
+                            <TextView
+                                android:id="@+id/txtReminder"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Reminders"
+                                android:textSize="20sp"
+                                android:textStyle="bold"
+                                android:fontFamily="@font/tenor_sans"
+                                android:textColor="@color/mycycle_text"
+                                />
+
+                        </LinearLayout>
+
+                    </androidx.cardview.widget.CardView>
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/icons2"
+                android:orientation="horizontal"
+                android:gravity="fill_horizontal"
+                android:layout_margin="40dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/icons1">
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:layout_gravity="center"
+                    android:layout_marginRight="20dp"
+                    android:gravity="fill_horizontal">
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/cardTips"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/board"
+                        android:gravity="center"
+                        android:outlineAmbientShadowColor="@color/black"
+                        app:layout_constraintDimensionRatio="1:1"
+                        app:cardCornerRadius="15dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:layout_margin="15dp"
+                            android:gravity="center">
+
+                            <ImageView
+                                android:id="@+id/tips"
+                                android:layout_width="60dp"
+                                android:layout_height="60dp"
+                                android:layout_margin="10dp"
+                                android:src="@drawable/baseline_tips_and_updates_24"/>
+
+                            <TextView
+                                android:id="@+id/txtTips"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Tips"
+                                android:textSize="20sp"
+                                android:textStyle="bold"
+                                android:fontFamily="@font/tenor_sans"
+                                android:textColor="@color/mycycle_text"
+                                />
+
+                        </LinearLayout>
+
+                    </androidx.cardview.widget.CardView>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="20dp"
+                    android:gravity="fill_horizontal">
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/cardSettings"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/board"
+                        android:gravity="center"
+                        android:outlineAmbientShadowColor="@color/black"
+                        app:layout_constraintDimensionRatio="1:1"
+                        app:cardCornerRadius="15dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:layout_margin="15dp"
+                            android:gravity="center">
+
+                            <ImageView
+                                android:id="@+id/settings"
+                                android:layout_width="60dp"
+                                android:layout_height="60dp"
+                                android:layout_margin="10dp"
+                                android:src="@drawable/baseline_settings_24"/>
+
+                            <TextView
+                                android:id="@+id/txtSettings"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Settings"
+                                android:textSize="20dp"
+                                android:textStyle="bold"
+                                android:fontFamily="@font/tenor_sans"
+                                android:textColor="@color/mycycle_text"
+                                />
+
+                        </LinearLayout>
+
+                    </androidx.cardview.widget.CardView>
+                </LinearLayout>
+            </LinearLayout>
+
+
+        </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>
