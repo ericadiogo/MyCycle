@@ -18,8 +18,12 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class RegisterActivity extends AppCompatActivity {
-    private EditText firstName,lastName,emailRegister,passRegister,passConfirm;
+    private EditText firstName,lastName,emailRegister,passRegister,passConfirm,periodLengthReg,weightReg,lastPeriodDate;
     private Button btnRegister, btnLoginRegister;
     private FirebaseAuth mAuth;
     FirebaseDatabase database;
@@ -35,6 +39,9 @@ public class RegisterActivity extends AppCompatActivity {
         emailRegister = findViewById(R.id.emailRegister);
         passRegister = findViewById(R.id.passRegister);
         passConfirm = findViewById(R.id.passConfirm);
+        periodLengthReg = findViewById(R.id.periodLengthReg);
+        weightReg = findViewById(R.id.weightReg);
+        lastPeriodDate = findViewById(R.id.lastPeriodDate);
         btnRegister = findViewById(R.id.btnRegister);
 
         mAuth = FirebaseAuth.getInstance();
@@ -42,35 +49,47 @@ public class RegisterActivity extends AppCompatActivity {
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                validateUser();
+                try {
+                    validateUser();
+                } catch (ParseException e) {
+                    throw new RuntimeException(e);
+                }
             }
         });
     }
 
-    private void validateUser(){
+    private void validateUser() throws ParseException {
         String fname = firstName.getText().toString().trim();
         String lname = lastName.getText().toString().trim();
         String email = emailRegister.getText().toString().trim();
         String password = passRegister.getText().toString().trim();
         String passConf = passConfirm.getText().toString().trim();
+        int pLength = Integer.parseInt(periodLengthReg.getText().toString().trim());
+        int weight = Integer.parseInt(weightReg.getText().toString().trim());
+        String lastDate = String.valueOf(lastPeriodDate.getText());
+        SimpleDateFormat format_lp = new SimpleDateFormat("dd/mm/yyyy");
+        Date ld = format_lp.parse(lastDate);
         String id = String.valueOf("a1");
 
         if(!fname.isEmpty()){
             if (!lname.isEmpty()){
                 if(!email.isEmpty()){
-                    if(!password.isEmpty()){
-                        if(!passConf.isEmpty()){
-                            if(password.equals(passConf)) {
-                                Toast.makeText(RegisterActivity.this,"Passwords match!",Toast.LENGTH_SHORT).show();
-                                createUserFirebase(id,fname,lname,email,password);
+                    if(email.indexOf("@") == 0){
+                        Toast.makeText(this,"Please, provide a valid email.", Toast.LENGTH_SHORT).show();
+                    } else {
+                        if(!password.isEmpty()){
+                            if(!passConf.isEmpty()){
+                                if(!password.equals(passConf)) {
+                                    Toast.makeText(RegisterActivity.this,"Passwords don't match.",Toast.LENGTH_SHORT).show();
+                                } else {
+                                    createUserFirebase(id,fname,lname,email,password,pLength,weight,ld);
+                                }
                             } else {
-                                Toast.makeText(RegisterActivity.this,"Passwords don't match.",Toast.LENGTH_SHORT).show();
+                                Toast.makeText(RegisterActivity.this,"Please, retype your password.", Toast.LENGTH_SHORT).show();
                             }
                         } else {
-                            Toast.makeText(RegisterActivity.this,"Please, retype your password.", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(this,"Please, create a password.", Toast.LENGTH_SHORT).show();
                         }
-                    } else {
-                        Toast.makeText(this,"Please, create a password.", Toast.LENGTH_SHORT).show();
                     }
                 } else {
                     Toast.makeText(this,"Please, provide your email.", Toast.LENGTH_SHORT).show();
@@ -83,7 +102,7 @@ public class RegisterActivity extends AppCompatActivity {
         }
     }
 
-    private void createUserFirebase(String i, String fn, String ln, String emailReg, String passReg) {
+    private void createUserFirebase(String i, String fn, String ln, String emailReg, String passReg, int pl, int w, Date lp) {
         mAuth.createUserWithEmailAndPassword(
                 emailReg,passReg
         ).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
@@ -92,7 +111,7 @@ public class RegisterActivity extends AppCompatActivity {
                 if(task.isSuccessful()){
                     database = FirebaseDatabase.getInstance();
                     reference = database.getReference("users");
-                    UserModel user = new UserModel(mAuth.getUid(),fn,ln,emailReg,passReg);
+                    UserModel user = new UserModel(mAuth.getUid(),fn,ln,emailReg,passReg,pl,w,lp);
 
                     reference.child(user.getId()).setValue(user);
 
@@ -104,6 +123,9 @@ public class RegisterActivity extends AppCompatActivity {
                     intent.putExtra("lastname",ln);
                     intent.putExtra("email",emailReg);
                     intent.putExtra("password",passReg);
+                    intent.putExtra("periodlength",pl);
+                    intent.putExtra("weight",w);
+                    intent.putExtra("lastperiod",lp);
 
                     startActivity(intent);
                     finish();

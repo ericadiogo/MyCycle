@@ -1,14 +1,21 @@
 package com.ericadiogo.mycycle;
 
-public class UserModel {
-    private String id,firstName,lastName,email,password;
+import java.util.Date;
 
-    public UserModel(String id, String firstName, String lastName, String email, String password) {
+public class UserModel {
+    private String id, firstName, lastName, email, password;
+    private int pLength, weight;
+    private Date lastPeriod;
+
+    public UserModel(String id, String firstName, String lastName, String email, String password, int pLength, int weight,Date lastPeriod) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.password = password;
+        this.pLength = pLength;
+        this.weight = weight;
+        this.lastPeriod = lastPeriod;
     }
 
     public UserModel(){
@@ -50,4 +57,15 @@ public class UserModel {
         this.password = password;
     }
 
+    public int getpLength() { return pLength; }
+
+    public void setpLength(int pLength) { this.pLength = pLength; }
+
+    public int getWeight() { return weight; }
+
+    public void setWeight(int weight) { this.weight = weight; }
+
+    public Date getLastPeriod() { return lastPeriod; }
+
+    public void setLastPeriod(Date lastPeriod) { this.lastPeriod = lastPeriod; }
 }

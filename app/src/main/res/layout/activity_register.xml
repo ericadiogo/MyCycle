@@ -39,194 +39,326 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
 
-        <LinearLayout
-            android:orientation="vertical"
-            android:gravity="center"
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="0dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
 
-            <TextView
-                android:id="@+id/myCycle"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_marginTop="100dp"
+                android:gravity="center"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/tenor_sans"
-                android:textStyle="bold"
-                android:textSize="50sp"
-                android:textColor="@color/mycycle_text"
-                android:text="MyCycle"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:scrollbars="vertical">
 
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cardFirstName"
-                app:cardCornerRadius="10dp"
-                android:backgroundTint="@color/stroke"
-                android:layout_marginTop="30dp"
-                android:layout_marginLeft="40dp"
-                android:layout_marginRight="40dp"
-                android:layout_width="match_parent"
-                android:layout_height="54dp"
-                app:layout_constraintTop_toBottomOf="@id/myCycle"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent">
-
-                <EditText
-                    android:id="@+id/firstName"
-                    android:layout_width="match_parent"
-                    android:layout_height="48dp"
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:fontFamily="@font/tenor_sans"
-                    android:hint="First Name"
-                    android:inputType="text"
-                    android:layout_margin="3dp"
+                    android:textStyle="bold"
+                    android:textSize="32sp"
+                    android:gravity="center"
                     android:textColor="@color/mycycle_text"
-                    android:background="@drawable/edit_shape"
-                    android:padding="10dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/cardEmailRegister"/>
+                    android:text="Welcome to MyCycle!" />
 
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cardLastName"
-                app:cardCornerRadius="10dp"
-                android:backgroundTint="@color/stroke"
-                android:layout_marginTop="30dp"
-                android:layout_marginLeft="40dp"
-                android:layout_marginRight="40dp"
-                android:layout_width="match_parent"
-                android:layout_height="54dp"
-                app:layout_constraintTop_toBottomOf="@id/cardFirstName"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent">
-
-                <EditText
-                    android:id="@+id/lastName"
-                    android:layout_width="match_parent"
-                    android:layout_height="48dp"
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:fontFamily="@font/tenor_sans"
-                    android:hint="Last Name"
-                    android:inputType="text"
-                    android:layout_margin="3dp"
+                    android:layout_marginTop="60dp"
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginRight="40dp"
+                    android:layout_marginBottom="30dp"
+                    android:textStyle="bold"
+                    android:textSize="20sp"
+                    android:gravity="center"
                     android:textColor="@color/mycycle_text"
-                    android:background="@drawable/edit_shape"
-                    android:padding="10dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/cardEmailRegister"/>
+                    android:text="We would like to know a bit more about you." />
 
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cardEmailRegister"
-                app:cardCornerRadius="10dp"
-                android:backgroundTint="@color/stroke"
-                android:layout_marginTop="30dp"
-                android:layout_marginLeft="40dp"
-                android:layout_marginRight="40dp"
-                android:layout_width="match_parent"
-                android:layout_height="54dp"
-                app:layout_constraintTop_toBottomOf="@id/myCycle"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent">
-
-                <EditText
-                    android:id="@+id/emailRegister"
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardFirstName"
+                    app:cardCornerRadius="10dp"
+                    android:backgroundTint="@color/stroke"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginRight="40dp"
                     android:layout_width="match_parent"
-                    android:layout_height="48dp"
-                    android:fontFamily="@font/tenor_sans"
-                    android:inputType="textEmailAddress"
-                    android:hint="Email"
-                    android:layout_margin="3dp"
-                    android:textColor="@color/mycycle_text"
-                    android:background="@drawable/edit_shape"
-                    android:padding="10dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/cardEmailRegister"/>
+                    android:layout_height="54dp">
 
-            </androidx.cardview.widget.CardView>
+                    <EditText
+                        android:id="@+id/firstName"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:fontFamily="@font/tenor_sans"
+                        android:hint="First Name"
+                        android:inputType="text"
+                        android:layout_margin="3dp"
+                        android:textColor="@color/mycycle_text"
+                        android:background="@drawable/edit_shape"
+                        android:padding="10dp"/>
 
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cardPasswordRegister"
-                app:cardCornerRadius="10dp"
-                android:backgroundTint="@color/stroke"
-                android:layout_marginTop="30dp"
-                android:layout_marginLeft="40dp"
-                android:layout_marginRight="40dp"
-                android:layout_width="match_parent"
-                android:layout_height="54dp"
-                app:layout_constraintTop_toBottomOf="@id/cardEmailRegister"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent">
+                </androidx.cardview.widget.CardView>
 
-                <EditText
-                    android:id="@+id/passRegister"
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardLastName"
+                    app:cardCornerRadius="10dp"
+                    android:backgroundTint="@color/stroke"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginRight="40dp"
                     android:layout_width="match_parent"
-                    android:layout_height="48dp"
-                    android:layout_margin="3dp"
-                    android:background="@drawable/edit_shape"
-                    android:fontFamily="@font/tenor_sans"
-                    android:hint="Password"
-                    android:inputType="textPassword"
-                    android:padding="10dp"
-                    android:textColor="@color/mycycle_text"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/cardEmailRegister" />
+                    android:layout_height="54dp">
 
-            </androidx.cardview.widget.CardView>
+                    <EditText
+                        android:id="@+id/lastName"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:fontFamily="@font/tenor_sans"
+                        android:hint="Last Name"
+                        android:inputType="text"
+                        android:layout_margin="3dp"
+                        android:textColor="@color/mycycle_text"
+                        android:background="@drawable/edit_shape"
+                        android:padding="10dp"/>
 
+                </androidx.cardview.widget.CardView>
 
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cardPasswordConfirm"
-                app:cardCornerRadius="10dp"
-                android:backgroundTint="@color/stroke"
-                android:layout_marginTop="30dp"
-                android:layout_marginLeft="40dp"
-                android:layout_marginRight="40dp"
-                android:layout_width="match_parent"
-                android:layout_height="54dp"
-                app:layout_constraintTop_toBottomOf="@id/cardPasswordRegister"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent">
-
-                <EditText
-                    android:id="@+id/passConfirm"
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardEmailRegister"
+                    app:cardCornerRadius="10dp"
+                    android:backgroundTint="@color/stroke"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginRight="40dp"
                     android:layout_width="match_parent"
-                    android:layout_height="48dp"
-                    android:layout_margin="3dp"
-                    android:background="@drawable/edit_shape"
-                    android:fontFamily="@font/tenor_sans"
-                    android:hint="Password"
-                    android:inputType="textPassword"
-                    android:padding="10dp"
-                    android:textColor="@color/mycycle_text"
-                    app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_height="54dp"
+                    app:layout_constraintTop_toBottomOf="@id/myCycle"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/cardEmailRegister" />
+                    app:layout_constraintEnd_toEndOf="parent">
 
-            </androidx.cardview.widget.CardView>
+                    <EditText
+                        android:id="@+id/emailRegister"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:fontFamily="@font/tenor_sans"
+                        android:inputType="textEmailAddress"
+                        android:hint="Email"
+                        android:layout_margin="3dp"
+                        android:textColor="@color/mycycle_text"
+                        android:background="@drawable/edit_shape"
+                        android:padding="10dp"/>
 
-            <Button
-                android:id="@+id/btnRegister"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
-                android:layout_marginLeft="40dp"
-                android:layout_marginRight="40dp"
-                android:backgroundTint="@color/icon_background"
-                android:fontFamily="@font/tenor_sans"
-                android:paddingHorizontal="20dp"
-                android:text="Register"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/cardPasswordRegister" />
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardPasswordRegister"
+                    app:cardCornerRadius="10dp"
+                    android:backgroundTint="@color/stroke"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginRight="40dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="54dp">
+
+                    <EditText
+                        android:id="@+id/passRegister"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:layout_margin="3dp"
+                        android:background="@drawable/edit_shape"
+                        android:fontFamily="@font/tenor_sans"
+                        android:hint="Password"
+                        android:inputType="textPassword"
+                        android:padding="10dp"
+                        android:textColor="@color/mycycle_text" />
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardPasswordConfirm"
+                    app:cardCornerRadius="10dp"
+                    android:backgroundTint="@color/stroke"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginRight="40dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="54dp">
+
+                    <EditText
+                        android:id="@+id/passConfirm"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:layout_margin="3dp"
+                        android:background="@drawable/edit_shape"
+                        android:fontFamily="@font/tenor_sans"
+                        android:hint="Password"
+                        android:inputType="textPassword"
+                        android:padding="10dp"
+                        android:textColor="@color/mycycle_text"/>
+
+                </androidx.cardview.widget.CardView>
+
+                <LinearLayout
+                    android:id="@+id/linearPeriod"
+                    android:orientation="horizontal"
+                    android:layout_gravity="fill_horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/tenor_sans"
+                        android:layout_marginTop="40dp"
+                        android:layout_marginLeft="40dp"
+                        android:layout_marginRight="40dp"
+                        android:layout_marginBottom="30dp"
+                        android:textStyle="bold"
+                        android:textSize="20sp"
+                        android:gravity="left"
+                        android:textColor="@color/mycycle_text"
+                        android:text="Period length (days)"
+                        android:layout_weight="0.6"/>
+
+                    <androidx.cardview.widget.CardView
+                        app:cardCornerRadius="10dp"
+                        android:backgroundTint="@color/stroke"
+                        android:layout_marginTop="30dp"
+                        android:layout_marginLeft="40dp"
+                        android:layout_marginRight="40dp"
+                        android:layout_width="64dp"
+                        android:layout_height="54dp">
+
+                        <EditText
+                            android:id="@+id/periodLengthReg"
+                            android:layout_width="match_parent"
+                            android:layout_height="48dp"
+                            android:layout_margin="3dp"
+                            android:background="@drawable/edit_shape"
+                            android:fontFamily="@font/tenor_sans"
+                            android:inputType="number"
+                            android:padding="10dp"
+                            android:textColor="@color/mycycle_text" />
+
+                    </androidx.cardview.widget.CardView>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/linearCycle"
+                    android:orientation="horizontal"
+                    android:layout_gravity="fill_horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/tenor_sans"
+                        android:layout_marginTop="40dp"
+                        android:layout_marginLeft="40dp"
+                        android:layout_marginRight="40dp"
+                        android:layout_marginBottom="30dp"
+                        android:textStyle="bold"
+                        android:textSize="20sp"
+                        android:gravity="left"
+                        android:textColor="@color/mycycle_text"
+                        android:text="Weight"
+                        android:layout_weight="0.6"/>
+
+                    <androidx.cardview.widget.CardView
+                        app:cardCornerRadius="10dp"
+                        android:backgroundTint="@color/stroke"
+                        android:layout_marginTop="30dp"
+                        android:layout_marginLeft="40dp"
+                        android:layout_marginRight="40dp"
+                        android:layout_width="64dp"
+                        android:layout_height="54dp">
+
+                        <EditText
+                            android:id="@+id/weightReg"
+                            android:layout_width="match_parent"
+                            android:layout_height="48dp"
+                            android:layout_margin="3dp"
+                            android:background="@drawable/edit_shape"
+                            android:fontFamily="@font/tenor_sans"
+                            android:inputType="number"
+                            android:padding="10dp"
+                            android:textColor="@color/mycycle_text" />
+
+                    </androidx.cardview.widget.CardView>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/lastPeriodStart"
+                    android:orientation="vertical"
+                    android:layout_gravity="fill_horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/tenor_sans"
+                        android:layout_marginTop="40dp"
+                        android:layout_marginLeft="40dp"
+                        android:layout_marginRight="40dp"
+                        android:layout_marginBottom="10dp"
+                        android:textStyle="bold"
+                        android:textSize="20sp"
+                        android:gravity="left"
+                        android:textColor="@color/mycycle_text"
+                        android:text="When did your last period start?"
+
+                        android:layout_weight="0.6"/>
+
+                    <androidx.cardview.widget.CardView
+                        app:cardCornerRadius="10dp"
+                        android:backgroundTint="@color/stroke"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginLeft="40dp"
+                        android:layout_marginRight="40dp"
+                        android:layout_gravity="center"
+                        android:layout_width="wrap_content"
+                        android:layout_height="54dp">
+
+                        <EditText
+                            android:id="@+id/lastPeriodDate"
+                            android:layout_width="match_parent"
+                            android:layout_height="48dp"
+                            android:layout_margin="3dp"
+                            android:background="@drawable/edit_shape"
+                            android:fontFamily="@font/tenor_sans"
+                            android:inputType="date"
+                            android:hint="DD/MM/YYYY"
+                            android:padding="10dp"
+                            android:textColor="@color/mycycle_text" />
+
+                    </androidx.cardview.widget.CardView>
+
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/btnRegister"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginRight="40dp"
+                    android:layout_marginBottom="160dp"
+                    android:backgroundTint="@color/icon_background"
+                    android:fontFamily="@font/tenor_sans"
+                    android:paddingHorizontal="20dp"
+                    android:text="Register"
+                    android:textSize="18sp"
+                    android:textStyle="bold"/>
 
 
-        </LinearLayout>
+            </LinearLayout>
+        </ScrollView>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

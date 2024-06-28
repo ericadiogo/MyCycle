@@ -25,7 +25,6 @@ import java.util.Locale;
 public class HomeActivity extends AppCompatActivity {
     private TextView usergreeting,todayDate;
     private CardView cardCalendar,cardReminder,cardTips,cardSettings;
-    private FirebaseUser loggedUser;
     private DatabaseReference reference;
     private String loggedUserId;
     private FirebaseAuth mAuth;
@@ -46,21 +45,7 @@ public class HomeActivity extends AppCompatActivity {
         cardSettings = findViewById(R.id.cardSettings);
         reference = FirebaseDatabase.getInstance().getReference("users");
 
-        reference.child(loggedUserId).addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                UserModel userModel = snapshot.getValue(UserModel.class);
-                if(userModel != null){
-                    String fname = userModel.getFirstName();
-                    usergreeting.setText("Hello, " + fname + "!");
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
+//showName();
 
         cardCalendar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -110,6 +95,24 @@ public class HomeActivity extends AppCompatActivity {
         }
     }
 
+    private void showName() {
+        reference.child(loggedUserId).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                UserModel userModel = snapshot.getValue(UserModel.class);
+                if(userModel != null){
+                    String fname = userModel.getFirstName();
+
+                    usergreeting.setText("Hello, " + fname + "!");
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
     protected String showDate(){
         String date = new SimpleDateFormat("EEE, MMM dd", Locale.getDefault()).format(new Date());
         return date;

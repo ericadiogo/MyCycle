@@ -28,5 +28,9 @@
         <item name="fontFamily">@font/tenor_sans</item>
     </style>
 
+    <style name="circle">
+        <item name="cornerSize">50%</item>
+    </style>
+
     <style name="Theme.MyCycle" parent="Base.Theme.MyCycle" />
 </resources>
