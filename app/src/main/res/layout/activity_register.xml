@@ -266,6 +266,52 @@
                         android:textSize="20sp"
                         android:gravity="left"
                         android:textColor="@color/mycycle_text"
+                        android:text="Cycle length (days)"
+                        android:layout_weight="0.6"/>
+
+                    <androidx.cardview.widget.CardView
+                        app:cardCornerRadius="10dp"
+                        android:backgroundTint="@color/stroke"
+                        android:layout_marginTop="30dp"
+                        android:layout_marginLeft="40dp"
+                        android:layout_marginRight="40dp"
+                        android:layout_width="64dp"
+                        android:layout_height="54dp">
+
+                        <EditText
+                            android:id="@+id/cycleReg"
+                            android:layout_width="match_parent"
+                            android:layout_height="48dp"
+                            android:layout_margin="3dp"
+                            android:background="@drawable/edit_shape"
+                            android:fontFamily="@font/tenor_sans"
+                            android:inputType="number"
+                            android:padding="10dp"
+                            android:textColor="@color/mycycle_text" />
+
+                    </androidx.cardview.widget.CardView>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/linearWeight"
+                    android:orientation="horizontal"
+                    android:layout_gravity="fill_horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/tenor_sans"
+                        android:layout_marginTop="40dp"
+                        android:layout_marginLeft="40dp"
+                        android:layout_marginRight="40dp"
+                        android:layout_marginBottom="30dp"
+                        android:textStyle="bold"
+                        android:textSize="20sp"
+                        android:gravity="left"
+                        android:textColor="@color/mycycle_text"
                         android:text="Weight"
                         android:layout_weight="0.6"/>
 

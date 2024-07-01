@@ -7,25 +7,22 @@ import android.widget.LinearLayout;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
-public class TipsActivity extends AppCompatActivity {
+public class NotesActivity extends AppCompatActivity {
     private LinearLayout tipsBack;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_tips);
+        setContentView(R.layout.activity_notes);
 
-        tipsBack = findViewById(R.id.tipsBack);
+        tipsBack = findViewById(R.id.notesBack);
 
         tipsBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(TipsActivity.this, HomeActivity.class);
+                Intent intent = new Intent(NotesActivity.this, HomeActivity.class);
                 startActivity(intent);
                 finish();
             }

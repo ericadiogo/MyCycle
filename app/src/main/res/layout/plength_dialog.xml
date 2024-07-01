@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_gravity="center"
+    android:layout_marginBottom="15dp"
+    android:layout_marginTop="15dp"
+    android:layout_marginLeft="40dp"
+    android:layout_marginRight="40dp"
+    android:gravity="center">
+
+    <TextView
+        android:text="Period length"
+        android:fontFamily="@font/tenor_sans"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:layout_marginTop="15dp"
+        android:layout_gravity="center"
+        android:textColor="@color/mycycle_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <androidx.cardview.widget.CardView
+        app:cardCornerRadius="10dp"
+        android:backgroundTint="@color/stroke"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:layout_width="match_parent"
+        android:layout_height="54dp">
+
+        <EditText
+            android:id="@+id/edtChangePeriod"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:fontFamily="@font/tenor_sans"
+            android:inputType="numberDecimal"
+            android:layout_margin="3dp"
+            android:textAlignment="center"
+            android:textColor="@color/mycycle_text"
+            android:background="@drawable/edit_shape"
+            android:padding="10dp"/>
+
+    </androidx.cardview.widget.CardView>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal">
+
+        <Button
+            android:id="@+id/btnSave"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="15dp"
+            android:layout_marginRight="20dp"
+            android:layout_gravity="center"
+            android:backgroundTint="@color/icon_background"
+            android:fontFamily="@font/tenor_sans"
+            android:paddingHorizontal="20dp"
+            android:text="Save"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cardPasswordLogin" />
+
+        <Button
+            android:id="@+id/btnCancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginBottom="15dp"
+            android:layout_gravity="center"
+            android:backgroundTint="@color/icon_background"
+            android:fontFamily="@font/tenor_sans"
+            android:paddingHorizontal="20dp"
+            android:text="Cancel"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cardPasswordLogin" />
+
+
+    </LinearLayout>
+
+</LinearLayout>

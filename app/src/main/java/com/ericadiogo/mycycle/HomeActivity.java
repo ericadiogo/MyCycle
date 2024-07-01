@@ -3,6 +3,7 @@ package com.ericadiogo.mycycle;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 
@@ -24,10 +25,11 @@ import java.util.Locale;
 
 public class HomeActivity extends AppCompatActivity {
     private TextView usergreeting,todayDate;
-    private CardView cardCalendar,cardReminder,cardTips,cardSettings;
+    private CardView cardCalendar,cardReminder,cardNotes,cardSettings;
     private DatabaseReference reference;
     private String loggedUserId;
     private FirebaseAuth mAuth;
+    private ImageView imageLogOut;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,11 +43,22 @@ public class HomeActivity extends AppCompatActivity {
         todayDate.setText(showDate());
         cardCalendar = findViewById(R.id.cardCalendar);
         cardReminder = findViewById(R.id.cardReminder);
-        cardTips = findViewById(R.id.cardTips);
+        cardNotes = findViewById(R.id.cardNotes);
         cardSettings = findViewById(R.id.cardSettings);
+        imageLogOut = findViewById(R.id.imageLogOut);
         reference = FirebaseDatabase.getInstance().getReference("users");
 
-//showName();
+        showName();
+
+        imageLogOut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mAuth.signOut();
+                Intent intent = new Intent(HomeActivity.this,LoginActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
 
         cardCalendar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -65,10 +78,10 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
-        cardTips.setOnClickListener(new View.OnClickListener() {
+        cardNotes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(HomeActivity.this,TipsActivity.class);
+                Intent intent = new Intent(HomeActivity.this, NotesActivity.class);
                 startActivity(intent);
                 finish();
             }
@@ -96,13 +109,12 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     private void showName() {
-        reference.child(loggedUserId).addListenerForSingleValueEvent(new ValueEventListener() {
+        reference.child(mAuth.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 UserModel userModel = snapshot.getValue(UserModel.class);
                 if(userModel != null){
                     String fname = userModel.getFirstName();
-
                     usergreeting.setText("Hello, " + fname + "!");
                 }
             }
