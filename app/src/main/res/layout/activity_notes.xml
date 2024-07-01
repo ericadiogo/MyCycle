@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/activity_background"
-    tools:context=".TipsActivity">
+    tools:context=".NotesActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -55,7 +55,7 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <LinearLayout
-                android:id="@+id/tipsTitle"
+                android:id="@+id/notesTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
@@ -67,7 +67,7 @@
                     android:orientation="horizontal">
 
                     <LinearLayout
-                        android:id="@+id/tipsBack"
+                        android:id="@+id/notesBack"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:orientation="horizontal"
@@ -97,7 +97,7 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:fontFamily="@font/tenor_sans"
-                            android:text="Tips"
+                            android:text="Notes"
                             android:textColor="@color/mycycle_text"
                             android:textSize="24sp"
                             android:textStyle="bold" />
@@ -115,7 +115,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:layout_gravity="end"
-                            android:src="@drawable/baseline_tips_and_updates_24_dark" />
+                            android:src="@drawable/baseline_sticky_note_2_24" />
                     </LinearLayout>
 
                 </LinearLayout>

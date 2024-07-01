@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_gravity="center"
+    android:layout_marginBottom="15dp"
+    android:layout_marginTop="15dp"
+    android:layout_marginLeft="40dp"
+    android:layout_marginRight="40dp"
+    android:gravity="center">
+
+    <TextView
+        android:text="About the project"
+        android:fontFamily="@font/tenor_sans"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:layout_marginTop="15dp"
+        android:layout_gravity="center"
+        android:textColor="@color/mycycle_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:text="420-C04-MT"
+        android:layout_gravity="center"
+        android:layout_marginTop="60dp"
+        android:fontFamily="@font/tenor_sans"
+        android:textStyle="bold"
+        android:textSize="18sp"
+        android:textColor="@color/mycycle_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:text="MOBILE PROGRAMMING FOR ANDROID"
+        android:textAlignment="center"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/tenor_sans"
+        android:textStyle="bold"
+        android:textSize="18sp"
+        android:textColor="@color/mycycle_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:text="Teacher:"
+        android:textAlignment="center"
+        android:layout_gravity="center"
+        android:layout_marginTop="40dp"
+        android:fontFamily="@font/tenor_sans"
+        android:textStyle="bold"
+        android:textSize="18sp"
+        android:textColor="@color/mycycle_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:text="Pargol Poshtareh"
+        android:textAlignment="center"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/tenor_sans"
+        android:textStyle="bold"
+        android:textSize="18sp"
+        android:textColor="@color/mycycle_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:text="Cégep de la Gaspésie et des Îles  Campus Montréal"
+        android:textAlignment="center"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/tenor_sans"
+        android:textStyle="bold"
+        android:textSize="18sp"
+        android:textColor="@color/mycycle_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:text="July, 2024"
+        android:textAlignment="center"
+        android:layout_gravity="center"
+        android:layout_marginTop="60dp"
+        android:fontFamily="@font/tenor_sans"
+        android:textStyle="bold"
+        android:textSize="18sp"
+        android:textColor="@color/mycycle_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <Button
+        android:id="@+id/btnOkProject"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="15dp"
+        android:layout_gravity="center"
+        android:backgroundTint="@color/icon_background"
+        android:fontFamily="@font/tenor_sans"
+        android:paddingHorizontal="20dp"
+        android:text="Got it!"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardPasswordLogin" />
+
+</LinearLayout>

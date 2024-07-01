@@ -198,7 +198,7 @@
                                     android:layout_weight="0.3"/>
 
                                 <ImageView
-                                    android:id="@+id/fisrtNamedEdit"
+                                    android:id="@+id/fNamedEdit"
                                     android:layout_width="24dp"
                                     android:layout_height="24dp"
                                     android:layout_marginTop="10dp"
@@ -237,7 +237,7 @@
                                     android:layout_weight="0.3"/>
 
                                 <ImageView
-                                    android:id="@+id/lastNamedEdit"
+                                    android:id="@+id/lNameEdit"
                                     android:layout_width="24dp"
                                     android:layout_height="24dp"
                                     android:layout_marginTop="10dp"
@@ -246,7 +246,6 @@
                                     android:src="@drawable/baseline_mode_edit_outline_24" />
 
                             </LinearLayout>
-
 
                             <TextView
                                 android:text="Email:"
@@ -265,7 +264,7 @@
                                 android:layout_height="wrap_content">
 
                                 <TextView
-                                    android:id="@+id/userEmail"
+                                    android:id="@+id/userEmailSet"
                                     android:text=""
                                     android:layout_marginTop="5dp"
                                     android:fontFamily="@font/tenor_sans"
@@ -444,7 +443,7 @@
 
                                 <TextView
                                     android:id="@+id/txtPeriod"
-                                    android:text="Period length"
+                                    android:text="Period length:  days"
                                     android:layout_marginTop="3dp"
                                     android:fontFamily="@font/tenor_sans"
                                     android:textStyle="bold"
@@ -462,16 +461,15 @@
                                 android:gravity="right"
                                 android:layout_weight="0.2">
 
-                                <TextView
-                                    android:id="@+id/txtPeriodDays"
-                                    android:text=" days"
-                                    android:layout_marginTop="3dp"
-                                    android:fontFamily="@font/tenor_sans"
-                                    android:textStyle="bold"
-                                    android:textSize="16sp"
-                                    android:textColor="@color/mycycle_text"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"/>
+                                <ImageView
+                                    android:id="@+id/pLengthEdit"
+                                    android:layout_width="24dp"
+                                    android:layout_height="24dp"
+                                    android:layout_marginTop="5dp"
+                                    android:padding="5dp"
+                                    android:background="@drawable/icon_shape"
+                                    android:src="@drawable/baseline_mode_edit_outline_24" />
+
 
                             </LinearLayout>
                         </LinearLayout>
@@ -508,7 +506,7 @@
 
                                 <TextView
                                     android:id="@+id/txtCycleLength"
-                                    android:text="Cycle length"
+                                    android:text="Cycle length: days"
                                     android:layout_marginTop="3dp"
                                     android:fontFamily="@font/tenor_sans"
                                     android:textStyle="bold"
@@ -526,137 +524,18 @@
                                 android:gravity="right"
                                 android:layout_weight="0.2">
 
-                                <TextView
-                                    android:id="@+id/txtCycleDays"
-                                    android:text=" days"
-                                    android:layout_marginTop="3dp"
-                                    android:fontFamily="@font/tenor_sans"
-                                    android:textStyle="bold"
-                                    android:textSize="16sp"
-                                    android:textColor="@color/mycycle_text"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"/>
-
-                            </LinearLayout>
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:id="@+id/fertPeriod"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:gravity="fill"
-                            android:layout_marginTop="20dp"
-                            android:orientation="horizontal">
-
-                            <LinearLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="0.1">
-
                                 <ImageView
-                                    android:id="@+id/fertIconSettings"
-                                    android:layout_width="24dp"
-                                    android:layout_height="24dp"
-                                    android:background="@drawable/icon_shape"
-                                    android:padding="5dp"
-                                    android:src="@drawable/baseline_local_florist_24_light" />
-
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:orientation="horizontal"
-                                android:gravity="left"
-                                android:layout_weight="0.7">
-
-                                <TextView
-                                    android:id="@+id/txtFert"
-                                    android:text="Fertility"
-                                    android:layout_marginTop="3dp"
-                                    android:fontFamily="@font/tenor_sans"
-                                    android:textStyle="bold"
-                                    android:textSize="16sp"
-                                    android:textColor="@color/mycycle_text"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"/>
-
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:orientation="horizontal"
-                                android:gravity="right"
-                                android:layout_weight="0.2">
-
-                                <Switch
-                                    android:id="@+id/fertilSwitch"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginTop="3dp"/>
-
-                            </LinearLayout>
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:id="@+id/pregnancPeriod"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:gravity="fill"
-                            android:layout_marginTop="15dp"
-                            android:orientation="horizontal">
-
-                            <LinearLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="0.1">
-
-                                <ImageView
-                                    android:id="@+id/pregIconSettings"
+                                    android:id="@+id/cLengthEdit"
                                     android:layout_width="24dp"
                                     android:layout_height="24dp"
                                     android:padding="5dp"
                                     android:background="@drawable/icon_shape"
-                                    android:src="@drawable/rounded_pregnancy_24" />
-
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:orientation="horizontal"
-                                android:gravity="left"
-                                android:layout_weight="0.7">
-
-                                <TextView
-                                    android:id="@+id/txtPregnancy"
-                                    android:text="Pregnancy     "
-                                    android:layout_marginTop="3dp"
-                                    android:fontFamily="@font/tenor_sans"
-                                    android:textStyle="bold"
-                                    android:textSize="16sp"
-                                    android:textColor="@color/mycycle_text"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"/>
-
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:orientation="horizontal"
-                                android:gravity="right"
-                                android:layout_weight="0.2">
-
-                                <Switch
-                                    android:id="@+id/pregnancySwitch"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginTop="3dp"/>
-
+                                    android:src="@drawable/baseline_mode_edit_outline_24" />
                             </LinearLayout>
                         </LinearLayout>
+
+
+
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
 
@@ -693,51 +572,6 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"/>
 
-                        <LinearLayout
-                            android:id="@+id/aboutMe"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:gravity="fill"
-                            android:layout_marginTop="20dp"
-                            android:orientation="horizontal">
-
-                            <LinearLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginRight="-6dp"
-                                android:layout_weight="0.1">
-
-                                <ImageView
-                                    android:id="@+id/aboutMeIcon"
-                                    android:layout_width="24dp"
-                                    android:layout_height="24dp"
-                                    android:padding="5dp"
-                                    android:background="@drawable/icon_shape"
-                                    android:src="@drawable/baseline_person_search_24" />
-
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:orientation="horizontal"
-                                android:gravity="left"
-                                android:layout_weight="0.9">
-
-                                <TextView
-                                    android:id="@+id/txtAboutMe"
-                                    android:text="About me  "
-                                    android:layout_marginTop="3dp"
-                                    android:fontFamily="@font/tenor_sans"
-                                    android:textStyle="bold"
-                                    android:textSize="16sp"
-                                    android:textColor="@color/mycycle_text"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"/>
-
-                            </LinearLayout>
-
-                        </LinearLayout>
 
                         <LinearLayout
                             android:id="@+id/aboutProject"
@@ -764,14 +598,60 @@
 
                             <LinearLayout
                                 android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_weight="0.9"
+                                android:gravity="left"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="3dp"
+                                    android:fontFamily="@font/tenor_sans"
+                                    android:text="About this project"
+                                    android:textColor="@color/mycycle_text"
+                                    android:textSize="16sp"
+                                    android:textStyle="bold" />
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/aboutMe"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="fill"
+                            android:layout_marginTop="20dp"
+                            android:orientation="horizontal">
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginRight="-6dp"
+                                android:layout_weight="0.1">
+
+                                <ImageView
+                                    android:id="@+id/aboutMeIcon"
+                                    android:layout_width="24dp"
+                                    android:layout_height="24dp"
+                                    android:padding="5dp"
+                                    android:background="@drawable/icon_shape"
+                                    android:src="@drawable/baseline_person_search_24" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/txtAboutMe"
+                                android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:orientation="horizontal"
                                 android:gravity="left"
                                 android:layout_weight="0.9">
 
                                 <TextView
-                                    android:id="@+id/txtAboutProject"
-                                    android:text="About this project"
+
+                                    android:text="About me  "
                                     android:layout_marginTop="3dp"
                                     android:fontFamily="@font/tenor_sans"
                                     android:textStyle="bold"

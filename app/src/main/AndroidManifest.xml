@@ -12,9 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyCycle"
         tools:targetApi="31">
-        <activity
-            android:name=".ProfileActivity"
-            android:exported="false" />
+
         <activity
             android:name=".EditProfileActivity"
             android:exported="false" />
@@ -22,7 +20,7 @@
             android:name=".SettingsActivity"
             android:exported="false" />
         <activity
-            android:name=".TipsActivity"
+            android:name=".NotesActivity"
             android:exported="false" />
         <activity
             android:name=".RemindersActivity"

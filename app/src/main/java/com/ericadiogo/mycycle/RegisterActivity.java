@@ -23,7 +23,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class RegisterActivity extends AppCompatActivity {
-    private EditText firstName,lastName,emailRegister,passRegister,passConfirm,periodLengthReg,weightReg,lastPeriodDate;
+    private EditText firstName,lastName,emailRegister,passRegister,passConfirm,periodLengthReg,cycleReg,weightReg,lastPeriodDate;
     private Button btnRegister, btnLoginRegister;
     private FirebaseAuth mAuth;
     FirebaseDatabase database;
@@ -40,6 +40,7 @@ public class RegisterActivity extends AppCompatActivity {
         passRegister = findViewById(R.id.passRegister);
         passConfirm = findViewById(R.id.passConfirm);
         periodLengthReg = findViewById(R.id.periodLengthReg);
+        cycleReg = findViewById(R.id.cycleReg);
         weightReg = findViewById(R.id.weightReg);
         lastPeriodDate = findViewById(R.id.lastPeriodDate);
         btnRegister = findViewById(R.id.btnRegister);
@@ -65,16 +66,16 @@ public class RegisterActivity extends AppCompatActivity {
         String password = passRegister.getText().toString().trim();
         String passConf = passConfirm.getText().toString().trim();
         int pLength = Integer.parseInt(periodLengthReg.getText().toString().trim());
+        int cLength = Integer.parseInt(cycleReg.getText().toString().trim());
         int weight = Integer.parseInt(weightReg.getText().toString().trim());
-        String lastDate = String.valueOf(lastPeriodDate.getText());
-        SimpleDateFormat format_lp = new SimpleDateFormat("dd/mm/yyyy");
-        Date ld = format_lp.parse(lastDate);
-        String id = String.valueOf("a1");
+        String lastDate = lastPeriodDate.getText().toString();
+        String id = "a1";
 
         if(!fname.isEmpty()){
             if (!lname.isEmpty()){
                 if(!email.isEmpty()){
-                    if(email.indexOf("@") == 0){
+                    emailRegister.requestFocus();
+                    if(!android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()){
                         Toast.makeText(this,"Please, provide a valid email.", Toast.LENGTH_SHORT).show();
                     } else {
                         if(!password.isEmpty()){
@@ -82,7 +83,7 @@ public class RegisterActivity extends AppCompatActivity {
                                 if(!password.equals(passConf)) {
                                     Toast.makeText(RegisterActivity.this,"Passwords don't match.",Toast.LENGTH_SHORT).show();
                                 } else {
-                                    createUserFirebase(id,fname,lname,email,password,pLength,weight,ld);
+                                    createUserFirebase(id,fname,lname,email,password,pLength,cLength,weight,lastDate);
                                 }
                             } else {
                                 Toast.makeText(RegisterActivity.this,"Please, retype your password.", Toast.LENGTH_SHORT).show();
@@ -102,7 +103,7 @@ public class RegisterActivity extends AppCompatActivity {
         }
     }
 
-    private void createUserFirebase(String i, String fn, String ln, String emailReg, String passReg, int pl, int w, Date lp) {
+    private void createUserFirebase(String i, String fn, String ln, String emailReg, String passReg, int pl, int cl, int w, String lp) {
         mAuth.createUserWithEmailAndPassword(
                 emailReg,passReg
         ).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
@@ -111,7 +112,7 @@ public class RegisterActivity extends AppCompatActivity {
                 if(task.isSuccessful()){
                     database = FirebaseDatabase.getInstance();
                     reference = database.getReference("users");
-                    UserModel user = new UserModel(mAuth.getUid(),fn,ln,emailReg,passReg,pl,w,lp);
+                    UserModel user = new UserModel(mAuth.getUid(),fn,ln,emailReg,passReg,pl,cl,w,lp);
 
                     reference.child(user.getId()).setValue(user);
 
@@ -137,4 +138,6 @@ public class RegisterActivity extends AppCompatActivity {
             }
         });
     }
+
+
 }

@@ -23,7 +23,7 @@ public class RecoveryActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
 
     private EditText emailRecover;
-    private Button btnRecover, btnLoginRecover;
+    private Button btnRecover;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +33,6 @@ public class RecoveryActivity extends AppCompatActivity {
 
         emailRecover = findViewById(R.id.emailRecover);
         btnRecover = findViewById(R.id.btnRecover);
-        btnLoginRecover = findViewById(R.id.btnLoginRecover);
 
         mAuth = FirebaseAuth.getInstance();
         btnRecover.setOnClickListener(new View.OnClickListener() {
@@ -42,13 +41,6 @@ public class RecoveryActivity extends AppCompatActivity {
                 validateEmail();
             }
         });
-
-        btnLoginRecover.setOnClickListener(view -> {
-            Intent intent = new Intent(RecoveryActivity.this,LoginActivity.class);
-            startActivity(intent);
-            finish();
-        });
-
     }
 
     private void validateEmail(){
@@ -70,6 +62,9 @@ public class RecoveryActivity extends AppCompatActivity {
                 } else {
                     Toast.makeText(RecoveryActivity.this,"This email is not registered.", Toast.LENGTH_SHORT).show();
                 }
+                Intent intent = new Intent(RecoveryActivity.this,LoginActivity.class);
+                startActivity(intent);
+                finish();
             }
         });
     }

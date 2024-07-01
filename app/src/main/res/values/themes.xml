@@ -32,5 +32,20 @@
         <item name="cornerSize">50%</item>
     </style>
 
+    <style name="mySwitch" parent="Theme.AppCompat.Light">
+        <!-- active thumb & track color (30% transparency) -->
+        <item name="colorControlActivated">
+            @color/mycycle_text
+        </item>
+
+        <!-- inactive thumb color -->
+        <item name="colorSwitchThumbNormal">@color/icon_background
+        </item>
+        <item name="strokeColor">@color/icon_background</item>
+
+        <!-- inactive track color (30% transparency) -->
+        <item name="android:colorForeground">@color/icon_background
+        </item>
+    </style>
     <style name="Theme.MyCycle" parent="Base.Theme.MyCycle" />
 </resources>
