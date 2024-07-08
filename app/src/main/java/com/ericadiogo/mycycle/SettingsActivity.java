@@ -16,6 +16,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -32,7 +34,7 @@ public class SettingsActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private FirebaseUser firebaseUser;
     private Button btnlogOut, btnDeleteProfile;
-    private ImageView fNamedEdit,lNameEdit,emailEditSet,passwordEdit,pLengthEdit,cLengthEdit;
+    private ImageView fNamedEdit,lNameEdit,passwordEdit,pLengthEdit,cLengthEdit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,7 +58,6 @@ public class SettingsActivity extends AppCompatActivity {
         aboutMe = findViewById(R.id.aboutMe);
         fNamedEdit = findViewById(R.id.fNamedEdit);
         lNameEdit = findViewById(R.id.lNameEdit);
-        emailEditSet = findViewById(R.id.emailEditSet);
         passwordEdit = findViewById(R.id.passwordEdit);
         pLengthEdit = findViewById(R.id.pLengthEdit);
         cLengthEdit = findViewById(R.id.cLengthEdit);
@@ -83,13 +84,6 @@ public class SettingsActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 showDialogLname();
-            }
-        });
-
-        emailEditSet.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                showDialogEmail();
             }
         });
 
@@ -299,53 +293,6 @@ public class SettingsActivity extends AppCompatActivity {
 
     }
 
-    private void showDialogEmail(){
-        final AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        View email_layout = getLayoutInflater().inflate(R.layout.email_dialog, null);
-        final EditText edtChangeEmail = email_layout.findViewById(R.id.edtChangeEmail);
-        Button btnSave = email_layout.findViewById(R.id.btnSave5);
-        Button btnCancel = email_layout.findViewById(R.id.btnCancel5);
-
-        builder.setView(email_layout);
-        AlertDialog dialog = builder.create();
-        dialog.setCancelable(true);
-        dialog.show();
-
-        btnSave.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                reference.child(loggedUserId).addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        UserModel userModel = snapshot.getValue(UserModel.class);
-                        if(userModel != null){
-                            String email = userModel.getEmail();
-                            String emailnew = edtChangeEmail.getText().toString();
-                            if(!email.equals(emailnew)){
-                                reference.child(loggedUserId).child("email").setValue(emailnew);
-                                useremailSet.setText(emailnew);
-                            }
-                        }
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-
-                    }
-                });
-                dialog.dismiss();
-            }
-        });
-
-        btnCancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                dialog.dismiss();
-            }
-        });
-
-    }
-
     private void showDialogPass(){
         final AlertDialog.Builder builder = new AlertDialog.Builder(this);
         View password_layout = getLayoutInflater().inflate(R.layout.password_dialog, null);
@@ -507,10 +454,19 @@ public class SettingsActivity extends AppCompatActivity {
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         UserModel userModel = snapshot.getValue(UserModel.class);
                         if(userModel != null){
-                            snapshot.child(loggedUserId).getRef().removeValue();
-                            Intent intent = new Intent(SettingsActivity.this,LoginActivity.class);
-                            startActivity(intent);
-                            finish();
+                            firebaseUser.delete().addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    if(task.isSuccessful()){
+                                        Toast.makeText(SettingsActivity.this,"Your profile has been deleted successfuly.",Toast.LENGTH_SHORT).show();
+                                        Intent intent = new Intent(SettingsActivity.this,LoginActivity.class);
+                                        startActivity(intent);
+                                        finish();
+                                    } else {
+                                        Toast.makeText(SettingsActivity.this,task.getException().getMessage(),Toast.LENGTH_LONG).show();
+                                    }
+                                }
+                            });
                         }
                     }
 

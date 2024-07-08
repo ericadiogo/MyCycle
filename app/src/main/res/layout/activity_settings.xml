@@ -275,15 +275,6 @@
                                     android:layout_height="wrap_content"
                                     android:layout_weight="0.3"/>
 
-                                <ImageView
-                                    android:id="@+id/emailEditSet"
-                                    android:layout_width="24dp"
-                                    android:layout_height="24dp"
-                                    android:layout_marginTop="5dp"
-                                    android:padding="5dp"
-                                    android:background="@drawable/icon_shape"
-                                    android:src="@drawable/baseline_mode_edit_outline_24" />
-
                             </LinearLayout>
 
                             <LinearLayout
