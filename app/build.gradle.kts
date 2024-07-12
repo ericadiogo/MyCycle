@@ -47,4 +47,7 @@ dependencies {
     androidTestImplementation(libs.espresso.core)
     implementation(platform("com.google.firebase:firebase-bom:33.1.1"))
     implementation("com.google.firebase:firebase-analytics")
+    implementation("com.google.apis:google-api-java-client:1.32.1")
+    implementation("com.google.oauth-client:google-oauth-client-jetty:1.32.1'")
+    implementation("com.google.apis:google-api-java-client-services:1.32.1")
 }
