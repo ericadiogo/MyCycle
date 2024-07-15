@@ -112,7 +112,7 @@ public class RegisterActivity extends AppCompatActivity {
                 if(task.isSuccessful()){
                     database = FirebaseDatabase.getInstance();
                     reference = database.getReference("users");
-                    UserModel user = new UserModel(mAuth.getUid(),fn,ln,emailReg,passReg,pl,cl,w,lp);
+                    UserModel user = new UserModel(mAuth.getUid(),fn,ln,emailReg,pl,cl,w,lp);
 
                     reference.child(user.getId()).setValue(user);
 
@@ -123,7 +123,6 @@ public class RegisterActivity extends AppCompatActivity {
                     intent.putExtra("firstname",fn);
                     intent.putExtra("lastname",ln);
                     intent.putExtra("email",emailReg);
-                    intent.putExtra("password",passReg);
                     intent.putExtra("periodlength",pl);
                     intent.putExtra("weight",w);
                     intent.putExtra("lastperiod",lp);
@@ -138,6 +137,4 @@ public class RegisterActivity extends AppCompatActivity {
             }
         });
     }
-
-
 }

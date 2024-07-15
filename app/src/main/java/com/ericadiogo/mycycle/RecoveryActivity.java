@@ -21,7 +21,6 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class RecoveryActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
-
     private EditText emailRecover;
     private Button btnRecover;
 
