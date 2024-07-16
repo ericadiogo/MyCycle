@@ -137,7 +137,7 @@
             app:layout_constraintTop_toBottomOf="@id/cardInfo">
 
             <CalendarView
-                android:id="@+id/calendarView"
+                android:id="@+id/calView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -183,11 +183,12 @@
                         android:orientation="horizontal">
 
                         <TextView
+                            android:id="@+id/pickedDate"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:fontFamily="@font/tenor_sans"
-                            android:text="Picked date"
+                            android:text=""
                             android:textColor="@color/mycycle_text"
                             android:textSize="18sp"
                             android:textStyle="bold" />
@@ -217,7 +218,7 @@
                     android:layout_gravity="fill"
                     android:layout_margin="15dp"
                     android:fontFamily="@font/tenor_sans"
-                    android:text="Day info will appear here."
+                    android:text=""
                     android:textColor="@color/mycycle_text"
                     android:textSize="16sp"
                     android:textStyle="bold" />
