@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_gravity="center"
+    android:layout_marginBottom="15dp"
+    android:layout_marginTop="15dp"
+    android:layout_marginLeft="30dp"
+    android:layout_marginRight="30dp"
+    android:gravity="center">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:backgroundTint="@color/board"
+        android:outlineAmbientShadowColor="@color/black"
+        app:cardCornerRadius="15dp"
+        android:layout_marginBottom="15dp"
+        android:layout_gravity="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.65"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/selDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="15dp"
+            android:fontFamily="@font/tenor_sans"
+            android:text="Selected date"
+            android:textColor="@color/mycycle_text"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardNotesTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:backgroundTint="@color/board"
+        android:outlineAmbientShadowColor="@color/black"
+        app:cardCornerRadius="15dp"
+        android:layout_marginBottom="15dp"
+        android:layout_gravity="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.65"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="fill"
+            android:layout_margin="5dp"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:gravity="center_horizontal"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_marginRight="10dp"
+                    android:src="@drawable/baseline_water_drop_24" />
+
+                <TextView
+                    android:text="Cycle"
+                    android:fontFamily="@font/tenor_sans"
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    android:layout_gravity="center"
+                    android:textColor="@color/mycycle_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.3"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:gravity="fill_horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="-155dp">
+
+                <ImageView
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="5dp"
+                    android:src="@drawable/baseline_start_24" />
+
+                <TextView
+                    android:text="Period starts"
+                    android:fontFamily="@font/tenor_sans"
+                    android:textStyle="bold"
+                    android:textSize="14sp"
+                    android:layout_gravity="center"
+                    android:textColor="@color/mycycle_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.3"/>
+
+                <CheckBox
+                    android:id="@+id/perStartCheckBox"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:layout_marginRight="-10dp"
+                    android:buttonTint="@color/icon_background"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:gravity="fill_horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="5dp"
+                    android:src="@drawable/baseline_keyboard_return_24" />
+
+                <TextView
+                    android:text="Period ends"
+                    android:fontFamily="@font/tenor_sans"
+                    android:textStyle="bold"
+                    android:textSize="14sp"
+                    android:layout_gravity="center"
+                    android:textColor="@color/mycycle_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.3"/>
+
+                <CheckBox
+                    android:id="@+id/perEndsCheckBox"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:layout_marginRight="-10dp"
+                    android:buttonTint="@color/icon_background"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:gravity="fill_horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginRight="5dp"
+                    android:src="@drawable/baseline_start_24" />
+
+                <TextView
+                    android:text="Flow"
+                    android:fontFamily="@font/tenor_sans"
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    android:layout_gravity="center"
+                    android:textColor="@color/mycycle_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.3"/>
+
+                <RatingBar
+                    android:id="@+id/flowRating"
+                    android:layout_gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:numStars="5"
+                    android:stepSize="0.1"
+                    style="@style/Widget.AppCompat.RatingBar.Small"
+                    android:isIndicator="true"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal">
+
+        <Button
+            android:id="@+id/btnSave5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="15dp"
+            android:layout_marginRight="20dp"
+            android:layout_gravity="center"
+            android:backgroundTint="@color/icon_background"
+            android:fontFamily="@font/tenor_sans"
+            android:paddingHorizontal="20dp"
+            android:text="Save"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cardPasswordLogin" />
+
+        <Button
+            android:id="@+id/btnCancel5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginBottom="15dp"
+            android:layout_gravity="center"
+            android:backgroundTint="@color/icon_background"
+            android:fontFamily="@font/tenor_sans"
+            android:paddingHorizontal="20dp"
+            android:text="Cancel"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cardPasswordLogin" />
+
+
+    </LinearLayout>
+
+</LinearLayout>
