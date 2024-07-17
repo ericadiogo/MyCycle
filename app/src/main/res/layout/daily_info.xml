@@ -2559,10 +2559,10 @@
                             android:layout_width="20dp"
                             android:layout_height="20dp"
                             android:layout_marginRight="10dp"
-                            android:src="@drawable/baseline_heart_broken_24" />
+                            android:src="@drawable/baseline_self_improvement_24" />
 
                         <TextView
-                            android:text="Mood"
+                            android:text="Mental"
                             android:fontFamily="@font/tenor_sans"
                             android:textStyle="bold"
                             android:textSize="16sp"
@@ -2579,120 +2579,326 @@
                         android:gravity="fill_horizontal"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_margin="-15dp">
-
-                        <ImageView
-                            android:layout_width="18dp"
-                            android:layout_height="18dp"
-                            android:layout_gravity="center"
-                            android:layout_marginTop="5dp"
-                            android:layout_marginLeft="5dp"
-                            android:layout_marginRight="5dp"
-                            android:src="@drawable/baseline_start_24" />
-
-                        <TextView
-                            android:text="Period starts"
-                            android:fontFamily="@font/tenor_sans"
-                            android:textStyle="bold"
-                            android:textSize="14sp"
-                            android:layout_gravity="center"
-                            android:layout_marginTop="6dp"
-                            android:textColor="@color/mycycle_text"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="0.3"/>
-
-                        <CheckBox
-                            android:id="@+id/perStartCheckBox"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="right"
-                            android:layout_marginRight="-10dp"
-                            android:layout_marginTop="-10dp"
-                            android:layout_marginBottom="-5dp"
-                            android:buttonTint="@color/icon_background"/>
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:orientation="horizontal"
-                        android:gravity="fill_horizontal"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="-15dp">
-
-                        <ImageView
-                            android:layout_width="18dp"
-                            android:layout_height="18dp"
-                            android:layout_gravity="center"
-                            android:layout_marginTop="5dp"
-                            android:layout_marginLeft="5dp"
-                            android:layout_marginRight="5dp"
-                            android:src="@drawable/baseline_keyboard_return_24" />
-
-                        <TextView
-                            android:text="Period ends"
-                            android:fontFamily="@font/tenor_sans"
-                            android:textStyle="bold"
-                            android:textSize="14sp"
-                            android:layout_gravity="center"
-                            android:layout_marginTop="6dp"
-                            android:textColor="@color/mycycle_text"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="0.3"/>
-
-                        <CheckBox
-                            android:id="@+id/perEndCheckBox"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="right"
-                            android:layout_marginRight="-10dp"
-                            android:layout_marginTop="-10dp"
-                            android:layout_marginBottom="-5dp"
-                            android:buttonTint="@color/icon_background"/>
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:orientation="horizontal"
-                        android:gravity="fill_horizontal"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
+                        android:layout_margin="-15dp"
                         android:layout_marginBottom="10dp">
 
-                        <ImageView
+                        <LinearLayout
                             android:layout_width="18dp"
                             android:layout_height="18dp"
                             android:layout_gravity="center"
                             android:layout_marginTop="5dp"
                             android:layout_marginLeft="5dp"
-                            android:layout_marginRight="5dp"
-                            android:src="@drawable/baseline_start_24" />
+                            android:layout_marginRight="5dp">
+                        </LinearLayout>
 
                         <TextView
-                            android:text="Flow"
+                            android:text="Anxiety"
                             android:fontFamily="@font/tenor_sans"
                             android:textStyle="bold"
-                            android:textSize="14sp"
+                            android:textSize="13sp"
                             android:layout_gravity="center"
+                            android:layout_marginTop="6dp"
                             android:textColor="@color/mycycle_text"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="5dp"
                             android:layout_weight="0.3"/>
 
-                        <RatingBar
-                            android:id="@+id/flowRating"
-                            android:layout_marginTop="5dp"
-                            android:layout_gravity="center"
+                        <CheckBox
+                            android:id="@+id/anxietyCB"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:numStars="5"
-                            android:stepSize="0.1"
-                            style="@style/Widget.AppCompat.RatingBar.Small"
-                            android:isIndicator="true"/>
+                            android:layout_gravity="right"
+                            android:layout_marginRight="-10dp"
+                            android:layout_marginTop="-10dp"
+                            android:layout_marginBottom="-5dp"
+                            android:buttonTint="@color/icon_background"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:gravity="fill_horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="-15dp"
+                        android:layout_marginBottom="10dp">
+
+                        <LinearLayout
+                            android:layout_width="18dp"
+                            android:layout_height="18dp"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp">
+                        </LinearLayout>
+
+                        <TextView
+                            android:text="Confusion"
+                            android:fontFamily="@font/tenor_sans"
+                            android:textStyle="bold"
+                            android:textSize="13sp"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="6dp"
+                            android:textColor="@color/mycycle_text"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.3"/>
+
+                        <CheckBox
+                            android:id="@+id/confusionCB"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="right"
+                            android:layout_marginRight="-10dp"
+                            android:layout_marginTop="-10dp"
+                            android:layout_marginBottom="-5dp"
+                            android:buttonTint="@color/icon_background"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:gravity="fill_horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="-15dp"
+                        android:layout_marginBottom="10dp">
+
+                        <LinearLayout
+                            android:layout_width="18dp"
+                            android:layout_height="18dp"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp">
+                        </LinearLayout>
+
+                        <TextView
+                            android:text="Fatigue"
+                            android:fontFamily="@font/tenor_sans"
+                            android:textStyle="bold"
+                            android:textSize="13sp"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="6dp"
+                            android:textColor="@color/mycycle_text"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.3"/>
+
+                        <CheckBox
+                            android:id="@+id/fatigueCB"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="right"
+                            android:layout_marginRight="-10dp"
+                            android:layout_marginTop="-10dp"
+                            android:layout_marginBottom="-5dp"
+                            android:buttonTint="@color/icon_background"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:gravity="fill_horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="-15dp"
+                        android:layout_marginBottom="10dp">
+
+                        <LinearLayout
+                            android:layout_width="18dp"
+                            android:layout_height="18dp"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp">
+                        </LinearLayout>
+
+                        <TextView
+                            android:text="Insomnia"
+                            android:fontFamily="@font/tenor_sans"
+                            android:textStyle="bold"
+                            android:textSize="13sp"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="6dp"
+                            android:textColor="@color/mycycle_text"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.3"/>
+
+                        <CheckBox
+                            android:id="@+id/insomniaCB"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="right"
+                            android:layout_marginRight="-10dp"
+                            android:layout_marginTop="-10dp"
+                            android:layout_marginBottom="-5dp"
+                            android:buttonTint="@color/icon_background"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:gravity="fill_horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="-15dp"
+                        android:layout_marginBottom="10dp">
+
+                        <LinearLayout
+                            android:layout_width="18dp"
+                            android:layout_height="18dp"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp">
+                        </LinearLayout>
+
+                        <TextView
+                            android:text="Irritability"
+                            android:fontFamily="@font/tenor_sans"
+                            android:textStyle="bold"
+                            android:textSize="13sp"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="6dp"
+                            android:textColor="@color/mycycle_text"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.3"/>
+
+                        <CheckBox
+                            android:id="@+id/irritabilityCB"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="right"
+                            android:layout_marginRight="-10dp"
+                            android:layout_marginTop="-10dp"
+                            android:layout_marginBottom="-5dp"
+                            android:buttonTint="@color/icon_background"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:gravity="fill_horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="-15dp"
+                        android:layout_marginBottom="10dp">
+
+                        <LinearLayout
+                            android:layout_width="18dp"
+                            android:layout_height="18dp"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp">
+                        </LinearLayout>
+
+                        <TextView
+                            android:text="Moodiness"
+                            android:fontFamily="@font/tenor_sans"
+                            android:textStyle="bold"
+                            android:textSize="13sp"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="6dp"
+                            android:textColor="@color/mycycle_text"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.3"/>
+
+                        <CheckBox
+                            android:id="@+id/moodinessCB"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="right"
+                            android:layout_marginRight="-10dp"
+                            android:layout_marginTop="-10dp"
+                            android:layout_marginBottom="-5dp"
+                            android:buttonTint="@color/icon_background"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:gravity="fill_horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="-15dp"
+                        android:layout_marginBottom="10dp">
+
+                        <LinearLayout
+                            android:layout_width="18dp"
+                            android:layout_height="18dp"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp">
+                        </LinearLayout>
+
+                        <TextView
+                            android:text="Stress"
+                            android:fontFamily="@font/tenor_sans"
+                            android:textStyle="bold"
+                            android:textSize="13sp"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="6dp"
+                            android:textColor="@color/mycycle_text"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.3"/>
+
+                        <CheckBox
+                            android:id="@+id/stressCB"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="right"
+                            android:layout_marginRight="-10dp"
+                            android:layout_marginTop="-10dp"
+                            android:layout_marginBottom="-5dp"
+                            android:buttonTint="@color/icon_background"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:gravity="fill_horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="-15dp"
+                        android:layout_marginBottom="10dp">
+
+                        <LinearLayout
+                            android:layout_width="18dp"
+                            android:layout_height="18dp"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp">
+                        </LinearLayout>
+
+                        <TextView
+                            android:text="Tension"
+                            android:fontFamily="@font/tenor_sans"
+                            android:textStyle="bold"
+                            android:textSize="13sp"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="6dp"
+                            android:textColor="@color/mycycle_text"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.3"/>
+
+                        <CheckBox
+                            android:id="@+id/tensionCB"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="right"
+                            android:layout_marginRight="-10dp"
+                            android:layout_marginTop="-10dp"
+                            android:layout_marginBottom="-5dp"
+                            android:buttonTint="@color/icon_background"/>
 
                     </LinearLayout>
 
