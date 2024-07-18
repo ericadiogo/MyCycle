@@ -311,16 +311,18 @@ public class SettingsActivity extends AppCompatActivity {
                 reference.child(loggedUserId).addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        UserModel userModel = snapshot.getValue(UserModel.class);
-                        if(userModel != null){
-                            String pass = userModel.getPassword();
-                            String passnew = edtChangePass.getText().toString();
-                            if(!pass.equals(passnew)){
-                                reference.child(loggedUserId).child("password").setValue(passnew);
-                                firebaseUser.updatePassword(passnew);
+                        String emailres = edtChangePass.getText().toString();
+                        mAuth.sendPasswordResetEmail(
+                                emailres).addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                if(task.isSuccessful()){
+                                    Toast.makeText(SettingsActivity.this,"Email sent.", Toast.LENGTH_SHORT).show();
+                                } else {
+                                    Toast.makeText(SettingsActivity.this,"This email is not registered.", Toast.LENGTH_SHORT).show();
+                                }
                             }
-                        }
-                        Toast.makeText(SettingsActivity.this,"Your password has been updated.",Toast.LENGTH_SHORT).show();
+                        });
                     }
 
                     @Override
