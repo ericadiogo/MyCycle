@@ -115,13 +115,13 @@ public class CalendarActivity extends AppCompatActivity {
                 });
                 dialog.dismiss();
             }
-        });
+        }); */
 
-        btnCancel.setOnClickListener(new View.OnClickListener() {
+        btnCancelInfo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 dialog.dismiss();
             }
-        }); */
+        });
     }
 }
