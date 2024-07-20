@@ -150,7 +150,7 @@
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/dailyInfo"
+            android:id="@+id/dailyInfoCard"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="40dp"
@@ -160,6 +160,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.65"
             app:layout_constraintStart_toStartOf="parent"
+            android:visibility="invisible"
             app:layout_constraintTop_toBottomOf="@id/calendarCard">
 
             <LinearLayout

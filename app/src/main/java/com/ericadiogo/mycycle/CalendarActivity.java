@@ -1,5 +1,7 @@
 package com.ericadiogo.mycycle;
 
+import static com.ericadiogo.mycycle.R.*;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -8,11 +10,13 @@ import android.widget.CalendarView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -31,6 +35,7 @@ import java.util.Locale;
 public class CalendarActivity extends AppCompatActivity {
     private LinearLayout calendarBack;
     private CalendarView calView;
+    private CardView dailyInfoCard;
     private TextView pickedDate;
     private ImageView addInfobtn;
     private DatabaseReference reference;
@@ -44,6 +49,7 @@ public class CalendarActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_calendar);
 
+        dailyInfoCard = findViewById(R.id.dailyInfoCard);
         calendarBack = findViewById(R.id.calendarBack);
         calView = findViewById(R.id.calView);
         pickedDate = findViewById(R.id.pickedDate);
@@ -64,6 +70,7 @@ public class CalendarActivity extends AppCompatActivity {
                 String date = (month+1) + "/" + day + "/" + year;
                 dateSel = date;
                 pickedDate.setText(date);
+                dailyInfoCard.setVisibility(View.VISIBLE);
             }
         });
 
