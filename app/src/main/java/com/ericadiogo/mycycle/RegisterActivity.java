@@ -18,13 +18,14 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.io.Serializable;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class RegisterActivity extends AppCompatActivity {
     private EditText firstName,lastName,emailRegister,passRegister,passConfirm,periodLengthReg,cycleReg,weightReg,lastPeriodDate;
-    private Button btnRegister, btnLoginRegister;
+    private Button btnRegister;
     private FirebaseAuth mAuth;
     FirebaseDatabase database;
     DatabaseReference reference;
@@ -70,6 +71,7 @@ public class RegisterActivity extends AppCompatActivity {
         int weight = Integer.parseInt(weightReg.getText().toString().trim());
         String lastDate = lastPeriodDate.getText().toString();
         String id = "a1";
+        DailyInfo dailyInfo = new DailyInfo();
 
         if(!fname.isEmpty()){
             if (!lname.isEmpty()){
@@ -138,3 +140,19 @@ public class RegisterActivity extends AppCompatActivity {
         });
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
