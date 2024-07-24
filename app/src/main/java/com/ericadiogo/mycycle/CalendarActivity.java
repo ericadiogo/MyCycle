@@ -60,6 +60,8 @@ public class CalendarActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         firebaseUser = mAuth.getCurrentUser();
         loggedUserId = mAuth.getUid();
+        database = FirebaseDatabase.getInstance();
+        reference = database.getReference("dailyinfo");
 
         calendarBack.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -80,7 +82,6 @@ public class CalendarActivity extends AppCompatActivity {
                 dateSel = ffdate;
                 pickedDate.setText(fdate);
                 dailyInfoCard.setVisibility(View.VISIBLE);
-
                 DailyInfo dailyInfo = new DailyInfo(ffdate,true);
                 reference.child(mAuth.getUid()).child(dailyInfo.getDate()).setValue(dailyInfo);
             }

@@ -46,7 +46,7 @@ public class HomeActivity extends AppCompatActivity {
         imageLogOut = findViewById(R.id.imageLogOut);
         reference = FirebaseDatabase.getInstance().getReference("users");
 
-//        showName();
+        showName();
 
         imageLogOut.setOnClickListener(new View.OnClickListener() {
             @Override
