@@ -80,11 +80,8 @@ public class CalendarActivity extends AppCompatActivity {
                 dateSel = ffdate;
                 pickedDate.setText(fdate);
                 dailyInfoCard.setVisibility(View.VISIBLE);
-                database = FirebaseDatabase.getInstance();
-                reference = database.getReference("dailyinfo");
 
-                DailyInfo dailyInfo = new DailyInfo(ffdate,ps);
-
+                DailyInfo dailyInfo = new DailyInfo(ffdate,true);
                 reference.child(mAuth.getUid()).child(dailyInfo.getDate()).setValue(dailyInfo);
             }
         });
@@ -130,6 +127,11 @@ public class CalendarActivity extends AppCompatActivity {
                             Boolean pstartnew;
                             if(perStartCB.isChecked()){
                                 pstartnew = true;
+                                if(!pstart.equals(pstartnew)){
+                                    reference.child(mAuth.getUid()).child(dateSel).child("perStart").setValue(pstartnew);
+                                }
+                            } else {
+                                pstartnew = false;
                                 if(!pstart.equals(pstartnew)){
                                     reference.child(mAuth.getUid()).child(dateSel).child("perStart").setValue(pstartnew);
                                 }

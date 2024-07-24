@@ -46,7 +46,7 @@ public class HomeActivity extends AppCompatActivity {
         imageLogOut = findViewById(R.id.imageLogOut);
         reference = FirebaseDatabase.getInstance().getReference("users");
 
-        showName();
+//        showName();
 
         imageLogOut.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -123,6 +123,7 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
     }
+
     protected String showDate(){
         String date = new SimpleDateFormat("EEE, MMM dd", Locale.getDefault()).format(new Date());
         return date;
