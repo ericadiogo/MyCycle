@@ -3,64 +3,31 @@ package com.ericadiogo.mycycle;
 import java.io.Serializable;
 
 public class DailyInfo implements Serializable {
-    private String id;
-    private SelDate selDate;
+    private String date;
+    private Boolean perStart;
 
-    public static class SelDate implements Serializable{
-        private String selD;
-        private CurrentInfo currentInfo;
-
-        public static class CurrentInfo implements Serializable{
-            private Boolean perStart;
-
-            public CurrentInfo(Boolean perStart) {
-                this.perStart = perStart;
-            }
-
-            public CurrentInfo(){
-
-            }
-
-            public Boolean getPerStart() {
-                return perStart;
-            }
-
-            public void setPerStart(Boolean perStart) {
-                this.perStart = perStart;
-            }
-        }
-
-        public void SelD(String selDate, Boolean perStart) {
-            this.selD = selDate;
-        }
-
-        public void SelD(){
-
-        }
-
-        public String getSelD() {
-            return selD;
-        }
-
-        public void setSelD(String selS) {
-            this.selD = selD;
-        }
+    public DailyInfo(String date, Boolean perStart) {
+        this.date = date;
+        this.perStart = perStart;
     }
 
-    public DailyInfo(String id,SelDate selDate) {
-        this.id = id;
-        this.selDate = selDate;
-    }
-
-    public DailyInfo() {
+    public DailyInfo(){
 
     }
 
-    public String getId() {
-        return id;
+    public String getDate() {
+        return date;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public Boolean getPerStart() {
+        return perStart;
+    }
+
+    public void setPerStart(Boolean perStart) {
+        this.perStart = perStart;
     }
 }
