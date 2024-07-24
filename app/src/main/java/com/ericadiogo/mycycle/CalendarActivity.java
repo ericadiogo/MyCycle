@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CalendarView;
+import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -26,6 +27,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.text.SimpleDateFormat;
@@ -38,10 +40,11 @@ public class CalendarActivity extends AppCompatActivity {
     private CardView dailyInfoCard;
     private TextView pickedDate;
     private ImageView addInfobtn;
-    private DatabaseReference reference;
     private String loggedUserId, dateSel;
     private FirebaseAuth mAuth;
     private FirebaseUser firebaseUser;
+    private FirebaseDatabase database;
+    private DatabaseReference reference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +57,9 @@ public class CalendarActivity extends AppCompatActivity {
         calView = findViewById(R.id.calView);
         pickedDate = findViewById(R.id.pickedDate);
         addInfobtn = findViewById(R.id.addInfobtn);
+        mAuth = FirebaseAuth.getInstance();
+        firebaseUser = mAuth.getCurrentUser();
+        loggedUserId = mAuth.getUid();
 
         calendarBack.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -71,6 +77,12 @@ public class CalendarActivity extends AppCompatActivity {
                 dateSel = date;
                 pickedDate.setText(date);
                 dailyInfoCard.setVisibility(View.VISIBLE);
+                database = FirebaseDatabase.getInstance();
+                reference = database.getReference("dailyinfo");
+
+                DailyInfo dailyInfo = new DailyInfo(mAuth.getUid(),new DailyInfo.SelDate());
+
+                reference.child(dailyInfo.getId()).setValue(dailyInfo);
             }
         });
 
@@ -87,30 +99,33 @@ public class CalendarActivity extends AppCompatActivity {
         View view1 = getLayoutInflater().inflate(R.layout.daily_info,null);
         Button btnSaveInfo,btnCancelInfo;
         TextView selDate;
+        CheckBox perStartCB;
+        String firstday;
 
         btnSaveInfo = view1.findViewById(R.id.btnSaveInfo);
         btnCancelInfo = view1.findViewById(R.id.btnCancelInfo);
         selDate = view1.findViewById(R.id.selDate);
         selDate.setText(dateSel);
+        perStartCB = view1.findViewById(id.perStartCB);
         builder.setView(view1);
 
         AlertDialog dialog = builder.create();
         dialog.setCancelable(true);
         dialog.show();
 
-        /* btnSaveInfo.setOnClickListener(new View.OnClickListener() {
+        btnSaveInfo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                reference.child(loggedUserId).addListenerForSingleValueEvent(new ValueEventListener() {
+
+                reference.child(loggedUserId).child(String.valueOf(dateSel)).addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        UserModel userModel = snapshot.getValue(UserModel.class);
-                        if(userModel != null){
-                            int plength = userModel.getpLength();
-                            int plengthnew = Integer.valueOf(edtChangePeriod.getText().toString());
-                            if(plength != plengthnew){
-                                reference.child(loggedUserId).child("pLength").setValue(plengthnew);
-                                txtPeriod.setText("Period length: " + plengthnew + " days");
+                        DailyInfo dailyInfo = snapshot.getValue(DailyInfo.class);
+                        if(dailyInfo != null){
+//                            String sdate = new DailyInfo.SelDate().getSelDate();
+  //                          Boolean pst = new DailyInfo.SelDate().getPerStart();
+                            if(perStartCB.isChecked()){
+                                reference.child(loggedUserId).child(dateSel).child("period_start").setValue(true);
                             }
                         }
                     }
@@ -122,7 +137,7 @@ public class CalendarActivity extends AppCompatActivity {
                 });
                 dialog.dismiss();
             }
-        }); */
+        });
 
         btnCancelInfo.setOnClickListener(new View.OnClickListener() {
             @Override

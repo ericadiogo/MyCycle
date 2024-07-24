@@ -27,7 +27,6 @@ public class HomeActivity extends AppCompatActivity {
     private TextView usergreeting,todayDate;
     private CardView cardCalendar,cardReminder,cardNotes,cardSettings;
     private DatabaseReference reference;
-    private String loggedUserId;
     private FirebaseAuth mAuth;
     private ImageView imageLogOut;
 
@@ -39,7 +38,6 @@ public class HomeActivity extends AppCompatActivity {
         todayDate = findViewById(R.id.todayDate);
         usergreeting = findViewById(R.id.userGreeting);
         mAuth = FirebaseAuth.getInstance();
-        loggedUserId = mAuth.getUid();
         todayDate.setText(showDate());
         cardCalendar = findViewById(R.id.cardCalendar);
         cardReminder = findViewById(R.id.cardReminder);

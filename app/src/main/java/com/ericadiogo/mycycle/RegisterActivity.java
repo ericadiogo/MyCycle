@@ -8,7 +8,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -18,7 +17,6 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-import java.io.Serializable;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -28,7 +26,7 @@ public class RegisterActivity extends AppCompatActivity {
     private Button btnRegister;
     private FirebaseAuth mAuth;
     FirebaseDatabase database;
-    DatabaseReference reference;
+    DatabaseReference reference,reference2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,7 +69,6 @@ public class RegisterActivity extends AppCompatActivity {
         int weight = Integer.parseInt(weightReg.getText().toString().trim());
         String lastDate = lastPeriodDate.getText().toString();
         String id = "a1";
-        DailyInfo dailyInfo = new DailyInfo();
 
         if(!fname.isEmpty()){
             if (!lname.isEmpty()){
@@ -114,6 +111,7 @@ public class RegisterActivity extends AppCompatActivity {
                 if(task.isSuccessful()){
                     database = FirebaseDatabase.getInstance();
                     reference = database.getReference("users");
+
                     UserModel user = new UserModel(mAuth.getUid(),fn,ln,emailReg,pl,cl,w,lp);
 
                     reference.child(user.getId()).setValue(user);
