@@ -43,8 +43,8 @@ public class CalendarActivity extends AppCompatActivity {
     private LinearLayout calendarBack;
     private CalendarView calView;
     private CardView dailyInfoCard;
-    private TextView pickedDate,showDailyInfo;
-    private ImageView addInfobtn;
+    private TextView pickedDate;
+    private Button addInfobtn;
     private String dateSel,currentperiodstart;
     private FirebaseAuth mAuth;
     private FirebaseUser firebaseUser;
@@ -67,7 +67,6 @@ public class CalendarActivity extends AppCompatActivity {
         database = FirebaseDatabase.getInstance();
         reference1 = database.getReference("users");
         reference2 = database.getReference("dailyinfo");
-        showDailyInfo = findViewById(R.id.showDailyInfo);
 
         calendarBack.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -113,7 +112,11 @@ public class CalendarActivity extends AppCompatActivity {
         addInfobtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showDialogDailyInfo();
+                if(dateSel == null){
+                    Toast.makeText(CalendarActivity.this,"Please, select a date.",Toast.LENGTH_SHORT).show();
+                } else {
+                    showDialogDailyInfo();
+                }
             }
         });
     }

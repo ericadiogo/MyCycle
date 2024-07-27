@@ -35,7 +35,7 @@
             android:layout_gravity="center"
             android:layout_margin="15dp"
             android:fontFamily="@font/tenor_sans"
-            android:text="Selected date"
+            android:text="19/05/2024"
             android:textColor="@color/mycycle_text"
             android:textSize="20sp"
             android:textStyle="bold" />
