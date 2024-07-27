@@ -1,7 +1,10 @@
 package com.ericadiogo.mycycle;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.OptIn;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.media3.common.util.Log;
+import androidx.media3.common.util.UnstableApi;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -22,6 +25,8 @@ public class LoginActivity extends AppCompatActivity {
     private EditText emailLogin,passwordLogin;
     private Button btnLogin, btnRegister, btnForgot;
     private FirebaseAuth mAuth;
+    private int periodlength, cyclelength;
+    private String lastperiod, firstname;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +38,6 @@ public class LoginActivity extends AppCompatActivity {
         btnLogin = findViewById(R.id.btnLogin);
         btnRegister = findViewById(R.id.btnRegister);
         btnForgot = findViewById(R.id.btnForgot);
-
         mAuth = FirebaseAuth.getInstance();
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
@@ -79,6 +83,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
                     Intent intent = new Intent(LoginActivity.this,HomeActivity.class);
+
                     startActivity(intent);
                     finish();
                 } else {
@@ -87,5 +92,4 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
     }
-
 }

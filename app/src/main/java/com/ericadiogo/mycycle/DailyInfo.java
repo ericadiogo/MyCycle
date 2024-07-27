@@ -15,6 +15,10 @@ public class DailyInfo implements Serializable {
 
     }
 
+    public DailyInfo(String date) {
+        this.date = date;
+    }
+
     public String getDate() {
         return date;
     }

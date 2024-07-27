@@ -17,6 +17,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -32,6 +33,7 @@ public class RegisterActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private FirebaseDatabase database;
     private DatabaseReference reference,reference2;
+    private FirebaseAuth.AuthStateListener mAuthListener;
     private DatePickerDialog datePickerDialog;
     private String lastPeriodDate;
 
@@ -97,7 +99,7 @@ public class RegisterActivity extends AppCompatActivity {
         int pLength = Integer.parseInt(periodLengthReg.getText().toString().trim());
         int cLength = Integer.parseInt(cycleReg.getText().toString().trim());
         int weight = Integer.parseInt(weightReg.getText().toString().trim());
-        String lastDate = lastPeriodDate; //////////////////////////////////////////////////////////////////////////////
+        String lastDate = lastPeriodDate;
         String id = "a1";
 
         if(!fname.isEmpty()){
@@ -144,10 +146,9 @@ public class RegisterActivity extends AppCompatActivity {
                     UserModel user = new UserModel(mAuth.getUid(),fn,ln,emailReg,pl,cl,w,lp);
                     reference.child(user.getId()).setValue(user);
 
-                    reference = database.getReference("dailyinfo");
+                    reference2 = database.getReference("dailyinfo");
                     DailyInfo dailyInfo = new DailyInfo(lp,true);
-                    reference.child(mAuth.getUid()).child(dailyInfo.getDate()).setValue(dailyInfo);
-
+                    reference2.child(user.getId()).child(dailyInfo.getDate()).setValue(dailyInfo);
 
                     Toast.makeText(RegisterActivity.this,"You are registered!", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(RegisterActivity.this,LoginActivity.class);
@@ -157,9 +158,11 @@ public class RegisterActivity extends AppCompatActivity {
                     intent.putExtra("lastname",ln);
                     intent.putExtra("email",emailReg);
                     intent.putExtra("periodlength",pl);
+                    intent.putExtra("cyclelength",cl);
                     intent.putExtra("weight",w);
                     intent.putExtra("lastperiod",lp);
-
+                    mAuth.signOut();
+                    mAuth = null;
                     startActivity(intent);
                     finish();
                 } else {
@@ -169,11 +172,6 @@ public class RegisterActivity extends AppCompatActivity {
                 }
             }
         });
-    }
-
-    protected String showTodayDate(){
-        String date = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(new Date());
-        return date;
     }
 }
 
