@@ -209,10 +209,11 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_gravity="left"
-                            android:layout_marginLeft="15dp"
+                            android:layout_marginLeft="5dp"
                             android:padding="2dp"
                             android:fontFamily="@font/tenor_sans"
-                            android:text="Pregnancy chance: "
+                            android:text=""
+                            android:drawableLeft="@drawable/rounded_pregnancy_24_dark"
                             android:textColor="@color/mycycle_text"
                             android:textSize="18sp"
                             android:textStyle="bold" />
