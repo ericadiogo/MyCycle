@@ -28,13 +28,13 @@ import com.google.firebase.database.ValueEventListener;
 
 public class SettingsActivity extends AppCompatActivity {
     private LinearLayout settingsBack, aboutProject, aboutMe;
-    private TextView userFnameSet,userLnameSet,useremailSet,txtPeriod,txtCycleLength;
+    private TextView userFnameSet,userLnameSet,useremailSet,txtPeriod,txtCycleLength,txtWeight;
     private DatabaseReference reference;
     private String loggedUserId;
     private FirebaseAuth mAuth;
     private FirebaseUser firebaseUser;
     private Button btnlogOut, btnDeleteProfile;
-    private ImageView fNamedEdit,lNameEdit,passwordEdit,pLengthEdit,cLengthEdit;
+    private ImageView fNamedEdit,lNameEdit,passwordEdit,pLengthEdit,cLengthEdit,weightEdit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +61,8 @@ public class SettingsActivity extends AppCompatActivity {
         passwordEdit = findViewById(R.id.passwordEdit);
         pLengthEdit = findViewById(R.id.pLengthEdit);
         cLengthEdit = findViewById(R.id.cLengthEdit);
+        txtWeight = findViewById(R.id.txtWeight);
+        weightEdit = findViewById(R.id.weightEdit);
 
         settingsBack.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -105,6 +107,13 @@ public class SettingsActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 showDialogCycle();
+            }
+        });
+
+        weightEdit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showDialogWeight();
             }
         });
 
@@ -183,12 +192,14 @@ public class SettingsActivity extends AppCompatActivity {
                     String email = userModel.getEmail();
                     int plength = userModel.getpLength();
                     int clength = userModel.getcLength();
+                    int weight = userModel.getWeight();
 
                     userFnameSet.setText(fname);
                     userLnameSet.setText(lname);
                     useremailSet.setText(email);
                     txtPeriod.setText("Period length: " + plength + " days");
                     txtCycleLength.setText("Cycle length: " + clength + " days");
+                    txtWeight.setText("Weight: " + weight + " kg");
                 }
             }
 
@@ -437,6 +448,52 @@ public class SettingsActivity extends AppCompatActivity {
 
     }
 
+    private void showDialogWeight(){
+        final AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        View p_layout = getLayoutInflater().inflate(R.layout.weight_dialog, null);
+        final EditText edtWeight = p_layout.findViewById(R.id.edtWeight);
+        Button btnSave = p_layout.findViewById(R.id.btnSave8);
+        Button btnCancel = p_layout.findViewById(R.id.btnCancel8);
+
+        builder.setView(p_layout);
+        AlertDialog dialog = builder.create();
+        dialog.setCancelable(true);
+        dialog.show();
+
+        btnSave.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                reference.child(loggedUserId).addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        UserModel userModel = snapshot.getValue(UserModel.class);
+                        if(userModel != null){
+                            int weight = userModel.getWeight();
+                            int weightnew = Integer.valueOf(edtWeight.getText().toString());
+                            if(weight != weightnew){
+                                reference.child(loggedUserId).child("weight").setValue(weightnew);
+                                txtPeriod.setText("Weight: " + weightnew + " kg");
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+                dialog.dismiss();
+            }
+        });
+
+        btnCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.dismiss();
+            }
+        });
+    }
+
     private void showDialogDelete(){
         final AlertDialog.Builder builder = new AlertDialog.Builder(this);
         View delete_layout = getLayoutInflater().inflate(R.layout.delete_dialog, null);
@@ -488,6 +545,5 @@ public class SettingsActivity extends AppCompatActivity {
             }
         });
     }
-
 
 }

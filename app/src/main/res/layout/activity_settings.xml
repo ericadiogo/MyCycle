@@ -525,6 +525,66 @@
                             </LinearLayout>
                         </LinearLayout>
 
+                        <LinearLayout
+                            android:id="@+id/weightDef"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="fill"
+                            android:layout_marginTop="20dp"
+                            android:orientation="horizontal">
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="0.1">
+
+                                <ImageView
+                                    android:id="@+id/weightIconSettings"
+                                    android:layout_width="24dp"
+                                    android:layout_height="24dp"
+                                    android:padding="5dp"
+                                    android:background="@drawable/icon_shape"
+                                    android:src="@drawable/outline_cycle_24" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:gravity="left"
+                                android:layout_weight="0.7">
+
+                                <TextView
+                                    android:id="@+id/txtWeight"
+                                    android:text="Weight: kg"
+                                    android:layout_marginTop="3dp"
+                                    android:fontFamily="@font/tenor_sans"
+                                    android:textStyle="bold"
+                                    android:textSize="16sp"
+                                    android:textColor="@color/mycycle_text"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"/>
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:gravity="right"
+                                android:layout_weight="0.2">
+
+                                <ImageView
+                                    android:id="@+id/weightEdit"
+                                    android:layout_width="24dp"
+                                    android:layout_height="24dp"
+                                    android:padding="5dp"
+                                    android:background="@drawable/icon_shape"
+                                    android:src="@drawable/baseline_mode_edit_outline_24" />
+                            </LinearLayout>
+                        </LinearLayout>
+
 
 
                     </LinearLayout>
