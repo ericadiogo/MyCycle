@@ -83,7 +83,6 @@ public class CalendarActivity extends AppCompatActivity {
                 Date seldate = new Date(month+1+ "/" + day + "/" + year);
                 String fdate = new SimpleDateFormat("dd/MM/yyyy").format(seldate);
                 String ffdate = new SimpleDateFormat("dd-MM-yyy").format(seldate);
-                Boolean ps = false;
                 dateSel = ffdate;
                 pickedDate.setText(fdate);
                 dailyInfoCard.setVisibility(View.VISIBLE);
@@ -93,7 +92,7 @@ public class CalendarActivity extends AppCompatActivity {
                     @Override
                     public Transaction.Result doTransaction(@NonNull MutableData currentData) {
                         if(currentData.getValue() == null){
-                            DailyInfo dailyInfo = new DailyInfo(dateSel,ps);
+                            DailyInfo dailyInfo = new DailyInfo(dateSel);
                             currentData.setValue(dailyInfo);
                             return Transaction.success(currentData);
                         } else {
@@ -123,16 +122,49 @@ public class CalendarActivity extends AppCompatActivity {
 
     private void showDialogDailyInfo() {
         AlertDialog.Builder builder = new AlertDialog.Builder(CalendarActivity.this);
-        View view1 = getLayoutInflater().inflate(R.layout.daily_info,null);
-        Button btnSaveInfo,btnCancelInfo;
+        View view1 = getLayoutInflater().inflate(R.layout.daily_info, null);
+        Button btnSaveInfo, btnCancelInfo;
         TextView selDate;
-        CheckBox perStartCB;
+        CheckBox perStartCB, perEndCB, intercourseCB, ovtestPositive, ovtestNegative, ovpainCB, acneCB,
+                headacheCB, migrainesCB, backachesCB, breastsensCB, crampsCB,
+                musclepainCB, pmsCB, weightgainCB, creamyCB, dryCB, foulsmellCB, greenCB, wbloodCB,
+                abdominalpainCB, bloatingCB, constipationCB, dyarrheaCB, anxietyCB, fatigueCB, insomniaCB,
+                stressCB, tensionCB;
 
         btnSaveInfo = view1.findViewById(R.id.btnSaveInfo);
         btnCancelInfo = view1.findViewById(R.id.btnCancelInfo);
         selDate = view1.findViewById(R.id.selDate);
         selDate.setText(pickedDate.getText().toString());
-        perStartCB = view1.findViewById(id.perStartCB);
+        perStartCB = view1.findViewById(R.id.perStartCB);
+        perEndCB = view1.findViewById(R.id.perEndCB);
+        intercourseCB = view1.findViewById(R.id.intercourseCB);
+        ovtestPositive = view1.findViewById(R.id.ovtestPositive);
+        ovtestNegative = view1.findViewById(R.id.ovtestNegative);
+        ovpainCB = view1.findViewById(R.id.ovpainCB);
+        acneCB = view1.findViewById(R.id.acneCB);
+        headacheCB = view1.findViewById(R.id.headacheCB);
+        migrainesCB = view1.findViewById(R.id.migrainesCB);
+        backachesCB = view1.findViewById(R.id.backachesCB);
+        breastsensCB = view1.findViewById(R.id.breastsensCB);
+        crampsCB = view1.findViewById(R.id.crampsCB);
+        musclepainCB = view1.findViewById(R.id.musclepainCB);
+        pmsCB = view1.findViewById(R.id.pmsCB);
+        weightgainCB = view1.findViewById(R.id.weightgainCB);
+        creamyCB = view1.findViewById(R.id.creamyCB);
+        dryCB = view1.findViewById(R.id.dryCB);
+        foulsmellCB = view1.findViewById(R.id.foulsmellCB);
+        greenCB = view1.findViewById(R.id.greenCB);
+        wbloodCB = view1.findViewById(R.id.wbloodCB);
+        abdominalpainCB = view1.findViewById(R.id.abdominalpainCB);
+        bloatingCB = view1.findViewById(R.id.bloatingCB);
+        constipationCB = view1.findViewById(R.id.constipationCB);
+        dyarrheaCB = view1.findViewById(R.id.dyarrheaCB);
+        anxietyCB = view1.findViewById(R.id.anxietyCB);
+        fatigueCB = view1.findViewById(R.id.fatigueCB);
+        insomniaCB = view1.findViewById(R.id.insomniaCB);
+        stressCB = view1.findViewById(R.id.stressCB);
+        tensionCB = view1.findViewById(R.id.tensionCB);
+
         builder.setView(view1);
 
         AlertDialog dialog = builder.create();
@@ -143,13 +175,182 @@ public class CalendarActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 DailyInfo dailyInfo = snapshot.getValue(DailyInfo.class);
-                if(dailyInfo != null){
-                    Boolean pstart = dailyInfo.getPerStart();
-                    if(pstart){
-                        perStartCB.setChecked(true);
+                if (dailyInfo != null) {
+                    if (dailyInfo.getPerStart() != null) {
+                        perStartCB.setChecked(dailyInfo.getPerStart());
                     } else {
                         perStartCB.setChecked(false);
                     }
+                    if (dailyInfo.getPerEnd() != null) {
+                        perEndCB.setChecked(dailyInfo.getPerEnd());
+                    } else {
+                        perEndCB.setChecked(false);
+                    }
+                    if (dailyInfo.getIntercourse() != null) {
+                        intercourseCB.setChecked(dailyInfo.getIntercourse());
+                    } else {
+                        intercourseCB.setChecked(false);
+                    }
+                    if (dailyInfo.getOvPos() != null) {
+                        ovtestPositive.setChecked(dailyInfo.getOvPos());
+                    } else {
+                        ovtestPositive.setChecked(false);
+                    }
+                    if (dailyInfo.getOvNeg() != null) {
+                        ovtestNegative.setChecked(dailyInfo.getOvNeg());
+                    } else {
+                        ovtestNegative.setChecked(false);
+                    }
+                    if (dailyInfo.getOvPain() != null) {
+                        ovpainCB.setChecked(dailyInfo.getOvPain());
+                    } else {
+                        ovpainCB.setChecked(false);
+                    }
+                    if (dailyInfo.getAcne() != null) {
+                        acneCB.setChecked(dailyInfo.getAcne());
+                    } else {
+                        acneCB.setChecked(false);
+                    }
+                    if (dailyInfo.getHeadache() != null) {
+                        headacheCB.setChecked(dailyInfo.getHeadache());
+                    } else {
+                        headacheCB.setChecked(false);
+                    }
+                    if (dailyInfo.getMigraines() != null) {
+                        migrainesCB.setChecked(dailyInfo.getMigraines());
+                    } else {
+                        migrainesCB.setChecked(false);
+                    }
+                    if (dailyInfo.getBackaches() != null) {
+                        backachesCB.setChecked(dailyInfo.getBackaches());
+                    } else {
+                        backachesCB.setChecked(false);
+                    }
+                    if (dailyInfo.getBreastSens() != null) {
+                        breastsensCB.setChecked(dailyInfo.getBreastSens());
+                    } else {
+                        breastsensCB.setChecked(false);
+                    }
+                    if (dailyInfo.getCramps() != null) {
+                        crampsCB.setChecked(dailyInfo.getCramps());
+                    } else {
+                        crampsCB.setChecked(false);
+                    }
+                    if (dailyInfo.getMusclePain() != null) {
+                        musclepainCB.setChecked(dailyInfo.getMusclePain());
+                    } else {
+                        musclepainCB.setChecked(false);
+                    }
+                    if (dailyInfo.getPms() != null) {
+                        pmsCB.setChecked(dailyInfo.getPms());
+                    } else {
+                        pmsCB.setChecked(false);
+                    }
+                    if (dailyInfo.getWeightGain() != null) {
+                        weightgainCB.setChecked(dailyInfo.getWeightGain());
+                    } else {
+                        weightgainCB.setChecked(false);
+                    }
+                    if (dailyInfo.getCreamy() != null) {
+                        creamyCB.setChecked(dailyInfo.getCreamy());
+                    } else {
+                        creamyCB.setChecked(false);
+                    }
+                    if (dailyInfo.getDry() != null) {
+                        dryCB.setChecked(dailyInfo.getDry());
+                    } else {
+                        dryCB.setChecked(false);
+                    }
+                    if (dailyInfo.getFoulSmell() != null) {
+                        foulsmellCB.setChecked(dailyInfo.getFoulSmell());
+                    } else {
+                        foulsmellCB.setChecked(false);
+                    }
+                    if (dailyInfo.getGreen() != null) {
+                        greenCB.setChecked(dailyInfo.getGreen());
+                    } else {
+                        greenCB.setChecked(false);
+                    }
+                    if (dailyInfo.getWblood() != null) {
+                        wbloodCB.setChecked(dailyInfo.getWblood());
+                    } else {
+                        wbloodCB.setChecked(false);
+                    }
+                    if (dailyInfo.getAbdominalPain() != null) {
+                        abdominalpainCB.setChecked(dailyInfo.getAbdominalPain());
+                    } else {
+                        abdominalpainCB.setChecked(false);
+                    }
+                    if (dailyInfo.getBloating() != null) {
+                        bloatingCB.setChecked(dailyInfo.getBloating());
+                    } else {
+                        bloatingCB.setChecked(false);
+                    }
+                    if (dailyInfo.getConstipation() != null) {
+                        constipationCB.setChecked(dailyInfo.getConstipation());
+                    } else {
+                        constipationCB.setChecked(false);
+                    }
+                    if (dailyInfo.getDyarrhea() != null) {
+                        dyarrheaCB.setChecked(dailyInfo.getDyarrhea());
+                    } else {
+                        dyarrheaCB.setChecked(false);
+                    }
+                    if (dailyInfo.getAnxiety() != null) {
+                        anxietyCB.setChecked(dailyInfo.getAnxiety());
+                    } else {
+                        anxietyCB.setChecked(false);
+                    }
+                    if (dailyInfo.getFatigue() != null) {
+                        fatigueCB.setChecked(dailyInfo.getFatigue());
+                    } else {
+                        fatigueCB.setChecked(false);
+                    }
+                    if (dailyInfo.getInsomnia() != null) {
+                        insomniaCB.setChecked(dailyInfo.getInsomnia());
+                    } else {
+                        insomniaCB.setChecked(false);
+                    }
+                    if (dailyInfo.getStress() != null) {
+                        stressCB.setChecked(dailyInfo.getStress());
+                    } else {
+                        stressCB.setChecked(false);
+                    }
+                    if (dailyInfo.getTension() != null) {
+                        tensionCB.setChecked(dailyInfo.getTension());
+                    } else {
+                        tensionCB.setChecked(false);
+                    }
+                } else {
+                    perStartCB.setChecked(false);
+                    perEndCB.setChecked(false);
+                    intercourseCB.setChecked(false);
+                    ovtestPositive.setChecked(false);
+                    ovtestNegative.setChecked(false);
+                    ovpainCB.setChecked(false);
+                    acneCB.setChecked(false);
+                    headacheCB.setChecked(false);
+                    migrainesCB.setChecked(false);
+                    backachesCB.setChecked(false);
+                    breastsensCB.setChecked(false);
+                    crampsCB.setChecked(false);
+                    musclepainCB.setChecked(false);
+                    pmsCB.setChecked(false);
+                    weightgainCB.setChecked(false);
+                    creamyCB.setChecked(false);
+                    dryCB.setChecked(false);
+                    foulsmellCB.setChecked(false);
+                    greenCB.setChecked(false);
+                    wbloodCB.setChecked(false);
+                    abdominalpainCB.setChecked(false);
+                    bloatingCB.setChecked(false);
+                    constipationCB.setChecked(false);
+                    dyarrheaCB.setChecked(false);
+                    anxietyCB.setChecked(false);
+                    fatigueCB.setChecked(false);
+                    insomniaCB.setChecked(false);
+                    stressCB.setChecked(false);
+                    tensionCB.setChecked(false);
                 }
             }
 
@@ -162,53 +363,57 @@ public class CalendarActivity extends AppCompatActivity {
         btnSaveInfo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                reference2.child(mAuth.getUid()).child(dateSel).runTransaction(new Transaction.Handler() {
-                    @NonNull
-                    @Override
-                    public Transaction.Result doTransaction(@NonNull MutableData currentData) {
-                        DailyInfo dailyInfo = currentData.getValue(DailyInfo.class);
-
-                        if(dailyInfo == null){
-                            dailyInfo = new DailyInfo(dateSel,false);
-                        }
-                        Boolean pstart = dailyInfo.getPerStart();
-                        Boolean pstartnew;
-
-                        if(perStartCB.isChecked()){
-                            pstartnew = true;
-                            if(!pstart.equals(pstartnew)){
-                                reference2.child(mAuth.getUid()).child(dateSel).child("perStart").setValue(pstartnew);
-                                currentperiodstart = dailyInfo.getDate();
-                                setNewPeriod();
-                            }
-                        } else {
-                            pstartnew = false;
-                            if(!pstart.equals(pstartnew)){
-                                reference2.child(mAuth.getUid()).child(dateSel).child("perStart").setValue(pstartnew);
-                            }
-                        }
-                        return Transaction.success(currentData);
-                    }
-
-                    @Override
-                    public void onComplete(@Nullable DatabaseError error, boolean committed, @Nullable DataSnapshot currentData) {
-
-                    }
-                });
-/*                reference2.child(mAuth.getUid()).child(dateSel).addListenerForSingleValueEvent(new ValueEventListener() {
+                reference2.child(mAuth.getUid()).child(dateSel).addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         DailyInfo dailyInfo = snapshot.getValue(DailyInfo.class);
-                        if(dailyInfo != null){
-
+                        if (dailyInfo == null) {
+                            dailyInfo = new DailyInfo(dateSel);
                         }
+
+                        dailyInfo.setPerStart(perStartCB.isChecked());
+                        dailyInfo.setPerEnd(perEndCB.isChecked());
+                        dailyInfo.setIntercourse(intercourseCB.isChecked());
+                        dailyInfo.setOvPos(ovtestPositive.isChecked());
+                        dailyInfo.setOvNeg(ovtestNegative.isChecked());
+                        dailyInfo.setOvPain(ovpainCB.isChecked());
+                        dailyInfo.setAcne(acneCB.isChecked());
+                        dailyInfo.setHeadache(headacheCB.isChecked());
+                        dailyInfo.setMigraines(migrainesCB.isChecked());
+                        dailyInfo.setBackaches(backachesCB.isChecked());
+                        dailyInfo.setBreastSens(breastsensCB.isChecked());
+                        dailyInfo.setCramps(crampsCB.isChecked());
+                        dailyInfo.setMusclePain(musclepainCB.isChecked());
+                        dailyInfo.setPms(pmsCB.isChecked());
+                        dailyInfo.setWeightGain(weightgainCB.isChecked());
+                        dailyInfo.setCreamy(creamyCB.isChecked());
+                        dailyInfo.setDry(dryCB.isChecked());
+                        dailyInfo.setFoulSmell(foulsmellCB.isChecked());
+                        dailyInfo.setGreen(greenCB.isChecked());
+                        dailyInfo.setWblood(wbloodCB.isChecked());
+                        dailyInfo.setAbdominalPain(abdominalpainCB.isChecked());
+                        dailyInfo.setBloating(bloatingCB.isChecked());
+                        dailyInfo.setConstipation(constipationCB.isChecked());
+                        dailyInfo.setDyarrhea(dyarrheaCB.isChecked());
+                        dailyInfo.setAnxiety(anxietyCB.isChecked());
+                        dailyInfo.setFatigue(fatigueCB.isChecked());
+                        dailyInfo.setInsomnia(insomniaCB.isChecked());
+                        dailyInfo.setStress(stressCB.isChecked());
+                        dailyInfo.setTension(tensionCB.isChecked());
+
+                        if(perStartCB.isChecked()){
+                            currentperiodstart = dailyInfo.getDate();
+                            setNewPeriod();
+                        }
+                        reference2.child(mAuth.getUid()).child(dateSel).setValue(dailyInfo);
+
                     }
 
                     @Override
                     public void onCancelled(@NonNull DatabaseError error) {
 
                     }
-                }); */
+                });
                 dialog.dismiss();
             }
         });
