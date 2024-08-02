@@ -33,7 +33,8 @@ android {
 }
 
 dependencies {
-
+    implementation("androidx.core:core:1.13.0")
+    implementation("androidx.appcompat:appcompat:1.3.1")
     implementation(libs.appcompat)
     implementation(libs.material)
     implementation(libs.activity)
@@ -48,4 +49,5 @@ dependencies {
     androidTestImplementation(libs.espresso.core)
     implementation(platform("com.google.firebase:firebase-bom:33.1.2"))
     implementation("com.google.firebase:firebase-analytics")
+    implementation("com.prolificinteractive:material-calendarview:1.4.3")
 }

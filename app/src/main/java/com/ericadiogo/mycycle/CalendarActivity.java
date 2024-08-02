@@ -1,7 +1,5 @@
 package com.ericadiogo.mycycle;
 
-import static com.ericadiogo.mycycle.R.*;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -32,6 +30,9 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.MutableData;
 import com.google.firebase.database.Transaction;
 import com.google.firebase.database.ValueEventListener;
+import com.prolificinteractive.materialcalendarview.CalendarDay;
+import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
+import com.prolificinteractive.materialcalendarview.OnDateSelectedListener;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -41,7 +42,7 @@ import java.util.Locale;
 
 public class CalendarActivity extends AppCompatActivity {
     private LinearLayout calendarBack;
-    private CalendarView calView;
+    private MaterialCalendarView calView;
     private CardView dailyInfoCard;
     private TextView pickedDate;
     private Button addInfobtn;
@@ -77,10 +78,14 @@ public class CalendarActivity extends AppCompatActivity {
             }
         });
 
-        calView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
+        calView.setOnDateChangedListener(new OnDateSelectedListener() {
             @Override
-            public void onSelectedDayChange(@NonNull CalendarView calendarView, int year, int month, int day) {
-                Date seldate = new Date(month+1+ "/" + day + "/" + year);
+            public void onDateSelected(@NonNull MaterialCalendarView widget, @NonNull CalendarDay date, boolean selected) {
+                int year = date.getYear();
+                int month = date.getMonth() + 1;
+                int day = date.getDay();
+
+                Date seldate = new Date(month + "/" + day + "/" + year);
                 String fdate = new SimpleDateFormat("dd/MM/yyyy").format(seldate);
                 String ffdate = new SimpleDateFormat("dd-MM-yyy").format(seldate);
                 dateSel = ffdate;
@@ -91,7 +96,7 @@ public class CalendarActivity extends AppCompatActivity {
                     @NonNull
                     @Override
                     public Transaction.Result doTransaction(@NonNull MutableData currentData) {
-                        if(currentData.getValue() == null){
+                        if (currentData.getValue() == null) {
                             DailyInfo dailyInfo = new DailyInfo(dateSel);
                             currentData.setValue(dailyInfo);
                             return Transaction.success(currentData);

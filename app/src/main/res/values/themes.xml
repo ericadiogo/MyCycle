@@ -16,9 +16,18 @@
     </style>
 
     <style name="CalendarWeekText" parent="android:TextAppearance.DeviceDefault.Small">
-        <item name="android:textColor">@color/weekdays</item>
+        <item name="android:textColor">@color/icon_background</item>
         <item name="android:fontFamily">@font/tenor_sans</item>
         <item name="fontFamily">@font/tenor_sans</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="CalendarMonthText" parent="android:TextAppearance.DeviceDefault.Small">
+        <item name="android:textColor">@color/mycycle_text</item>
+        <item name="android:fontFamily">@font/tenor_sans</item>
+        <item name="fontFamily">@font/tenor_sans</item>
+        <item name="android:textSize">16sp</item>
         <item name="android:textStyle">bold</item>
     </style>
 
