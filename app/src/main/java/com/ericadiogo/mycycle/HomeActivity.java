@@ -43,8 +43,6 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        Intent intent2 = getIntent();
-
         todayDate = findViewById(R.id.todayDate);
         usergreeting = findViewById(R.id.userGreeting);
         mAuth = FirebaseAuth.getInstance();

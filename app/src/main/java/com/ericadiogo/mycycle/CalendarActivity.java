@@ -1,9 +1,9 @@
 package com.ericadiogo.mycycle;
 
-import static com.ericadiogo.mycycle.R.*;
-
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CalendarView;
@@ -32,24 +32,36 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.MutableData;
 import com.google.firebase.database.Transaction;
 import com.google.firebase.database.ValueEventListener;
+import com.prolificinteractive.materialcalendarview.CalendarDay;
+import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
+import com.prolificinteractive.materialcalendarview.OnDateSelectedListener;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collection;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Locale;
 
 public class CalendarActivity extends AppCompatActivity {
+    private static final String TAG = "CalendarActivity";
+
     private LinearLayout calendarBack;
-    private CalendarView calView;
+    private MaterialCalendarView calView;
     private CardView dailyInfoCard;
     private TextView pickedDate;
     private Button addInfobtn;
-    private String dateSel,currentperiodstart;
+    private String dateSel, currentperiodstart;
     private FirebaseAuth mAuth;
     private FirebaseUser firebaseUser;
     private FirebaseDatabase database;
-    private DatabaseReference reference1,reference2;
+    private DatabaseReference reference1, reference2;
+    private Date lpd, cpd, ps, pend;
+    private int cyclelength, periodlength;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,6 +79,17 @@ public class CalendarActivity extends AppCompatActivity {
         database = FirebaseDatabase.getInstance();
         reference1 = database.getReference("users");
         reference2 = database.getReference("dailyinfo");
+        List<CalendarDay> dates;
+
+        getInitialInfo(new InitialInfoCallback() {
+            @Override
+            public void onInitialInfoLoaded(Date lpd, int periodLength) {
+                Log.d(TAG, "Initial info loaded: lpd = " + lpd + ", periodLength = " + periodLength);
+                Collection<CalendarDay> pdates = CalendarDate.getPeriodDates(lpd, periodLength,cyclelength);
+                calView.addDecorator(new EventDecorator(0xFFFF0000, pdates));
+                calView.invalidateDecorators();
+            }
+        });
 
         calendarBack.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -77,10 +100,14 @@ public class CalendarActivity extends AppCompatActivity {
             }
         });
 
-        calView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
+        calView.setOnDateChangedListener(new OnDateSelectedListener() {
             @Override
-            public void onSelectedDayChange(@NonNull CalendarView calendarView, int year, int month, int day) {
-                Date seldate = new Date(month+1+ "/" + day + "/" + year);
+            public void onDateSelected(@NonNull MaterialCalendarView widget, @NonNull CalendarDay date, boolean selected) {
+                int year = date.getYear();
+                int month = date.getMonth() + 1;
+                int day = date.getDay();
+
+                Date seldate = new Date(month + "/" + day + "/" + year);
                 String fdate = new SimpleDateFormat("dd/MM/yyyy").format(seldate);
                 String ffdate = new SimpleDateFormat("dd-MM-yyy").format(seldate);
                 dateSel = ffdate;
@@ -91,7 +118,7 @@ public class CalendarActivity extends AppCompatActivity {
                     @NonNull
                     @Override
                     public Transaction.Result doTransaction(@NonNull MutableData currentData) {
-                        if(currentData.getValue() == null){
+                        if (currentData.getValue() == null) {
                             DailyInfo dailyInfo = new DailyInfo(dateSel);
                             currentData.setValue(dailyInfo);
                             return Transaction.success(currentData);
@@ -111,13 +138,15 @@ public class CalendarActivity extends AppCompatActivity {
         addInfobtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(dateSel == null){
-                    Toast.makeText(CalendarActivity.this,"Please, select a date.",Toast.LENGTH_SHORT).show();
+                if (dateSel == null) {
+                    Toast.makeText(CalendarActivity.this, "Please, select a date.", Toast.LENGTH_SHORT).show();
                 } else {
                     showDialogDailyInfo();
                 }
             }
         });
+
+
     }
 
     private void showDialogDailyInfo() {
@@ -401,7 +430,7 @@ public class CalendarActivity extends AppCompatActivity {
                         dailyInfo.setStress(stressCB.isChecked());
                         dailyInfo.setTension(tensionCB.isChecked());
 
-                        if(perStartCB.isChecked()){
+                        if (perStartCB.isChecked()) {
                             currentperiodstart = dailyInfo.getDate();
                             setNewPeriod();
                         }
@@ -426,15 +455,18 @@ public class CalendarActivity extends AppCompatActivity {
         });
     }
 
-    private void setNewPeriod(){
+    private void setNewPeriod() {
         reference1.child(mAuth.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 UserModel userModel = snapshot.getValue(UserModel.class);
                 SimpleDateFormat newformat = new SimpleDateFormat("dd-MM-yyyy");
                 Calendar calendar = Calendar.getInstance();
-                if(userModel != null){
+                if (userModel != null) {
                     String lastperiod = userModel.getLastPeriod();
+                    cyclelength = userModel.getcLength();
+                    periodlength = userModel.getpLength();
+
                     if (lastperiod != null) {
                         Date lperioddate = null;
                         try {
@@ -451,7 +483,11 @@ public class CalendarActivity extends AppCompatActivity {
                             }
                             if (cperioddate.after(lperioddate)) {
                                 reference1.child(mAuth.getUid()).child("lastPeriod").setValue(currentperiodstart);
+                                ps = cperioddate;
+                            } else {
+                                ps = lperioddate;
                             }
+                            Log.d(TAG, "Initial info loaded: lpd = " + ps + ", periodLength = " + periodlength);
                         }
                     }
                 }
@@ -462,5 +498,45 @@ public class CalendarActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    private void getInitialInfo(InitialInfoCallback callback) {
+        FirebaseUser user = mAuth.getCurrentUser();
+        SimpleDateFormat newformat = new SimpleDateFormat("dd-MM-yyyy");
+        if (user != null) {
+            reference1.child(mAuth.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    UserModel userModel = snapshot.getValue(UserModel.class);
+                    if (userModel != null) {
+                        String lastPeriod = userModel.getLastPeriod();
+                        periodlength = userModel.getpLength();
+                        if (lastPeriod != null) {
+                            try {
+                                lpd = newformat.parse(lastPeriod);
+                                callback.onInitialInfoLoaded(lpd, periodlength);
+                            } catch (ParseException e) {
+                                Log.e(TAG, "Error parsing date", e);
+                            }
+                        } else {
+                            Log.e(TAG, "Last period date is null");
+                        }
+                    } else {
+                        Log.e(TAG, "User model is null");
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+                    Log.e(TAG, "Database error", error.toException());
+                }
+            });
+        } else {
+            Log.e(TAG, "User is not authenticated");
+        }
+    }
+
+    public interface InitialInfoCallback {
+        void onInitialInfoLoaded(Date lpd, int periodLength);
     }
 }

@@ -138,16 +138,22 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/cardInfo">
 
-            <CalendarView
+            <com.prolificinteractive.materialcalendarview.MaterialCalendarView
                 android:id="@+id/calView"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                app:mcv_showOtherDates="all"
+                app:mcv_arrowColor="@color/icon_background"
+                app:mcv_selectionColor="@color/password_login"
+                app:mcv_headerTextAppearance="@style/CalendarMonthText"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                android:theme="@style/CalendarViewMyCycle"
                 android:dateTextAppearance="@style/CalendarViewDate"
                 android:weekDayTextAppearance="@style/CalendarWeekText"
-                app:layout_constraintTop_toBottomOf="@+id/cardInfo" />
+                app:layout_constraintTop_toBottomOf="@+id/cardInfo"
+                android:paddingTop="10dp"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"/>
 
         </androidx.cardview.widget.CardView>
 
@@ -164,7 +170,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.65"
             app:layout_constraintStart_toStartOf="parent"
-            android:visibility="visible"
+            android:visibility="invisible"
             app:layout_constraintTop_toBottomOf="@id/calendarCard">
 
             <LinearLayout
