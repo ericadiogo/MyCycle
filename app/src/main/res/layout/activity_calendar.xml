@@ -140,9 +140,9 @@
 
             <com.prolificinteractive.materialcalendarview.MaterialCalendarView
                 android:id="@+id/calView"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:mcv_showOtherDates="none"
+                app:mcv_showOtherDates="all"
                 app:mcv_arrowColor="@color/icon_background"
                 app:mcv_selectionColor="@color/password_login"
                 app:mcv_headerTextAppearance="@style/CalendarMonthText"
