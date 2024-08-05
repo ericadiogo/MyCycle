@@ -1,7 +1,9 @@
+
 package com.ericadiogo.mycycle;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -19,6 +21,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
+import androidx.core.content.ContextCompat;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -61,6 +64,7 @@ public class CalendarActivity extends AppCompatActivity {
     private DatabaseReference reference1, reference2;
     private Date lpd, cpd, ps, pend;
     private int cyclelength, periodlength;
+    private Drawable pdrawable;
 
 
     @Override
@@ -79,14 +83,14 @@ public class CalendarActivity extends AppCompatActivity {
         database = FirebaseDatabase.getInstance();
         reference1 = database.getReference("users");
         reference2 = database.getReference("dailyinfo");
-        List<CalendarDay> dates;
+        pdrawable = ContextCompat.getDrawable(CalendarActivity.this, R.drawable.perioddays);
 
         getInitialInfo(new InitialInfoCallback() {
             @Override
             public void onInitialInfoLoaded(Date lpd, int periodLength) {
                 Log.d(TAG, "Initial info loaded: lpd = " + lpd + ", periodLength = " + periodLength);
                 Collection<CalendarDay> pdates = CalendarDate.getPeriodDates(lpd, periodLength,cyclelength);
-                calView.addDecorator(new EventDecorator(0xFFFF0000, pdates));
+                calView.addDecorator(new EventDecorator(pdrawable, pdates,Color.WHITE));
                 calView.invalidateDecorators();
             }
         });
