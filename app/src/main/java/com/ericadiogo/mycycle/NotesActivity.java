@@ -32,9 +32,9 @@ public class NotesActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private FirebaseUser firebaseUser;
     private RecyclerView recViewNotes;
-    private List<Notes> notesList;
-    private NoteAdapter adapter;
-    private Notes note;
+    //private List<Notes> notesList;
+    //private NoteAdapter adapter;
+    //private Notes note;
 
 
 

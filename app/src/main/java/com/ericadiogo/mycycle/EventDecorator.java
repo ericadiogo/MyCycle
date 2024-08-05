@@ -4,7 +4,9 @@ import com.prolificinteractive.materialcalendarview.CalendarDay;
 import com.prolificinteractive.materialcalendarview.DayViewDecorator;
 import com.prolificinteractive.materialcalendarview.DayViewFacade;
 
-import android.text.style.BackgroundColorSpan;
+import android.graphics.Color;
+import android.graphics.drawable.Drawable;
+import android.text.style.ForegroundColorSpan;
 import android.util.Log;
 
 import java.util.Collection;
@@ -13,14 +15,16 @@ import java.util.HashSet;
 public class EventDecorator implements DayViewDecorator {
 
     private static final String TAG = "EventDecorator";
-    private final int color;
+    private final Drawable drawable;
     private final HashSet<CalendarDay> dates;
+    private final int textColor;
 
-    public EventDecorator(int color, Collection<CalendarDay> dates) {
-        this.color = color;
+    public EventDecorator(Drawable drawable, Collection<CalendarDay> dates, int textColor) {
+        this.drawable = drawable;
         this.dates = new HashSet<>(dates);
+        this.textColor = textColor;
         for (CalendarDay date : dates) {
-            Log.d(TAG, "Decorating date: " + date.getDate()); // Adiciona log para cada data decorada
+            Log.d(TAG, "Decorating date: " + date.getDate()); // Log para cada data decorada
         }
     }
 
@@ -31,6 +35,7 @@ public class EventDecorator implements DayViewDecorator {
 
     @Override
     public void decorate(DayViewFacade view) {
-        view.addSpan(new BackgroundColorSpan(color));
+        view.setBackgroundDrawable(drawable);
+        view.addSpan(new ForegroundColorSpan(textColor)); // Adiciona a mudança de cor do texto
     }
 }

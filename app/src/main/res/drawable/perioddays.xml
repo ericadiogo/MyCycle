@@ -1,4 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:drawable="@color/mycycle_text"/>
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="@color/mycycle_text"/>
+            <size android:height="20dp"/>
+            <size android:width="20dp"/>
+        </shape>
+    </item>
 </selector>
