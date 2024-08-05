@@ -85,6 +85,8 @@ public class CalendarActivity extends AppCompatActivity {
         reference2 = database.getReference("dailyinfo");
         pdrawable = ContextCompat.getDrawable(CalendarActivity.this, R.drawable.perioddays);
         fdrawable = ContextCompat.getDrawable(CalendarActivity.this,R.drawable.fertiledays);
+        Calendar calendar = Calendar.getInstance();
+        calView.state().edit().setMaximumDate(CalendarDay.from(calendar)).commit();
 
         getInitialInfo(new InitialInfoCallback() {
             @Override
