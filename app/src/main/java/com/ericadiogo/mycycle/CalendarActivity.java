@@ -64,7 +64,7 @@ public class CalendarActivity extends AppCompatActivity {
     private DatabaseReference reference1, reference2;
     private Date lpd, cpd, ps, pend;
     private int cyclelength, periodlength;
-    private Drawable pdrawable;
+    private Drawable pdrawable,fdrawable;
 
 
     @Override
@@ -84,6 +84,7 @@ public class CalendarActivity extends AppCompatActivity {
         reference1 = database.getReference("users");
         reference2 = database.getReference("dailyinfo");
         pdrawable = ContextCompat.getDrawable(CalendarActivity.this, R.drawable.perioddays);
+        fdrawable = ContextCompat.getDrawable(CalendarActivity.this,R.drawable.fertiledays);
 
         getInitialInfo(new InitialInfoCallback() {
             @Override
@@ -91,6 +92,9 @@ public class CalendarActivity extends AppCompatActivity {
                 Log.d(TAG, "Initial info loaded: lpd = " + lpd + ", periodLength = " + periodLength);
                 Collection<CalendarDay> pdates = CalendarDate.getPeriodDates(lpd, periodLength,cyclelength);
                 calView.addDecorator(new EventDecorator(pdrawable, pdates,Color.WHITE));
+                Collection<CalendarDay> fdates = CalendarFertile.getFertileDates(lpd, periodLength,cyclelength);
+                calView.addDecorator(new EventDecorator(fdrawable, fdates,Color.WHITE));
+
                 calView.invalidateDecorators();
             }
         });
@@ -443,7 +447,12 @@ public class CalendarActivity extends AppCompatActivity {
                                     Log.d(TAG, "Initial info loaded: lpd = " + lpd + ", periodLength = " + periodLength);
                                     Collection<CalendarDay> pdates = CalendarDate.getPeriodDates(lpd, periodLength,cyclelength);
                                     calView.addDecorator(new EventDecorator(pdrawable, pdates,Color.WHITE));
+
+                                    Collection<CalendarDay> fdates = CalendarFertile.getFertileDates(lpd, periodLength,cyclelength);
+                                    calView.addDecorator(new EventDecorator(fdrawable, fdates,Color.WHITE));
                                     calView.invalidateDecorators();
+
+
                                 }
                             });
                         }
