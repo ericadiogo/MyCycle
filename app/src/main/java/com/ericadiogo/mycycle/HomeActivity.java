@@ -59,7 +59,6 @@ public class HomeActivity extends AppCompatActivity {
         reference2 = FirebaseDatabase.getInstance().getReference("dailyinfo");
 
         getInitialInfo();
-        //showName();
 
         imageLogOut.setOnClickListener(new View.OnClickListener() {
             @Override

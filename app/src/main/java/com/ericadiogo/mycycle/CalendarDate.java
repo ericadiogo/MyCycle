@@ -35,6 +35,23 @@ public class CalendarDate {
             additionalDates.add(CalendarDay.from(calendarTemp.getTime()));
         }
         dates.addAll(additionalDates);
+
+        for (CalendarDay date : dates) {
+            Calendar calendarTemp = Calendar.getInstance();
+            calendarTemp.setTime(date.getDate());
+            calendarTemp.add(Calendar.DAY_OF_MONTH, cycleLength);
+            additionalDates.add(CalendarDay.from(calendarTemp.getTime()));
+        }
+        dates.addAll(additionalDates);
+
+        for (CalendarDay date : dates) {
+            Calendar calendarTemp = Calendar.getInstance();
+            calendarTemp.setTime(date.getDate());
+            calendarTemp.add(Calendar.DAY_OF_MONTH, cycleLength);
+            additionalDates.add(CalendarDay.from(calendarTemp.getTime()));
+        }
+        dates.addAll(additionalDates);
+
         return dates;
     }
 }
