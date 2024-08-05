@@ -28,11 +28,11 @@ public class CalendarDate {
             calendar.add(Calendar.DAY_OF_MONTH, 1);
         }
 
-        for(CalendarDay date : dates) {
-            Calendar calendar2 = Calendar.getInstance();
-            calendar2.setTime(date.getDate());
-            calendar2.add(Calendar.DAY_OF_MONTH,cycleLength);
-            additionalDates.add(CalendarDay.from(calendar2.getTime()));
+        for (CalendarDay date : dates) {
+            Calendar calendarTemp = Calendar.getInstance();
+            calendarTemp.setTime(date.getDate());
+            calendarTemp.add(Calendar.DAY_OF_MONTH, cycleLength);
+            additionalDates.add(CalendarDay.from(calendarTemp.getTime()));
         }
         dates.addAll(additionalDates);
         return dates;

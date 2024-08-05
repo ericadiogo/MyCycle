@@ -87,7 +87,7 @@ public class CalendarActivity extends AppCompatActivity {
 
         getInitialInfo(new InitialInfoCallback() {
             @Override
-            public void onInitialInfoLoaded(Date lpd, int periodLength) {
+            public void onInitialInfoLoaded(Date lpd, int periodLength,int cyclelength) {
                 Log.d(TAG, "Initial info loaded: lpd = " + lpd + ", periodLength = " + periodLength);
                 Collection<CalendarDay> pdates = CalendarDate.getPeriodDates(lpd, periodLength,cyclelength);
                 calView.addDecorator(new EventDecorator(pdrawable, pdates,Color.WHITE));
@@ -439,7 +439,7 @@ public class CalendarActivity extends AppCompatActivity {
                             setNewPeriod();
                             getInitialInfo(new InitialInfoCallback() {
                                 @Override
-                                public void onInitialInfoLoaded(Date lpd, int periodLength) {
+                                public void onInitialInfoLoaded(Date lpd, int periodLength,int cyclelength) {
                                     Log.d(TAG, "Initial info loaded: lpd = " + lpd + ", periodLength = " + periodLength);
                                     Collection<CalendarDay> pdates = CalendarDate.getPeriodDates(lpd, periodLength,cyclelength);
                                     calView.addDecorator(new EventDecorator(pdrawable, pdates,Color.WHITE));
@@ -524,10 +524,11 @@ public class CalendarActivity extends AppCompatActivity {
                     if (userModel != null) {
                         String lastPeriod = userModel.getLastPeriod();
                         periodlength = userModel.getpLength();
+                        cyclelength = userModel.getcLength();
                         if (lastPeriod != null) {
                             try {
                                 lpd = newformat.parse(lastPeriod);
-                                callback.onInitialInfoLoaded(lpd, periodlength);
+                                callback.onInitialInfoLoaded(lpd, periodlength,cyclelength);
                             } catch (ParseException e) {
                                 Log.e(TAG, "Error parsing date", e);
                             }
@@ -550,6 +551,6 @@ public class CalendarActivity extends AppCompatActivity {
     }
 
     public interface InitialInfoCallback {
-        void onInitialInfoLoaded(Date lpd, int periodLength);
+        void onInitialInfoLoaded(Date lpd, int periodLength,int cyclelength);
     }
 }
