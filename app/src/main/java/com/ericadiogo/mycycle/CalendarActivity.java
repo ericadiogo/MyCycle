@@ -437,6 +437,15 @@ public class CalendarActivity extends AppCompatActivity {
                         if (perStartCB.isChecked()) {
                             currentperiodstart = dailyInfo.getDate();
                             setNewPeriod();
+                            getInitialInfo(new InitialInfoCallback() {
+                                @Override
+                                public void onInitialInfoLoaded(Date lpd, int periodLength) {
+                                    Log.d(TAG, "Initial info loaded: lpd = " + lpd + ", periodLength = " + periodLength);
+                                    Collection<CalendarDay> pdates = CalendarDate.getPeriodDates(lpd, periodLength,cyclelength);
+                                    calView.addDecorator(new EventDecorator(pdrawable, pdates,Color.WHITE));
+                                    calView.invalidateDecorators();
+                                }
+                            });
                         }
                         reference2.child(mAuth.getUid()).child(dateSel).setValue(dailyInfo);
 
@@ -487,11 +496,11 @@ public class CalendarActivity extends AppCompatActivity {
                             }
                             if (cperioddate.after(lperioddate)) {
                                 reference1.child(mAuth.getUid()).child("lastPeriod").setValue(currentperiodstart);
-                                ps = cperioddate;
+                                lpd = cperioddate;
                             } else {
-                                ps = lperioddate;
+                                lpd = lperioddate;
                             }
-                            Log.d(TAG, "Initial info loaded: lpd = " + ps + ", periodLength = " + periodlength);
+                            Log.d(TAG, "Initial info loaded: lpd = " + lpd + ", periodLength = " + periodlength);
                         }
                     }
                 }

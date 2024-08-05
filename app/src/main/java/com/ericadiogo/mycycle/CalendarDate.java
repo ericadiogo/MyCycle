@@ -17,6 +17,7 @@ public class CalendarDate {
         }
 
         List<CalendarDay> dates = new ArrayList<>();
+        List<CalendarDay> additionalDates = new ArrayList<>();
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(startDate);
 
@@ -27,6 +28,13 @@ public class CalendarDate {
             calendar.add(Calendar.DAY_OF_MONTH, 1);
         }
 
+        for(CalendarDay date : dates) {
+            Calendar calendar2 = Calendar.getInstance();
+            calendar2.setTime(date.getDate());
+            calendar2.add(Calendar.DAY_OF_MONTH,cycleLength);
+            additionalDates.add(CalendarDay.from(calendar2.getTime()));
+        }
+        dates.addAll(additionalDates);
         return dates;
     }
 }

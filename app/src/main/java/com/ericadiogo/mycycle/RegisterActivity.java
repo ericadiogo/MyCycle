@@ -105,9 +105,9 @@ public class RegisterActivity extends AppCompatActivity {
         if(!fname.isEmpty()){
             if (!lname.isEmpty()){
                 if(!email.isEmpty()){
-                    emailRegister.requestFocus();
                     if(!android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()){
                         Toast.makeText(this,"Please, provide a valid email.", Toast.LENGTH_SHORT).show();
+                        emailRegister.requestFocus();
                     } else {
                         if(!password.isEmpty()){
                             if(!passConf.isEmpty()){
@@ -162,7 +162,6 @@ public class RegisterActivity extends AppCompatActivity {
                     intent.putExtra("weight",w);
                     intent.putExtra("lastperiod",lp);
                     mAuth.signOut();
-                    mAuth = null;
                     startActivity(intent);
                     finish();
                 } else {
