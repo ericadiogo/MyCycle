@@ -49,7 +49,7 @@ public class SettingsActivity extends AppCompatActivity {
         reference = FirebaseDatabase.getInstance().getReference("users");
         userFnameSet = findViewById(R.id.userFnameSet);
         userLnameSet =  findViewById(R.id.userLnameSet);
-        useremailSet = findViewById(R.id.userEmailSet);
+        //useremailSet = findViewById(R.id.userEmailSet);
         btnlogOut = findViewById(R.id.btnlogOut);
         btnDeleteProfile = findViewById(R.id.btnDeleteProfile);
         txtPeriod = findViewById(R.id.txtPeriod);
@@ -196,7 +196,7 @@ public class SettingsActivity extends AppCompatActivity {
 
                     userFnameSet.setText(fname);
                     userLnameSet.setText(lname);
-                    useremailSet.setText(email);
+                    //useremailSet.setText(email);
                     txtPeriod.setText("Period length: " + plength + " days");
                     txtCycleLength.setText("Cycle length: " + clength + " days");
                     txtWeight.setText("Weight: " + weight + " kg");

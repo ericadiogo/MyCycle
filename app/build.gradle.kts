@@ -33,8 +33,8 @@ android {
 }
 
 dependencies {
-    implementation("androidx.core:core:1.13.0")
-    implementation("androidx.appcompat:appcompat:1.3.1")
+    implementation(libs.core)
+    implementation(libs.appcompat.v131)
     implementation(libs.appcompat)
     implementation(libs.material)
     implementation(libs.activity)
@@ -44,10 +44,17 @@ dependencies {
     implementation(libs.firebase.storage)
     implementation(libs.support.annotations)
     implementation(libs.media3.common)
+    implementation(libs.firebase.crashlytics.buildtools)
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
-    implementation(platform("com.google.firebase:firebase-bom:33.1.2"))
-    implementation("com.google.firebase:firebase-analytics")
-    implementation("com.prolificinteractive:material-calendarview:1.4.3")
+    implementation(libs.firebase.bom)
+    implementation(libs.firebase.analytics)
+    implementation(libs.material.calendarview)
+    implementation(libs.google.firebase.analytics)
+    implementation("com.squareup.okhttp3:okhttp:4.9.1")
+    testImplementation("junit:junit:4.13.2")
+    androidTestImplementation("androidx.test.ext:junit:1.1.2")
+    androidTestImplementation("androidx.test.espresso:espresso-core:3.3.0")
+    implementation("com.google.code.gson:gson:2.8.7")
 }
