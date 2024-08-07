@@ -5,15 +5,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 
 import androidx.annotation.NonNull;
-import androidx.annotation.OptIn;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
-import androidx.media3.common.util.Log;
-import androidx.media3.common.util.UnstableApi;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -31,7 +27,7 @@ import java.util.Locale;
 
 public class HomeActivity extends AppCompatActivity {
     private TextView usergreeting,todayDate,periodDay,fertDay,pregChance;
-    private CardView cardCalendar,cardReminder,cardNotes,cardSettings;
+    private CardView cardCalendar,cardReminder,cardPositivity,cardSettings;
     private DatabaseReference reference1,reference2;
     private FirebaseAuth mAuth;
     private ImageView imageLogOut;
@@ -49,7 +45,7 @@ public class HomeActivity extends AppCompatActivity {
         todayDate.setText(showDate());
         cardCalendar = findViewById(R.id.cardCalendar);
         cardReminder = findViewById(R.id.cardReminder);
-        cardNotes = findViewById(R.id.cardNotes);
+        cardPositivity = findViewById(R.id.cardPositivity);
         cardSettings = findViewById(R.id.cardSettings);
         imageLogOut = findViewById(R.id.imageLogOut);
         periodDay = findViewById(R.id.periodDay);
@@ -89,10 +85,10 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
-        cardNotes.setOnClickListener(new View.OnClickListener() {
+        cardPositivity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(HomeActivity.this, NotesActivity.class);
+                Intent intent = new Intent(HomeActivity.this, PositivityActivity.class);
                 startActivity(intent);
                 finish();
             }

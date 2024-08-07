@@ -247,41 +247,13 @@
 
                             </LinearLayout>
 
-                            <TextView
-                                android:text="Email:"
-                                android:layout_marginTop="10dp"
-                                android:fontFamily="@font/tenor_sans"
-                                android:textStyle="bold"
-                                android:textSize="16sp"
-                                android:textColor="@color/mycycle_text"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"/>
 
                             <LinearLayout
                                 android:orientation="horizontal"
                                 android:gravity="fill_horizontal"
                                 android:layout_width="match_parent"
-                                android:layout_height="wrap_content">
-
-                                <TextView
-                                    android:id="@+id/userEmailSet"
-                                    android:text=""
-                                    android:layout_marginTop="5dp"
-                                    android:fontFamily="@font/tenor_sans"
-                                    android:textStyle="bold"
-                                    android:textSize="18sp"
-                                    android:textColor="@color/mycycle_text"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight="0.3"/>
-
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:orientation="horizontal"
-                                android:gravity="fill_horizontal"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content">
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="20dp">
 
                                 <TextView
                                     android:id="@+id/userPasswordSet"

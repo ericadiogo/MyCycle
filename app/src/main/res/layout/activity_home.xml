@@ -353,7 +353,7 @@
                     android:gravity="fill_horizontal">
 
                     <androidx.cardview.widget.CardView
-                        android:id="@+id/cardNotes"
+                        android:id="@+id/cardPositivity"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:backgroundTint="@color/board"
@@ -374,13 +374,13 @@
                                 android:layout_width="60dp"
                                 android:layout_height="60dp"
                                 android:layout_margin="10dp"
-                                android:src="@drawable/baseline_sticky_note_2_24_light"/>
+                                android:src="@drawable/baseline_self_improvement_24"/>
 
                             <TextView
-                                android:id="@+id/txtNotes"
+                                android:id="@+id/txtPositivity"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Notes"
+                                android:text="Positivity"
                                 android:textSize="20sp"
                                 android:textStyle="bold"
                                 android:fontFamily="@font/tenor_sans"
