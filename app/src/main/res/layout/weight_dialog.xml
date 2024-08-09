@@ -38,6 +38,7 @@
             android:fontFamily="@font/tenor_sans"
             android:inputType="numberDecimal"
             android:layout_margin="3dp"
+            android:maxLength="3"
             android:textAlignment="center"
             android:textColor="@color/mycycle_text"
             android:background="@drawable/edit_shape"

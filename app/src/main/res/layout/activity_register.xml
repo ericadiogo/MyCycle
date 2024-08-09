@@ -95,6 +95,7 @@
                         android:fontFamily="@font/tenor_sans"
                         android:hint="First Name"
                         android:inputType="text"
+                        android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
                         android:layout_margin="3dp"
                         android:textColor="@color/mycycle_text"
                         android:background="@drawable/edit_shape"
@@ -119,6 +120,7 @@
                         android:fontFamily="@font/tenor_sans"
                         android:hint="Last Name"
                         android:inputType="text"
+                        android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
                         android:layout_margin="3dp"
                         android:textColor="@color/mycycle_text"
                         android:background="@drawable/edit_shape"
@@ -241,7 +243,8 @@
                             android:fontFamily="@font/tenor_sans"
                             android:inputType="number"
                             android:padding="10dp"
-                            android:textColor="@color/mycycle_text" />
+                            android:textColor="@color/mycycle_text"
+                            android:maxLength="2"/>
 
                     </androidx.cardview.widget.CardView>
 
@@ -287,7 +290,8 @@
                             android:fontFamily="@font/tenor_sans"
                             android:inputType="number"
                             android:padding="10dp"
-                            android:textColor="@color/mycycle_text" />
+                            android:textColor="@color/mycycle_text"
+                            android:maxLength="2"/>
 
                     </androidx.cardview.widget.CardView>
 
@@ -333,7 +337,8 @@
                             android:fontFamily="@font/tenor_sans"
                             android:inputType="number"
                             android:padding="10dp"
-                            android:textColor="@color/mycycle_text" />
+                            android:textColor="@color/mycycle_text"
+                            android:maxLength="3"/>
 
                     </androidx.cardview.widget.CardView>
 

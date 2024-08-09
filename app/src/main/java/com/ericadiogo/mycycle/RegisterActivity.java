@@ -55,25 +55,25 @@ public class RegisterActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
 
         lastPeriodButton.setOnClickListener(new View.OnClickListener() {
-             @Override
-             public void onClick(View view) {
-                 Calendar calendar = Calendar.getInstance();
-                 int year = calendar.get(Calendar.YEAR);
-                 int month = calendar.get(Calendar.MONTH);
-                 int day = calendar.get(Calendar.DAY_OF_MONTH);
+            @Override
+            public void onClick(View view) {
+                Calendar calendar = Calendar.getInstance();
+                int year = calendar.get(Calendar.YEAR);
+                int month = calendar.get(Calendar.MONTH);
+                int day = calendar.get(Calendar.DAY_OF_MONTH);
 
-                 datePickerDialog = new DatePickerDialog(RegisterActivity.this, new DatePickerDialog.OnDateSetListener() {
-                     @Override
-                     public void onDateSet(DatePicker datePicker, int year, int month, int day) {
-                         Date seldate = new Date(month+1+ "/" + day + "/" + year);
-                         String fdate = new SimpleDateFormat("dd/MM/yyyy").format(seldate);
-                         String ffdate = new SimpleDateFormat("dd-MM-yyy").format(seldate);
-                         lastPeriodDate = ffdate;
-                         lastPeriodButton.setText(fdate);
-                     }
-                 }, year, month, day);
-                 datePickerDialog.show();
-             }
+                datePickerDialog = new DatePickerDialog(RegisterActivity.this, new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker datePicker, int year, int month, int day) {
+                        Date seldate = new Date(month+1+ "/" + day + "/" + year);
+                        String fdate = new SimpleDateFormat("dd/MM/yyyy").format(seldate);
+                        String ffdate = new SimpleDateFormat("dd-MM-yyy").format(seldate);
+                        lastPeriodDate = ffdate;
+                        lastPeriodButton.setText(fdate);
+                    }
+                }, year, month, day);
+                datePickerDialog.show();
+            }
 
 
         });
@@ -114,7 +114,23 @@ public class RegisterActivity extends AppCompatActivity {
                                 if(!password.equals(passConf)) {
                                     Toast.makeText(RegisterActivity.this,"Passwords don't match.",Toast.LENGTH_SHORT).show();
                                 } else {
-                                    createUserFirebase(id,fname,lname,email,password,pLength,cLength,weight,lastDate);
+                                    if(!periodLengthReg.getText().toString().isEmpty()) {
+                                        if(pLength < 21) {
+                                            if(!cycleReg.getText().toString().isEmpty()){
+                                                if(cLength < 61) {
+                                                    createUserFirebase(id,fname,lname,email,password,pLength,cLength,weight,lastDate);
+                                                } else {
+                                                    Toast.makeText(RegisterActivity.this,"Maximum cycle length is 60.",Toast.LENGTH_SHORT).show();
+                                                }
+                                            } else {
+                                                Toast.makeText(RegisterActivity.this,"Please, fill cycle length.",Toast.LENGTH_SHORT).show();
+                                            }
+                                        } else {
+                                            Toast.makeText(RegisterActivity.this,"Maximum period length is 20.",Toast.LENGTH_SHORT).show();
+                                        }
+                                    } else {
+                                        Toast.makeText(RegisterActivity.this,"Please, fill period length.",Toast.LENGTH_SHORT).show();
+                                    }
                                 }
                             } else {
                                 Toast.makeText(RegisterActivity.this,"Please, retype your password.", Toast.LENGTH_SHORT).show();
@@ -173,19 +189,3 @@ public class RegisterActivity extends AppCompatActivity {
         });
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

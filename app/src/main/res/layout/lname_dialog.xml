@@ -37,6 +37,7 @@
             android:layout_height="48dp"
             android:fontFamily="@font/tenor_sans"
             android:inputType="text"
+            android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
             android:layout_margin="3dp"
             android:textAlignment="center"
             android:textColor="@color/mycycle_text"
