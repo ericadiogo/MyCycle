@@ -28,13 +28,13 @@ import com.google.firebase.database.ValueEventListener;
 
 public class SettingsActivity extends AppCompatActivity {
     private LinearLayout settingsBack, aboutProject, aboutMe;
-    private TextView userFnameSet,userLnameSet,useremailSet,txtPeriod,txtCycleLength,txtWeight;
+    private TextView userFnameSet, userLnameSet, useremailSet, txtPeriod, txtCycleLength, txtWeight;
     private DatabaseReference reference;
     private String loggedUserId;
     private FirebaseAuth mAuth;
     private FirebaseUser firebaseUser;
     private Button btnlogOut, btnDeleteProfile;
-    private ImageView fNamedEdit,lNameEdit,passwordEdit,pLengthEdit,cLengthEdit,weightEdit;
+    private ImageView fNamedEdit, lNameEdit, passwordEdit, pLengthEdit, cLengthEdit, weightEdit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,7 +48,7 @@ public class SettingsActivity extends AppCompatActivity {
         loggedUserId = mAuth.getUid();
         reference = FirebaseDatabase.getInstance().getReference("users");
         userFnameSet = findViewById(R.id.userFnameSet);
-        userLnameSet =  findViewById(R.id.userLnameSet);
+        userLnameSet = findViewById(R.id.userLnameSet);
         //useremailSet = findViewById(R.id.userEmailSet);
         btnlogOut = findViewById(R.id.btnlogOut);
         btnDeleteProfile = findViewById(R.id.btnDeleteProfile);
@@ -67,7 +67,7 @@ public class SettingsActivity extends AppCompatActivity {
         settingsBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(SettingsActivity.this,HomeActivity.class);
+                Intent intent = new Intent(SettingsActivity.this, HomeActivity.class);
                 startActivity(intent);
                 finish();
             }
@@ -128,7 +128,7 @@ public class SettingsActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 mAuth.signOut();
-                Intent intent = new Intent(SettingsActivity.this,LoginActivity.class);
+                Intent intent = new Intent(SettingsActivity.this, LoginActivity.class);
                 startActivity(intent);
                 finish();
             }
@@ -138,7 +138,7 @@ public class SettingsActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(SettingsActivity.this);
-                View view1 = getLayoutInflater().inflate(R.layout.about_project,null);
+                View view1 = getLayoutInflater().inflate(R.layout.about_project, null);
                 Button btnOkProject;
 
                 btnOkProject = view1.findViewById(R.id.btnOkProject);
@@ -161,7 +161,7 @@ public class SettingsActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(SettingsActivity.this);
-                View view1 = getLayoutInflater().inflate(R.layout.about_me,null);
+                View view1 = getLayoutInflater().inflate(R.layout.about_me, null);
                 Button btnOkMe;
 
                 btnOkMe = view1.findViewById(R.id.btnOkMe);
@@ -186,17 +186,15 @@ public class SettingsActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 UserModel userModel = snapshot.getValue(UserModel.class);
-                if(userModel != null){
+                if (userModel != null) {
                     String fname = userModel.getFirstName();
                     String lname = userModel.getLastName();
-                    String email = userModel.getEmail();
                     int plength = userModel.getpLength();
                     int clength = userModel.getcLength();
                     int weight = userModel.getWeight();
 
                     userFnameSet.setText(fname);
                     userLnameSet.setText(lname);
-                    //useremailSet.setText(email);
                     txtPeriod.setText("Period length: " + plength + " days");
                     txtCycleLength.setText("Cycle length: " + clength + " days");
                     txtWeight.setText("Weight: " + weight + " kg");
@@ -210,7 +208,7 @@ public class SettingsActivity extends AppCompatActivity {
         });
     }
 
-    private void showDialogFname(){
+    private void showDialogFname() {
         final AlertDialog.Builder builder = new AlertDialog.Builder(this);
         View fname_layout = getLayoutInflater().inflate(R.layout.fname_dialog, null);
         final EditText edtChangeFname = fname_layout.findViewById(R.id.edtChangeFname);
@@ -229,12 +227,16 @@ public class SettingsActivity extends AppCompatActivity {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         UserModel userModel = snapshot.getValue(UserModel.class);
-                        if(userModel != null){
+                        if (userModel != null) {
                             String fname = userModel.getFirstName();
-                            String fnamenew = edtChangeFname.getText().toString();
-                            if(!fname.equals(fnamenew)){
-                                reference.child(loggedUserId).child("firstName").setValue(fnamenew);
-                                userFnameSet.setText(fnamenew);
+                            String fnamenew = edtChangeFname.getText().toString().trim();
+                            if (!fname.equals(fnamenew)) {
+                                if (!hasNumbers(fnamenew)) {
+                                    reference.child(loggedUserId).child("firstName").setValue(fnamenew);
+                                    userFnameSet.setText(fnamenew);
+                                } else {
+                                    Toast.makeText(SettingsActivity.this, "Please, use only letters.", Toast.LENGTH_SHORT).show();
+                                }
                             }
                         }
                     }
@@ -257,7 +259,7 @@ public class SettingsActivity extends AppCompatActivity {
 
     }
 
-    private void showDialogLname(){
+    private void showDialogLname() {
         final AlertDialog.Builder builder = new AlertDialog.Builder(this);
         View lname_layout = getLayoutInflater().inflate(R.layout.lname_dialog, null);
         final EditText edtChangeLname = lname_layout.findViewById(R.id.edtChangeLname);
@@ -276,12 +278,16 @@ public class SettingsActivity extends AppCompatActivity {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         UserModel userModel = snapshot.getValue(UserModel.class);
-                        if(userModel != null){
+                        if (userModel != null) {
                             String lname = userModel.getFirstName();
                             String lnamenew = edtChangeLname.getText().toString();
-                            if(!lname.equals(lnamenew)){
-                                reference.child(loggedUserId).child("lastName").setValue(lnamenew);
-                                userLnameSet.setText(lnamenew);
+                            if (!lname.equals(lnamenew)) {
+                                if(!hasNumbers(lnamenew)) {
+                                    reference.child(loggedUserId).child("lastName").setValue(lnamenew);
+                                    userLnameSet.setText(lnamenew);
+                                } else {
+                                    Toast.makeText(SettingsActivity.this, "Please, use only letters.", Toast.LENGTH_SHORT).show();
+                                }
                             }
                         }
                     }
@@ -304,7 +310,7 @@ public class SettingsActivity extends AppCompatActivity {
 
     }
 
-    private void showDialogPass(){
+    private void showDialogPass() {
         final AlertDialog.Builder builder = new AlertDialog.Builder(this);
         View password_layout = getLayoutInflater().inflate(R.layout.password_dialog, null);
         final EditText edtChangePass = password_layout.findViewById(R.id.edtChangePass);
@@ -327,10 +333,10 @@ public class SettingsActivity extends AppCompatActivity {
                                 emailres).addOnCompleteListener(new OnCompleteListener<Void>() {
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
-                                if(task.isSuccessful()){
-                                    Toast.makeText(SettingsActivity.this,"Email sent.", Toast.LENGTH_SHORT).show();
+                                if (task.isSuccessful()) {
+                                    Toast.makeText(SettingsActivity.this, "Email sent.", Toast.LENGTH_SHORT).show();
                                 } else {
-                                    Toast.makeText(SettingsActivity.this,"This email is not registered.", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(SettingsActivity.this, "This email is not registered.", Toast.LENGTH_SHORT).show();
                                 }
                             }
                         });
@@ -354,7 +360,7 @@ public class SettingsActivity extends AppCompatActivity {
 
     }
 
-    private void showDialogCycle(){
+    private void showDialogCycle() {
         final AlertDialog.Builder builder = new AlertDialog.Builder(this);
         View c_layout = getLayoutInflater().inflate(R.layout.clength_dialog, null);
         final EditText edtChangeCycle = c_layout.findViewById(R.id.edtChangeCycle);
@@ -373,12 +379,20 @@ public class SettingsActivity extends AppCompatActivity {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         UserModel userModel = snapshot.getValue(UserModel.class);
-                        if(userModel != null){
+                        if (userModel != null) {
                             int clength = userModel.getcLength();
                             int clengthnew = Integer.valueOf(edtChangeCycle.getText().toString());
-                            if(clength != clengthnew){
-                                reference.child(loggedUserId).child("cLength").setValue(clengthnew);
-                                txtCycleLength.setText("Cycle length: " + clengthnew + " days");
+                            if (clength != clengthnew) {
+                                if(clengthnew < 0) {
+                                    Toast.makeText(SettingsActivity.this,"Please, type a positive number.",Toast.LENGTH_SHORT).show();
+                                } else {
+                                    if (clengthnew > 60) {
+                                        Toast.makeText(SettingsActivity.this, "Please, type a number less than 60.", Toast.LENGTH_SHORT).show();
+                                    } else {
+                                        reference.child(loggedUserId).child("cLength").setValue(clengthnew);
+                                        txtCycleLength.setText("Cycle length: " + clengthnew + " days");
+                                    }
+                                }
                             }
                         }
                     }
@@ -401,7 +415,7 @@ public class SettingsActivity extends AppCompatActivity {
 
     }
 
-    private void showDialogPeriod(){
+    private void showDialogPeriod() {
         final AlertDialog.Builder builder = new AlertDialog.Builder(this);
         View p_layout = getLayoutInflater().inflate(R.layout.plength_dialog, null);
         final EditText edtChangePeriod = p_layout.findViewById(R.id.edtChangePeriod);
@@ -420,12 +434,20 @@ public class SettingsActivity extends AppCompatActivity {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         UserModel userModel = snapshot.getValue(UserModel.class);
-                        if(userModel != null){
+                        if (userModel != null) {
                             int plength = userModel.getpLength();
                             int plengthnew = Integer.valueOf(edtChangePeriod.getText().toString());
-                            if(plength != plengthnew){
-                                reference.child(loggedUserId).child("pLength").setValue(plengthnew);
-                                txtPeriod.setText("Period length: " + plengthnew + " days");
+                            if (plength != plengthnew) {
+                                if(plengthnew < 0) {
+                                    Toast.makeText(SettingsActivity.this,"Please, type a positive number.",Toast.LENGTH_SHORT).show();
+                                } else {
+                                    if(plengthnew > 20) {
+                                        Toast.makeText(SettingsActivity.this,"Please, type a number less than 20.",Toast.LENGTH_SHORT).show();
+                                    } else {
+                                        reference.child(loggedUserId).child("pLength").setValue(plengthnew);
+                                        txtPeriod.setText("Period length: " + plengthnew + " days");
+                                    }
+                                }
                             }
                         }
                     }
@@ -448,7 +470,7 @@ public class SettingsActivity extends AppCompatActivity {
 
     }
 
-    private void showDialogWeight(){
+    private void showDialogWeight() {
         final AlertDialog.Builder builder = new AlertDialog.Builder(this);
         View p_layout = getLayoutInflater().inflate(R.layout.weight_dialog, null);
         final EditText edtWeight = p_layout.findViewById(R.id.edtWeight);
@@ -467,12 +489,20 @@ public class SettingsActivity extends AppCompatActivity {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         UserModel userModel = snapshot.getValue(UserModel.class);
-                        if(userModel != null){
+                        if (userModel != null) {
                             int weight = userModel.getWeight();
                             int weightnew = Integer.valueOf(edtWeight.getText().toString());
-                            if(weight != weightnew){
-                                reference.child(loggedUserId).child("weight").setValue(weightnew);
-                                txtPeriod.setText("Weight: " + weightnew + " kg");
+                            if (weight != weightnew) {
+                                if(weightnew < 0) {
+                                    Toast.makeText(SettingsActivity.this,"Please, type a positive number.",Toast.LENGTH_SHORT).show();
+                                } else {
+                                    if (weightnew > 350) {
+                                        Toast.makeText(SettingsActivity.this, "Please, type a number less than 350.", Toast.LENGTH_SHORT).show();
+                                    } else {
+                                        reference.child(loggedUserId).child("weight").setValue(weightnew);
+                                        txtPeriod.setText("Weight: " + weightnew + " kg");
+                                    }
+                                }
                             }
                         }
                     }
@@ -494,7 +524,7 @@ public class SettingsActivity extends AppCompatActivity {
         });
     }
 
-    private void showDialogDelete(){
+    private void showDialogDelete() {
         final AlertDialog.Builder builder = new AlertDialog.Builder(this);
         View delete_layout = getLayoutInflater().inflate(R.layout.delete_dialog, null);
         Button btnYes = delete_layout.findViewById(R.id.btnYes);
@@ -512,17 +542,17 @@ public class SettingsActivity extends AppCompatActivity {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         UserModel userModel = snapshot.getValue(UserModel.class);
-                        if(userModel != null){
+                        if (userModel != null) {
                             firebaseUser.delete().addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
-                                    if(task.isSuccessful()){
-                                        Toast.makeText(SettingsActivity.this,"Your profile has been deleted successfuly.",Toast.LENGTH_SHORT).show();
-                                        Intent intent = new Intent(SettingsActivity.this,LoginActivity.class);
+                                    if (task.isSuccessful()) {
+                                        Toast.makeText(SettingsActivity.this, "Your profile has been deleted successfuly.", Toast.LENGTH_SHORT).show();
+                                        Intent intent = new Intent(SettingsActivity.this, LoginActivity.class);
                                         startActivity(intent);
                                         finish();
                                     } else {
-                                        Toast.makeText(SettingsActivity.this,task.getException().getMessage(),Toast.LENGTH_LONG).show();
+                                        Toast.makeText(SettingsActivity.this, task.getException().getMessage(), Toast.LENGTH_LONG).show();
                                     }
                                 }
                             });
@@ -546,4 +576,15 @@ public class SettingsActivity extends AppCompatActivity {
         });
     }
 
+    public boolean hasNumbers(final String string) {
+        String numbers = "0123456789";
+        for (char a : string.toCharArray()) {
+            for (char b : numbers.toCharArray()) {
+                if (a == b) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
 }
