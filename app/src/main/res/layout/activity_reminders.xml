@@ -173,7 +173,7 @@
         </androidx.cardview.widget.CardView>
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recViewNotes"
+            android:id="@+id/recViewReminder"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginRight="40dp"
