@@ -181,10 +181,7 @@
             android:layout_marginTop="40dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/cardAddNote"
-            android:scrollbars="vertical">
-
-
-        </androidx.recyclerview.widget.RecyclerView>
+            android:scrollbars="vertical"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>
