@@ -45,6 +45,7 @@ dependencies {
     implementation(libs.support.annotations)
     implementation(libs.media3.common)
     implementation(libs.firebase.crashlytics.buildtools)
+    implementation(libs.work.runtime)
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
@@ -57,4 +58,11 @@ dependencies {
     androidTestImplementation("androidx.test.ext:junit:1.1.2")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.3.0")
     implementation("com.google.code.gson:gson:2.8.7")
+    implementation("com.firebaseui:firebase-ui-database:8.0.0")
+    implementation("androidx.appcompat:appcompat:1.6.1")
+    implementation("com.google.android.material:material:1.9.0")
+    implementation("androidx.constraintlayout:constraintlayout:2.1.4")
+    implementation("com.google.firebase:firebase-database:20.3.0")
+    implementation("androidx.recyclerview:recyclerview:1.3.0")
+
 }
