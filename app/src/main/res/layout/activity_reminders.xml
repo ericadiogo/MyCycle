@@ -123,7 +123,7 @@
             </LinearLayout>
         </androidx.cardview.widget.CardView>
         <androidx.cardview.widget.CardView
-            android:id="@+id/cardAddReminder"
+            android:id="@+id/addReminder"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="40dp"
@@ -180,7 +180,7 @@
             android:layout_marginLeft="40dp"
             android:layout_marginTop="40dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/cardAddReminder"
+            app:layout_constraintTop_toBottomOf="@id/addReminder"
             android:scrollbars="vertical"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -24,7 +24,7 @@
                 android:text="New reminder"
                 android:fontFamily="@font/tenor_sans"
                 android:textStyle="bold"
-                android:textSize="24sp"
+                android:textSize="20sp"
                 android:layout_marginTop="15dp"
                 android:layout_gravity="center"
                 android:textColor="@color/mycycle_text"
@@ -35,9 +35,9 @@
                 android:text="Reminder:"
                 android:fontFamily="@font/tenor_sans"
                 android:textStyle="bold"
-                android:textSize="18sp"
+                android:textSize="16sp"
                 android:layout_marginTop="50dp"
-                android:layout_marginLeft="20dp"
+                android:layout_marginLeft="16dp"
                 android:layout_gravity="left"
                 android:textColor="@color/mycycle_text"
                 android:layout_width="wrap_content"
@@ -47,8 +47,8 @@
                 app:cardCornerRadius="10dp"
                 android:backgroundTint="@color/stroke"
                 android:layout_marginTop="15dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
                 android:layout_width="290dp"
                 android:layout_height="wrap_content">
 
@@ -58,7 +58,10 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/tenor_sans"
                     android:layout_margin="3dp"
-                    android:textAlignment="center"
+                    android:hint="Title"
+                    android:textStyle="bold"
+                    android:textSize="16dp"
+                    android:textAlignment="textStart"
                     android:textColor="@color/mycycle_text"
                     android:inputType="textMultiLine"
                     android:background="@drawable/edit_shape"
@@ -66,108 +69,91 @@
 
             </androidx.cardview.widget.CardView>
 
-            <TextView
-                android:text="Details:"
-                android:fontFamily="@font/tenor_sans"
-                android:textStyle="bold"
-                android:textSize="18sp"
-                android:layout_marginTop="15dp"
-                android:layout_marginLeft="20dp"
-                android:layout_gravity="left"
-                android:textColor="@color/mycycle_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginTop="20dp">
+
+                <TextView
+                    android:id="@+id/editDateTime"
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"
+                    android:textAlignment="center"
+                    android:inputType="none"
+                    android:focusable="false"
+                    android:padding="10dp"
+                    android:visibility="invisible"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:layout_weight="0.5">
+
+                    <TextView
+                        android:text="Date and time:"
+                        android:textStyle="bold"
+                        android:textSize="16sp"
+                        android:textColor="@color/mycycle_text"
+                        android:fontFamily="@font/tenor_sans"
+                        android:layout_marginLeft="16dp"
+                        android:layout_gravity="left"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:gravity="right">
+
+                    <Button
+                        android:id="@+id/selectButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="16dp"
+                        android:layout_gravity="center"
+                        android:paddingHorizontal="20dp"
+                        android:text="Select"
+                        android:fontFamily="@font/tenor_sans"
+                        android:textStyle="bold"
+                        android:textSize="16sp" />
+                </LinearLayout>
+            </LinearLayout>
 
             <androidx.cardview.widget.CardView
                 app:cardCornerRadius="10dp"
                 android:backgroundTint="@color/stroke"
                 android:layout_marginTop="15dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:layout_width="290dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginBottom="10dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <EditText
-                    android:id="@+id/reminderDetails"
+                <TextView
+                    android:id="@+id/pickedDateAndTime2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/tenor_sans"
                     android:layout_margin="3dp"
-                    android:textAlignment="center"
-                    android:textColor="@color/mycycle_text"
-                    android:inputType="textMultiLine"
-                    android:background="@drawable/edit_shape"
-                    android:padding="10dp"/>
-
-            </androidx.cardview.widget.CardView>
-
-            <TextView
-                android:text="Date:"
-                android:fontFamily="@font/tenor_sans"
-                android:textStyle="bold"
-                android:textSize="18sp"
-                android:layout_marginTop="15dp"
-                android:layout_marginLeft="20dp"
-                android:layout_gravity="left"
-                android:textColor="@color/mycycle_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-
-            <androidx.cardview.widget.CardView
-                app:cardCornerRadius="10dp"
-                android:backgroundTint="@color/stroke"
-                android:layout_marginTop="15dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:layout_width="290dp"
-                android:layout_height="wrap_content">
-
-                <EditText
-                    android:id="@+id/reminderDate"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:hint="Starting date and time"
                     android:fontFamily="@font/tenor_sans"
-                    android:layout_margin="3dp"
-                    android:textAlignment="center"
-                    android:textColor="@color/mycycle_text"
-                    android:inputType="textMultiLine"
+                    android:textStyle="bold"
+                    android:textSize="16dp"
                     android:background="@drawable/edit_shape"
-                    android:padding="10dp"/>
-
-            </androidx.cardview.widget.CardView>
-
-            <TextView
-                android:text="Time:"
-                android:fontFamily="@font/tenor_sans"
-                android:textStyle="bold"
-                android:textSize="18sp"
-                android:layout_marginTop="15dp"
-                android:layout_marginLeft="20dp"
-                android:layout_gravity="left"
-                android:textColor="@color/mycycle_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-
-            <androidx.cardview.widget.CardView
-                app:cardCornerRadius="10dp"
-                android:backgroundTint="@color/stroke"
-                android:layout_marginTop="15dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:layout_width="290dp"
-                android:layout_height="wrap_content">
-
-                <EditText
-                    android:id="@+id/reminderTime"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/tenor_sans"
-                    android:layout_margin="3dp"
-                    android:textAlignment="center"
-                    android:textColor="@color/mycycle_text"
-                    android:inputType="textMultiLine"
-                    android:background="@drawable/edit_shape"
-                    android:padding="10dp"/>
+                    android:textAlignment="textStart"
+                    android:inputType="none"
+                    android:focusable="false"
+                    android:padding="10dp" />
 
             </androidx.cardview.widget.CardView>
 
@@ -176,7 +162,7 @@
                 android:gravity="fill_horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="30dp">
+                android:layout_marginTop="20dp">
 
                 <LinearLayout
                     android:orientation="horizontal"
@@ -188,29 +174,13 @@
                         android:text="Repeat:"
                         android:fontFamily="@font/tenor_sans"
                         android:textStyle="bold"
-                        android:textSize="18sp"
+                        android:textSize="16sp"
                         android:layout_marginTop="15dp"
-                        android:layout_marginLeft="20dp"
+                        android:layout_marginLeft="16dp"
                         android:layout_gravity="left"
                         android:textColor="@color/mycycle_text"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:orientation="horizontal"
-                    android:layout_weight="0.5"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingRight="15dp"
-                    android:gravity="right">
-
-                    <Switch
-                        android:id="@+id/repeat_switch"
-                        android:layout_gravity="right"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
-
                 </LinearLayout>
 
             </LinearLayout>
@@ -227,12 +197,12 @@
                     android:layout_weight="0.5">
 
                     <TextView
-                        android:text="Interval:"
+                        android:text="Interval in hours:"
                         android:fontFamily="@font/tenor_sans"
                         android:textStyle="bold"
-                        android:textSize="18sp"
-                        android:layout_marginTop="20dp"
-                        android:layout_marginLeft="20dp"
+                        android:textSize="16sp"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginLeft="16dp"
                         android:layout_gravity="left"
                         android:textColor="@color/mycycle_text"
                         android:layout_width="wrap_content"
@@ -253,7 +223,7 @@
                         android:backgroundTint="@color/stroke"
                         android:layout_marginTop="20dp"
                         android:layout_marginLeft="20dp"
-                        android:layout_marginRight="20dp"
+                        android:layout_marginRight="16dp"
                         android:layout_width="90dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="right">
@@ -264,66 +234,8 @@
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/tenor_sans"
                             android:layout_margin="3dp"
-                            android:textAlignment="center"
-                            android:textColor="@color/mycycle_text"
-                            android:inputType="textMultiLine"
-                            android:background="@drawable/edit_shape"
-                            android:padding="10dp"/>
-
-                    </androidx.cardview.widget.CardView>
-                </LinearLayout>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:layout_weight="0.5">
-
-                    <TextView
-                        android:text="In:"
-                        android:fontFamily="@font/tenor_sans"
-                        android:textStyle="bold"
-                        android:textSize="18sp"
-                        android:layout_marginTop="20dp"
-                        android:layout_marginLeft="20dp"
-                        android:layout_gravity="left"
-                        android:textColor="@color/mycycle_text"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_weight="0.5"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="30dp"
-                    android:paddingTop="5dp"
-                    android:layout_gravity="right">
-
-                    <androidx.cardview.widget.CardView
-                        app:cardCornerRadius="10dp"
-                        android:backgroundTint="@color/stroke"
-                        android:layout_marginTop="20dp"
-                        android:layout_marginLeft="20dp"
-                        android:layout_marginRight="20dp"
-                        android:layout_width="90dp"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="right">
-
-                        <EditText
-                            android:id="@+id/reminderUnit"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="@font/tenor_sans"
-                            android:layout_margin="3dp"
+                            android:hint="hours"
+                            android:textSize="16dp"
                             android:textAlignment="center"
                             android:textColor="@color/mycycle_text"
                             android:inputType="textMultiLine"
