@@ -1,22 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:layout_gravity="center"
+    android:gravity="center"
+    android:paddingRight="10dp"
+    android:paddingLeft="10dp"
     android:layout_marginBottom="15dp"
     android:layout_marginTop="15dp"
     android:layout_marginLeft="40dp"
-    android:layout_marginRight="40dp"
-    android:gravity="center">
+    android:layout_marginRight="40dp">
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
         <LinearLayout
             android:orientation="vertical"
+            android:gravity="center_horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
@@ -26,8 +28,8 @@
                 android:textStyle="bold"
                 android:textSize="20sp"
                 android:layout_marginTop="15dp"
-                android:layout_gravity="center"
                 android:textColor="@color/mycycle_text"
+                android:layout_gravity="center_horizontal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
 
@@ -37,20 +39,22 @@
                 android:textStyle="bold"
                 android:textSize="16sp"
                 android:layout_marginTop="50dp"
-                android:layout_marginLeft="16dp"
-                android:layout_gravity="left"
                 android:textColor="@color/mycycle_text"
-                android:layout_width="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginRight="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
 
             <androidx.cardview.widget.CardView
                 app:cardCornerRadius="10dp"
                 android:backgroundTint="@color/stroke"
                 android:layout_marginTop="15dp"
-                android:layout_marginLeft="16dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginRight="16dp"
-                android:layout_width="290dp"
-                android:layout_height="wrap_content">
+                android:layout_marginLeft="16dp"
+                android:layout_gravity="center_horizontal">
 
                 <EditText
                     android:id="@+id/reminderName"
@@ -69,16 +73,16 @@
 
             </androidx.cardview.widget.CardView>
 
-
             <LinearLayout
                 android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
                 android:layout_marginTop="20dp">
 
                 <TextView
-                    android:id="@+id/editDateTime"
-                    android:layout_width="match_parent"
+                    android:id="@+id/remDateTime"
+                    android:layout_width="290dp"
                     android:layout_height="20dp"
                     android:textAlignment="center"
                     android:inputType="none"
@@ -90,10 +94,13 @@
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginRight="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_gravity="center_horizontal">
 
                 <LinearLayout
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="15dp"
                     android:layout_weight="0.5">
@@ -104,14 +111,13 @@
                         android:textSize="16sp"
                         android:textColor="@color/mycycle_text"
                         android:fontFamily="@font/tenor_sans"
-                        android:layout_marginLeft="16dp"
                         android:layout_gravity="left"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.5"
                     android:gravity="right">
@@ -120,7 +126,6 @@
                         android:id="@+id/selectButton"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginRight="16dp"
                         android:layout_gravity="center"
                         android:paddingHorizontal="20dp"
                         android:text="Select"
@@ -132,21 +137,24 @@
 
             <androidx.cardview.widget.CardView
                 app:cardCornerRadius="10dp"
+                android:id="@+id/cardTimeDate"
                 android:backgroundTint="@color/stroke"
                 android:layout_marginTop="15dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
                 android:layout_marginBottom="10dp"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_marginRight="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:layout_gravity="center_horizontal">
 
                 <TextView
-                    android:id="@+id/pickedDateAndTime2"
+                    android:id="@+id/remDateTime2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="3dp"
-                    android:hint="Starting date and time"
                     android:fontFamily="@font/tenor_sans"
+                    android:textColor="@color/mycycle_text"
                     android:textStyle="bold"
                     android:textSize="16dp"
                     android:background="@drawable/edit_shape"
@@ -159,42 +167,39 @@
 
             <LinearLayout
                 android:orientation="horizontal"
-                android:gravity="fill_horizontal"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:layout_marginRight="16dp"
+                android:layout_marginLeft="16dp"
                 android:layout_marginTop="20dp">
 
-                <LinearLayout
-                    android:orientation="horizontal"
-                    android:layout_weight="0.5"
+                <TextView
+                    android:text="Repeat:"
+                    android:fontFamily="@font/tenor_sans"
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    android:layout_marginTop="15dp"
+                    android:textColor="@color/mycycle_text"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <TextView
-                        android:text="Repeat:"
-                        android:fontFamily="@font/tenor_sans"
-                        android:textStyle="bold"
-                        android:textSize="16sp"
-                        android:layout_marginTop="15dp"
-                        android:layout_marginLeft="16dp"
-                        android:layout_gravity="left"
-                        android:textColor="@color/mycycle_text"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
-                </LinearLayout>
-
+                    android:layout_height="wrap_content"/>
             </LinearLayout>
 
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginLeft="16dp"
+                android:gravity="fill_horizontal"
+                android:layout_gravity="fill_horizontal">
 
                 <LinearLayout
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:layout_weight="0.5">
+                    android:orientation="horizontal"
+                    android:gravity="left">
 
                     <TextView
                         android:text="Interval in hours:"
@@ -202,28 +207,22 @@
                         android:textStyle="bold"
                         android:textSize="16sp"
                         android:layout_marginTop="15dp"
-                        android:layout_marginLeft="16dp"
-                        android:layout_gravity="left"
                         android:textColor="@color/mycycle_text"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>
-
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_weight="0.5"
+                    android:orientation="horizontal"
+                    android:gravity="end"
+                    android:layout_gravity="end"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="30dp"
-                    android:paddingTop="5dp"
-                    android:layout_gravity="right">
+                    android:layout_height="wrap_content">
 
                     <androidx.cardview.widget.CardView
                         app:cardCornerRadius="10dp"
                         android:backgroundTint="@color/stroke"
                         android:layout_marginTop="20dp"
-                        android:layout_marginLeft="20dp"
-                        android:layout_marginRight="16dp"
                         android:layout_width="90dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="right">
@@ -243,17 +242,18 @@
                             android:padding="10dp"/>
 
                     </androidx.cardview.widget.CardView>
+
                 </LinearLayout>
 
             </LinearLayout>
 
             <LinearLayout
                 android:orientation="horizontal"
-                android:layout_gravity="center"
+                android:layout_gravity="center_horizontal"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:gravity="center_horizontal"
-                android:layout_marginBottom="50dp">
+                android:layout_marginBottom="10dp">
 
                 <Button
                     android:id="@+id/btnSave10"
@@ -262,7 +262,7 @@
                     android:layout_marginTop="20dp"
                     android:layout_marginBottom="15dp"
                     android:layout_marginRight="20dp"
-                    android:layout_gravity="center"
+                    android:layout_gravity="center_horizontal"
                     android:backgroundTint="@color/icon_background"
                     android:fontFamily="@font/tenor_sans"
                     android:paddingHorizontal="20dp"
@@ -280,7 +280,7 @@
                     android:layout_marginTop="20dp"
                     android:layout_marginLeft="20dp"
                     android:layout_marginBottom="15dp"
-                    android:layout_gravity="center"
+                    android:layout_gravity="center_horizontal"
                     android:backgroundTint="@color/icon_background"
                     android:fontFamily="@font/tenor_sans"
                     android:paddingHorizontal="20dp"

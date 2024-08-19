@@ -3,6 +3,7 @@ package com.ericadiogo.mycycle;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.content.Context;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,21 +14,31 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.work.Data;
+import androidx.work.OneTimeWorkRequest;
+import androidx.work.PeriodicWorkRequest;
+import androidx.work.WorkManager;
+import androidx.work.WorkRequest;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.Calendar;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 public class ReminderAdapter extends RecyclerView.Adapter<ReminderAdapter.ReminderViewHolder> {
     private FirebaseDatabase database = FirebaseDatabase.getInstance();
     private DatabaseReference reference3 = database.getReference("reminders");
+    private FirebaseAuth mAuth = FirebaseAuth.getInstance();
+    private String reminderId = reference3.push().getKey();
     private List<Reminder> reminderList;
-    private String reminderId = reference3.push().getKey();;
+    private Context context;
 
     public ReminderAdapter(List<Reminder> reminderList) {
         this.reminderList = reminderList;
@@ -64,7 +75,7 @@ public class ReminderAdapter extends RecyclerView.Adapter<ReminderAdapter.Remind
                     EditText editRemInterval = editView.findViewById(R.id.editRemInterval);
 
                     editRemTitle.setText(editRem.getTitle());
-                    editDateTime.setText(editRem.getDateTime());
+                    editDateTime2.setText(editRem.getDateTime());
                     editRemInterval.setText(editRem.getRepetitionInfo());
 
                     Button selectButton2 = editView.findViewById(R.id.selectButton2);
@@ -93,7 +104,7 @@ public class ReminderAdapter extends RecyclerView.Adapter<ReminderAdapter.Remind
                                                 editDateTime2.setText(dayOfMonth + "/" + month + "/" + year + ", " + hourOfDay + ":" + minute);
                                             }
                                         }
-                                    }, hour, minute, false);
+                                    }, hour, minute, true);
                                     timePickerDialog.show();
                                 }
                             }, year, month, day);
@@ -104,6 +115,28 @@ public class ReminderAdapter extends RecyclerView.Adapter<ReminderAdapter.Remind
                     saveButton11.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
+                            long timeDelayInSeconds = 0;
+                            if (editRemTitle.getText().toString().isEmpty()) {
+                                editRemTitle.requestFocus();
+                                editRemTitle.setError("Please provide a title.");
+                            } else {
+                                if (editDateTime.getText().toString().isEmpty()) {
+                                    Toast.makeText(view.getContext(), "Please select date and time.", Toast.LENGTH_SHORT).show();
+                                } else if (editRemInterval.getText().toString().isEmpty()) {
+                                    Toast.makeText(view.getContext(), "Please provide a repeat interval.", Toast.LENGTH_SHORT).show();
+                                } else {
+                                    Calendar pickedDate = Calendar.getInstance();
+                                    pickedDate.setTimeInMillis(Long.parseLong(editDateTime.getText().toString()));
+                                    timeDelayInSeconds = (pickedDate.getTimeInMillis() / 1000L) - (Calendar.getInstance().getTimeInMillis() / 1000L);
+                                    if (timeDelayInSeconds < 0) {
+                                        Toast.makeText(view.getContext(), "Can't set reminder for past date", Toast.LENGTH_SHORT).show();
+                                        return;
+                                    }
+
+                                    Toast.makeText(view.getContext(), "Reminder edited", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+
                             int updatedPosition = holder.getAdapterPosition();
                             if (updatedPosition != RecyclerView.NO_POSITION) {
                                 Reminder updatedReminder = reminderList.get(updatedPosition);
@@ -112,9 +145,11 @@ public class ReminderAdapter extends RecyclerView.Adapter<ReminderAdapter.Remind
                                 updatedReminder.setRepetitionInfo(editRemInterval.getText().toString());
 
                                 reminderId = updatedReminder.getReminderId();
-                                reference3.child(reminderId).setValue(updatedReminder);
-
+                                reference3.child(mAuth.getUid()).child(reminderId).setValue(updatedReminder);
                                 notifyItemChanged(updatedPosition);
+
+                                int intervalHours = Integer.parseInt(editRemInterval.getText().toString());
+                                createWorkRequest(editRemTitle.getText().toString(),"", timeDelayInSeconds, intervalHours);
                                 dialog.dismiss();
                             }
                         }
@@ -136,7 +171,7 @@ public class ReminderAdapter extends RecyclerView.Adapter<ReminderAdapter.Remind
             @Override
             public void onClick(View view) {
                 int currentPosition = holder.getAdapterPosition();
-                if (currentPosition != RecyclerView.NO_POSITION) {
+                if (currentPosition != RecyclerView.NO_POSITION && currentPosition < reminderList.size()) {
                     Reminder remDelete = reminderList.get(currentPosition);
                     String reminderId = remDelete.getReminderId();
 
@@ -150,10 +185,11 @@ public class ReminderAdapter extends RecyclerView.Adapter<ReminderAdapter.Remind
                         btnYes.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
-                                reminderList.remove(currentPosition);
-                                notifyItemRemoved(currentPosition);
-                                reference3.child(reminderId).removeValue();
-
+                                if (currentPosition != RecyclerView.NO_POSITION && currentPosition < reminderList.size()) {
+                                    reminderList.remove(currentPosition);
+                                    notifyItemRemoved(currentPosition);
+                                }
+                                reference3.child(mAuth.getUid()).child(reminderId).removeValue();
                                 dialog.dismiss();
                             }
                         });
@@ -192,5 +228,20 @@ public class ReminderAdapter extends RecyclerView.Adapter<ReminderAdapter.Remind
             deleteReminder = itemView.findViewById(R.id.deleteReminder);
         }
     }
+
+    private void createWorkRequest(String title, String reminderType, long delay, int intervalHours) {
+        Data inputData = new Data.Builder().putString("Title", "Remember: " + title).putString("Message",reminderType).build();
+
+        if (intervalHours > 0) {
+            WorkRequest reminderWorkRequest = new PeriodicWorkRequest.Builder(ReminderWorker.class, intervalHours, TimeUnit.HOURS)
+                    .setInitialDelay(delay, TimeUnit.SECONDS).setInputData(inputData).build();
+            WorkManager.getInstance(context).enqueue(reminderWorkRequest);
+        } else {
+            WorkRequest reminderWorkRequest = new OneTimeWorkRequest.Builder(ReminderWorker.class).setInitialDelay(delay, TimeUnit.SECONDS)
+                    .setInputData(inputData).build();
+            WorkManager.getInstance(context).enqueue(reminderWorkRequest);
+        }
+    }
+
 }
 

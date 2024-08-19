@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.BitmapFactory;
 import android.os.Build;
+import android.util.Log;
 
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
@@ -36,31 +37,23 @@ public class NotificationHelper {
         createNotificationChannel();
 
         Intent intent = new Intent(context, RemindersActivity.class);
-        PendingIntent pendingIntent = PendingIntent.getActivity(
-                context, 0, intent, PendingIntent.FLAG_IMMUTABLE
-        );
+        PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_IMMUTABLE);
 
-        NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(context, CHANNEL_ID)
-                .setSmallIcon(R.drawable.baseline_notifications_active_24)
-                .setLargeIcon(BitmapFactory.decodeResource(context.getResources(), R.drawable.baseline_notifications_active_24))
-                .setContentTitle(title)
-                .setContentText(message)
-                .setContentIntent(pendingIntent)
-                .setPriority(NotificationCompat.PRIORITY_HIGH)
-                .setAutoCancel(true);
+        NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(context, CHANNEL_ID).setSmallIcon(R.drawable.baseline_access_alarm_black)
+                .setLargeIcon(BitmapFactory.decodeResource(context.getResources(), R.drawable.baseline_access_alarm_black)).setContentTitle(title)
+                .setContentText(message).setContentIntent(pendingIntent).setPriority(NotificationCompat.PRIORITY_HIGH).setAutoCancel(true);
 
         NotificationManagerCompat notificationManager = NotificationManagerCompat.from(context);
+        notificationManager.notify(NOTIFICATION_ID, notificationBuilder.build());
+
+        Log.d("NotificationHelper", "Notificação criada. ID: " + NOTIFICATION_ID);
         notificationManager.notify(NOTIFICATION_ID, notificationBuilder.build());
     }
 
     private void createNotificationChannel() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            NotificationChannel channel = new NotificationChannel(
-                    CHANNEL_ID,
-                    "Reminder Notifications",
-                    NotificationManager.IMPORTANCE_HIGH
-            );
-            channel.setDescription("Reminder channel to display all user scheduled reminders");
+            NotificationChannel channel = new NotificationChannel(CHANNEL_ID,"Reminder Notifications",NotificationManager.IMPORTANCE_HIGH);
+            channel.setDescription("Reminder channel to display MyCycle user's scheduled reminders.");
 
             NotificationManager notificationManager = context.getSystemService(NotificationManager.class);
             if (notificationManager != null) {

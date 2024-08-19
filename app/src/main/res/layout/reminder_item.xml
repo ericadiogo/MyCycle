@@ -3,14 +3,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardReminderItem"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="40dp"
         android:backgroundTint="@color/board"
+        android:layout_marginBottom="30dp"
         android:outlineAmbientShadowColor="@color/black"
         app:cardCornerRadius="15dp">
 
@@ -52,14 +52,14 @@
                     android:layout_height="wrap_content">
 
                     <TextView
-                        android:text="Starting on: "
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
                         android:layout_marginTop="15dp"
                         android:fontFamily="@font/tenor_sans"
-                        android:textStyle="bold"
-                        android:textSize="14sp"
+                        android:text="Starting on: "
                         android:textColor="@color/mycycle_text"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/remDateTime"
