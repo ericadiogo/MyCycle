@@ -28,13 +28,16 @@ import com.google.firebase.database.ValueEventListener;
 
 public class SettingsActivity extends AppCompatActivity {
     private LinearLayout settingsBack, aboutProject, aboutMe;
-    private TextView userFnameSet, userLnameSet, useremailSet, txtPeriod, txtCycleLength, txtWeight;
+    private TextView userFnameSet, userLnameSet, txtPeriod, txtCycleLength, txtWeight;
     private DatabaseReference reference;
-    private String loggedUserId;
+    private String loggedUserId,fname,lname;
+    private int plength,clength,weight;
     private FirebaseAuth mAuth;
     private FirebaseUser firebaseUser;
     private Button btnlogOut, btnDeleteProfile;
     private ImageView fNamedEdit, lNameEdit, passwordEdit, pLengthEdit, cLengthEdit, weightEdit;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -187,11 +190,11 @@ public class SettingsActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 UserModel userModel = snapshot.getValue(UserModel.class);
                 if (userModel != null) {
-                    String fname = userModel.getFirstName();
-                    String lname = userModel.getLastName();
-                    int plength = userModel.getpLength();
-                    int clength = userModel.getcLength();
-                    int weight = userModel.getWeight();
+                    fname = userModel.getFirstName();
+                    lname = userModel.getLastName();
+                    plength = userModel.getpLength();
+                    clength = userModel.getcLength();
+                    weight = userModel.getWeight();
 
                     userFnameSet.setText(fname);
                     userLnameSet.setText(lname);
@@ -214,6 +217,8 @@ public class SettingsActivity extends AppCompatActivity {
         final EditText edtChangeFname = fname_layout.findViewById(R.id.edtChangeFname);
         Button btnSave = fname_layout.findViewById(R.id.btnSave3);
         Button btnCancel = fname_layout.findViewById(R.id.btnCancel3);
+
+        edtChangeFname.setText(fname);
 
         builder.setView(fname_layout);
         AlertDialog dialog = builder.create();
@@ -265,6 +270,8 @@ public class SettingsActivity extends AppCompatActivity {
         final EditText edtChangeLname = lname_layout.findViewById(R.id.edtChangeLname);
         Button btnSave = lname_layout.findViewById(R.id.btnSave4);
         Button btnCancel = lname_layout.findViewById(R.id.btnCancel4);
+
+        edtChangeLname.setText(lname);
 
         builder.setView(lname_layout);
         AlertDialog dialog = builder.create();
@@ -367,6 +374,8 @@ public class SettingsActivity extends AppCompatActivity {
         Button btnSave = c_layout.findViewById(R.id.btnSave2);
         Button btnCancel = c_layout.findViewById(R.id.btnCancel2);
 
+        edtChangeCycle.setText(String.valueOf(clength));
+
         builder.setView(c_layout);
         AlertDialog dialog = builder.create();
         dialog.setCancelable(true);
@@ -422,6 +431,8 @@ public class SettingsActivity extends AppCompatActivity {
         Button btnSave = p_layout.findViewById(R.id.btnSave);
         Button btnCancel = p_layout.findViewById(R.id.btnCancel);
 
+        edtChangePeriod.setText(String.valueOf(plength));
+
         builder.setView(p_layout);
         AlertDialog dialog = builder.create();
         dialog.setCancelable(true);
@@ -476,6 +487,8 @@ public class SettingsActivity extends AppCompatActivity {
         final EditText edtWeight = p_layout.findViewById(R.id.edtWeight);
         Button btnSave = p_layout.findViewById(R.id.btnSave8);
         Button btnCancel = p_layout.findViewById(R.id.btnCancel8);
+
+        edtWeight.setText(String.valueOf(weight));
 
         builder.setView(p_layout);
         AlertDialog dialog = builder.create();

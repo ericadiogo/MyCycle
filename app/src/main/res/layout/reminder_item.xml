@@ -3,14 +3,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content">
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/cardNoteItem"
+        android:id="@+id/cardReminderItem"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="40dp"
         android:backgroundTint="@color/board"
+        android:layout_marginBottom="30dp"
         android:outlineAmbientShadowColor="@color/black"
         app:cardCornerRadius="15dp">
 
@@ -46,33 +46,77 @@
 
                 </LinearLayout>
 
-                <TextView
-                    android:id="@+id/remDateTime"
-                    android:text="Reminder date and time"
-                    android:layout_marginTop="15dp"
-                    android:fontFamily="@font/tenor_sans"
-                    android:textStyle="bold"
-                    android:textSize="14sp"
-                    android:textColor="@color/mycycle_text"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
 
-                <TextView
-                    android:id="@+id/remRepInfo"
-                    android:text="Repetition info"
-                    android:layout_marginTop="15dp"
-                    android:fontFamily="@font/tenor_sans"
-                    android:textStyle="bold"
-                    android:textSize="14sp"
-                    android:textColor="@color/mycycle_text"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:fontFamily="@font/tenor_sans"
+                        android:text="Starting on: "
+                        android:textColor="@color/mycycle_text"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/remDateTime"
+                        android:text="date and time"
+                        android:layout_marginTop="15dp"
+                        android:fontFamily="@font/tenor_sans"
+                        android:textStyle="bold"
+                        android:textSize="14sp"
+                        android:textColor="@color/mycycle_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:text="Every "
+                        android:layout_marginTop="15dp"
+                        android:fontFamily="@font/tenor_sans"
+                        android:textStyle="bold"
+                        android:textSize="14sp"
+                        android:textColor="@color/mycycle_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+
+                    <TextView
+                        android:id="@+id/remRepInfo"
+                        android:text=""
+                        android:layout_marginTop="15dp"
+                        android:fontFamily="@font/tenor_sans"
+                        android:textStyle="bold"
+                        android:textSize="14sp"
+                        android:textColor="@color/mycycle_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+
+                    <TextView
+                        android:text=" hour(s)"
+                        android:layout_marginTop="15dp"
+                        android:fontFamily="@font/tenor_sans"
+                        android:textStyle="bold"
+                        android:textSize="14sp"
+                        android:textColor="@color/mycycle_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+
+                </LinearLayout>
             </LinearLayout>
 
             <LinearLayout
                 android:orientation="horizontal"
                 android:gravity="center"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
@@ -84,7 +128,7 @@
                     android:layout_weight="0.5">
 
                     <ImageView
-                        android:id="@+id/editNote"
+                        android:id="@+id/editReminder"
                         android:layout_width="28dp"
                         android:layout_height="28dp"
                         android:layout_gravity="left"
@@ -100,7 +144,7 @@
                     android:layout_weight="0.5">
 
                     <ImageView
-                        android:id="@+id/deleteNote"
+                        android:id="@+id/deleteReminder"
                         android:layout_gravity="right"
                         android:layout_width="28dp"
                         android:layout_height="28dp"
