@@ -82,7 +82,7 @@
         android:layout_height="wrap_content"/>
 
     <TextView
-        android:text="July, 2024"
+        android:text="August, 2024"
         android:textAlignment="center"
         android:layout_gravity="center"
         android:layout_marginTop="60dp"

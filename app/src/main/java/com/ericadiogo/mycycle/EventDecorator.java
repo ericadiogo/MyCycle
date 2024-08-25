@@ -24,7 +24,7 @@ public class EventDecorator implements DayViewDecorator {
         this.dates = new HashSet<>(dates);
         this.textColor = textColor;
         for (CalendarDay date : dates) {
-            Log.d(TAG, "Decorating date: " + date.getDate()); // Log para cada data decorada
+            Log.d(TAG, "Decorating date: " + date.getDate());
         }
     }
 
@@ -36,6 +36,6 @@ public class EventDecorator implements DayViewDecorator {
     @Override
     public void decorate(DayViewFacade view) {
         view.setBackgroundDrawable(drawable);
-        view.addSpan(new ForegroundColorSpan(textColor)); // Adiciona a mudança de cor do texto
+        view.addSpan(new ForegroundColorSpan(textColor));
     }
 }

@@ -399,7 +399,6 @@
                     android:layout_marginTop="30dp"
                     android:layout_marginLeft="40dp"
                     android:layout_marginRight="40dp"
-                    android:layout_marginBottom="160dp"
                     android:backgroundTint="@color/icon_background"
                     android:fontFamily="@font/tenor_sans"
                     android:paddingHorizontal="20dp"
@@ -407,6 +406,20 @@
                     android:textSize="18sp"
                     android:textStyle="bold"/>
 
+                <Button
+                    android:id="@+id/btnRegBack"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginRight="40dp"
+                    android:layout_marginBottom="160dp"
+                    android:backgroundTint="@color/icon_background"
+                    android:fontFamily="@font/tenor_sans"
+                    android:paddingHorizontal="20dp"
+                    android:text="Back"
+                    android:textSize="18sp"
+                    android:textStyle="bold"/>
 
             </LinearLayout>
         </ScrollView>
