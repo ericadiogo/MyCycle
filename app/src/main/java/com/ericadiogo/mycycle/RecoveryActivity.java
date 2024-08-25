@@ -22,7 +22,7 @@ import com.google.firebase.auth.FirebaseAuth;
 public class RecoveryActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private EditText emailRecover;
-    private Button btnRecover;
+    private Button btnRecover,btnRecBack;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,12 +32,22 @@ public class RecoveryActivity extends AppCompatActivity {
 
         emailRecover = findViewById(R.id.emailRecover);
         btnRecover = findViewById(R.id.btnRecover);
+        btnRecBack = findViewById(R.id.btnRecBack);
 
         mAuth = FirebaseAuth.getInstance();
         btnRecover.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 validateEmail();
+            }
+        });
+
+        btnRecBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(RecoveryActivity.this, LoginActivity.class);
+                startActivity(intent);
+                finish();
             }
         });
     }

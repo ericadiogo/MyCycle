@@ -29,7 +29,7 @@ import java.util.Locale;
 
 public class RegisterActivity extends AppCompatActivity {
     private EditText firstName,lastName,emailRegister,passRegister,passConfirm,periodLengthReg,cycleReg,weightReg;
-    private Button btnRegister,lastPeriodButton;
+    private Button btnRegister,lastPeriodButton,btnRegBack;
     private FirebaseAuth mAuth;
     private FirebaseDatabase database;
     private DatabaseReference reference,reference2;
@@ -53,6 +53,7 @@ public class RegisterActivity extends AppCompatActivity {
         lastPeriodButton = findViewById(R.id.lastPeriodButton);
         btnRegister = findViewById(R.id.btnRegister);
         mAuth = FirebaseAuth.getInstance();
+        btnRegBack = findViewById(R.id.btnRegBack);
 
         lastPeriodButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -78,6 +79,14 @@ public class RegisterActivity extends AppCompatActivity {
 
         });
 
+        btnRegBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
